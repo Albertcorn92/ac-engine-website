@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commercial Evaluation Protocol &amp; Intake | AC Engine 5.0</title>
-    <meta name="description" content="Request AC Engine 5.0 Commercial Evaluation SDK (.zip) for your industrial compressors, pumps, and rotating equipment under mutual NDA.">
+    <title>Commercial Evaluation Protocol &amp; Intake | AC Engine</title>
+    <meta name="description" content="Request AC Engine Commercial Evaluation SDK (.zip) for your industrial compressors, pumps, and rotating equipment under mutual NDA.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
     <!-- Top Engineering Spec Stripe -->
     <div class="top-stripe">
-        <div>CORE REV: <span>5.0.0-PROD</span> &bull; MISRA-C/C++ ALIGNED &bull; ZERO FPU REQUIRED</div>
-        <div>ARM CORTEX-M0+/M4/M7/M33 &bull; ESP32 &bull; HOST EVALUATION</div>
+        <div>EMBEDDED C DSP CORE &bull; MISRA-C:2012 ALIGNED &bull; DETERMINISTIC 375B SRAM</div>
+        <div>ARM CORTEX-M0+/M4/M7/M33 &bull; ESP32 &bull; HOST SITL VALIDATION</div>
     </div>
 
     <!-- Navigation -->
@@ -25,7 +25,7 @@
                 <img src="assets/logo_icon.png" alt="AC Engine Emblem" class="nav-logo-icon">
                 <div class="brand-text">
                     AC ENGINE
-                    <span class="brand-badge">v5.0</span>
+                    <span class="brand-badge">EMBEDDED C</span>
                 </div>
             </a>
             <div class="nav-links">
@@ -69,7 +69,7 @@
                 <div class="protocol-card">
                     <div class="protocol-step">STEP 02</div>
                     <h4>Kinematic Tuning &amp; Delivery</h4>
-                    <p>We deliver <code>AC_Engine_v5.0_Commercial_SDK.zip</code> (55 KB) containing stripped <code>.a</code> static binaries configured for your rated motor RPM and target MCU.</p>
+                    <p>We deliver <code>AC_Engine_Commercial_SDK.zip</code> containing stripped <code>.a</code> static binaries configured for your rated motor RPM and target MCU.</p>
                 </div>
                 <div class="protocol-card">
                     <div class="protocol-step">STEP 03</div>
@@ -89,7 +89,7 @@
     <section style="background:var(--bg-card-alt);">
         <div class="container">
             <div class="eval-box">
-                <div class="section-tag">COMMERCIAL EVALUATION SDK (v5.0) INTAKE</div>
+                <div class="section-tag">COMMERCIAL EVALUATION SDK INTAKE</div>
                 <h2 style="font-size:24px; font-weight:800; color:var(--text-title); margin:8px 0 12px;">Request Pre-Compiled Evaluation Package</h2>
                 <p style="font-size:14px; color:var(--text-muted); line-height:1.6; max-width:760px;">
                     Evaluation packages are provided exclusively to rotating equipment manufacturers (OEMs). To receive pre-compiled binaries configured for your target machine kinematics, complete the technical intake below:
@@ -147,7 +147,7 @@
 
                 <!-- Direct Contact Cards -->
                 <div class="direct-contact-cards">
-                    <a href="mailto:evaluation@acengine.tech?subject=AC%20Engine%205.0%20Evaluation%20Request&body=Attn:%20AC%20Engine%20Technical%20Evaluation%20Desk,%0A%0AWe%20would%20like%20to%20evaluate%20AC%20Engine%205.0%20for%20our%20equipment.%0A%0ACompany:%0AMachine%20Type:%0AMotor%20Speed%20(RPM):%0ATarget%20MCU%20Architecture:%0A%0AThank%20you," style="text-decoration:none; flex:1;">
+                    <a href="mailto:evaluation@acengine.tech?subject=AC%20Engine%20Evaluation%20Request&body=Attn:%20AC%20Engine%20Technical%20Evaluation%20Desk,%0A%0AWe%20would%20like%20to%20evaluate%20AC%20Engine%20for%20our%20equipment.%0A%0ACompany:%0AMachine%20Type:%0AMotor%20Speed%20(RPM):%0ATarget%20MCU%20Architecture:%0A%0AThank%20you," style="text-decoration:none; flex:1;">
                         <div class="contact-channel-card">
                             <div class="contact-channel-title">Direct Engineering Email</div>
                             <div class="contact-channel-val">evaluation@acengine.tech</div>
@@ -214,10 +214,10 @@
 
         function submitEvalEmail() {
             var d = getEvalData();
-            var subject = encodeURIComponent('AC Engine 5.0 Evaluation Request - ' + d.company + ' (' + d.equipment + ')');
+            var subject = encodeURIComponent('AC Engine Evaluation Request - ' + d.company + ' (' + d.equipment + ')');
             var body = encodeURIComponent(
                 'Attn: AC Engine Technical Evaluation Desk,\n\n' +
-                'We would like to request the AC Engine 5.0 Commercial Evaluation SDK (.zip) for our rotating equipment.\n\n' +
+                'We would like to request the AC Engine Commercial Evaluation SDK (.zip) for our rotating equipment.\n\n' +
                 'ENGINEERING SPECIFICATION:\n' +
                 '- Name & Title: ' + d.name + '\n' +
                 '- Company / OEM: ' + d.company + '\n' +
@@ -235,7 +235,7 @@
         function copyEvalTemplate() {
             var d = getEvalData();
             var text = 
-                'AC Engine 5.0 Commercial Evaluation Request\n' +
+                'AC Engine Commercial Evaluation Request\n' +
                 '-------------------------------------------\n' +
                 'Name & Title: ' + d.name + '\n' +
                 'Company / OEM: ' + d.company + '\n' +

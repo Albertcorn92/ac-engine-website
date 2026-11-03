@@ -1,25 +1,25 @@
-/* AC Engine 5.0 - Professional Industrial Enterprise Stylesheet */
+/* AC Engine - Professional Industrial Embedded System Stylesheet */
 :root {
     --bg-page: #f8fafc;
     --bg-card: #ffffff;
     --bg-card-alt: #f1f5f9;
     --border: #e2e8f0;
     --border-dark: #cbd5e1;
-    --border-accent: #38bdf8;
+    --border-accent: #0284c7;
     --text-title: #0f172a;
     --text-body: #334155;
     --text-muted: #64748b;
     --text-light: #94a3b8;
     --primary: #0284c7;
     --primary-hover: #0369a1;
-    --primary-light: #e0f2fe;
+    --primary-light: #f0f9ff;
     --accent-cyan: #0284c7;
-    --success: #16a34a;
-    --success-bg: #dcfce7;
-    --danger: #dc2626;
-    --danger-bg: #fee2e2;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-mono: 'IBM Plex Mono', Menlo, Monaco, Consolas, monospace;
+    --success: #15803d;
+    --success-bg: #f0fdf4;
+    --danger: #b91c1c;
+    --danger-bg: #fef2f2;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, Monaco, monospace;
 }
 
 * {
@@ -32,25 +32,26 @@ body {
     background-color: var(--bg-page);
     color: var(--text-body);
     font-family: var(--font-sans);
-    line-height: 1.65;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
 
 /* Top Engineering Spec Stripe */
 .top-stripe {
-    background: #0f172a;
-    color: #94a3b8;
-    padding: 8px 32px;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 7px 32px;
     font-family: var(--font-mono);
     font-size: 11px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #1e293b;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.02em;
 }
 
 .top-stripe span {
-    color: #38bdf8;
+    color: #0369a1;
     font-weight: 600;
 }
 
@@ -61,7 +62,7 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 .nav-inner {
@@ -81,14 +82,14 @@ nav {
 }
 
 .nav-logo-icon {
-    height: 38px;
+    height: 34px;
     width: auto;
     display: block;
 }
 
 .brand-text {
-    font-size: 19px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 700;
     letter-spacing: 0.5px;
     color: var(--text-title);
     display: flex;
@@ -97,14 +98,15 @@ nav {
 }
 
 .brand-badge {
-    background: var(--primary-light);
-    border: 1px solid #bae6fd;
-    color: var(--primary);
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
     font-family: var(--font-mono);
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 600;
     padding: 2px 6px;
-    border-radius: 4px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
 }
 
 .nav-links {
@@ -120,7 +122,7 @@ nav {
     text-decoration: none;
     padding: 6px 0;
     border-bottom: 2px solid transparent;
-    transition: all 0.15s ease;
+    transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .nav-links a:hover {
@@ -137,20 +139,18 @@ nav {
     background: var(--primary);
     color: #ffffff !important;
     border: 1px solid var(--primary-hover);
-    padding: 8px 18px;
-    border-radius: 6px;
+    padding: 7px 16px;
+    border-radius: 4px;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
-    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
-    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px rgba(2, 132, 199, 0.2);
+    transition: background 0.15s ease;
 }
 
 .btn-nav:hover {
     background: var(--primary-hover);
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
-    transform: translateY(-1px);
 }
 
 /* Layout Container */
@@ -164,19 +164,19 @@ nav {
 .page-header {
     background: #ffffff;
     border-bottom: 1px solid var(--border);
-    padding: 48px 0;
+    padding: 44px 0;
 }
 
 .page-header h1 {
-    font-size: 34px;
-    font-weight: 800;
+    font-size: 32px;
+    font-weight: 700;
     color: var(--text-title);
-    letter-spacing: -0.5px;
+    letter-spacing: -0.4px;
     margin-bottom: 10px;
 }
 
 .page-header p.lead {
-    font-size: 17px;
+    font-size: 16px;
     color: var(--text-muted);
     max-width: 780px;
     line-height: 1.6;
@@ -184,42 +184,39 @@ nav {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(180deg, #ffffff 0%, var(--bg-page) 100%);
-    padding: 72px 0 60px;
+    background: #ffffff;
+    padding: 64px 0 56px;
     border-bottom: 1px solid var(--border);
     text-align: center;
 }
 
 .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--success-bg);
-    border: 1px solid #bbf7d0;
-    border-radius: 20px;
-    padding: 5px 14px;
+    display: inline-block;
+    background: #f8fafc;
+    border: 1px solid var(--border-dark);
+    border-radius: 4px;
+    padding: 4px 11px;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 600;
-    color: #15803d;
-    margin-bottom: 24px;
+    color: #475569;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
 }
 
 .hero-badge .status-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #16a34a;
+    display: none;
 }
 
 .hero h1 {
-    font-size: 44px;
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.8px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.6px;
     color: var(--text-title);
-    max-width: 920px;
-    margin: 0 auto 20px;
+    max-width: 900px;
+    margin: 0 auto 18px;
 }
 
 .hero h1 span.highlight {
@@ -227,11 +224,11 @@ nav {
 }
 
 .hero p.lead {
-    font-size: 18px;
+    font-size: 17px;
     color: var(--text-body);
-    max-width: 780px;
-    margin: 0 auto 36px;
-    line-height: 1.7;
+    max-width: 760px;
+    margin: 0 auto 34px;
+    line-height: 1.65;
 }
 
 /* Hero Actions */
@@ -240,14 +237,14 @@ nav {
     gap: 16px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 56px;
+    margin-bottom: 52px;
 }
 
 .btn-primary {
     background: var(--primary);
     color: #ffffff;
-    padding: 13px 28px;
-    border-radius: 6px;
+    padding: 12px 24px;
+    border-radius: 4px;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
@@ -256,28 +253,26 @@ nav {
     gap: 8px;
     border: 1px solid var(--primary-hover);
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
-    transition: all 0.15s ease;
+    box-shadow: 0 1px 3px rgba(2, 132, 199, 0.2);
+    transition: background 0.15s ease;
 }
 
 .btn-primary:hover {
     background: var(--primary-hover);
-    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
-    transform: translateY(-1px);
 }
 
 .btn-secondary {
     background: #ffffff;
     color: var(--text-title);
-    padding: 13px 24px;
-    border-radius: 6px;
+    padding: 12px 22px;
+    border-radius: 4px;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
     border: 1px solid var(--border-dark);
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .btn-secondary:hover {
@@ -301,26 +296,27 @@ nav {
 .pillar-card {
     background: #ffffff;
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 26px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    transition: all 0.2s ease;
+    border-radius: 6px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: border-color 0.15s ease;
 }
 
 .pillar-card:hover {
-    border-color: var(--border-accent);
-    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.1);
-    transform: translateY(-2px);
+    border-color: #94a3b8;
 }
 
-.pillar-icon {
-    font-size: 26px;
-    margin-bottom: 14px;
-    display: inline-block;
+.pillar-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
 }
 
 .pillar-card h3 {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-title);
     margin-bottom: 8px;
@@ -347,9 +343,9 @@ nav {
 .metric-card {
     background: #ffffff;
     border: 1px solid var(--border);
-    padding: 20px 22px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    padding: 18px 20px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .metric-label {
