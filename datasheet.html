@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silicon Datasheet &amp; Firmware Specs | AC Engine 5.0</title>
+    <meta name="description" content="Deterministic 375-byte RAM footprint, sub-millisecond execution, zero FPU, zero malloc. Complete silicon specifications for ARM Cortex-M and ESP32.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <!-- Top Engineering Spec Stripe -->
+    <div class="top-stripe">
+        <div>CORE REV: <span>5.0.0-PROD</span> &bull; MISRA-C/C++ ALIGNED &bull; ZERO FPU REQUIRED</div>
+        <div>ARM CORTEX-M0+/M4/M7/M33 &bull; ESP32 &bull; HOST EVALUATION</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/logo_icon.png" alt="AC Engine Emblem" class="nav-logo-icon">
+                <div class="brand-text">
+                    AC ENGINE
+                    <span class="brand-badge">v5.0</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Overview</a>
+                <a href="datasheet.html" class="active">Silicon Datasheet</a>
+                <a href="benchmark.html">Lab Benchmark</a>
+                <a href="evaluation.html">Evaluation Protocol</a>
+                <a href="evaluation.html" class="btn-nav">Request Evaluation SDK</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <div class="section-tag">OFFICIAL TECHNICAL SPECIFICATION</div>
+            <h1>Deterministic Silicon Datasheet</h1>
+            <p class="lead">
+                Verified hardware resource consumption, execution latencies, and MISRA-C/C++ compliant firmware architecture for mission-critical industrial drives.
+            </p>
+        </div>
+    </div>
+
+    <!-- Section: Hard Silicon Specifications -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">RESOURCE CONSUMPTION PROFILE</div>
+                <h2 class="section-title">Zero Heap, Sub-Millisecond Execution</h2>
+                <p class="section-desc">
+                    Engineered for mission-critical industrial applications where memory corruption, watch-dog timer timeouts, and unhandled floating-point exceptions are unacceptable.
+                </p>
+            </div>
+
+            <div class="spec-table-container">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Parameter</th>
+                            <th style="width: 25%;">Value</th>
+                            <th style="width: 50%;">Design Basis &amp; Verification Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="strong">SRAM Consumption</td>
+                            <td class="mono">375 Bytes Total</td>
+                            <td>296 Bytes static .bss state machine + ~79 Bytes active stack frame. Zero heap growth.</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Flash / ROM Consumption</td>
+                            <td class="mono">1,712 Bytes</td>
+                            <td>Stripped static library object (.a). Compiles directly into your application firmware image.</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Worst-Case Execution Time (WCET)</td>
+                            <td class="mono">101.6 µs @ 240 MHz</td>
+                            <td>24,396 hardware clock cycles. Consumes &lt;0.2% CPU when evaluated at 15.6 Hz.</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Arithmetic Unit</td>
+                            <td class="mono">100% Fixed-Point Integer</td>
+                            <td>Zero FPU required. Pure 32/64-bit integer bit-shift and Newton-Raphson square root.</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Dynamic Memory Allocation</td>
+                            <td class="mono">0 Bytes (malloc = 0)</td>
+                            <td>MISRA Rule 21.3 compliant. Prevents runtime memory fragmentation and memory leaks.</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Continuous Endurance Qualification</td>
+                            <td class="mono">0.00000% False Alarm Rate</td>
+                            <td>Validated across 320,000,000 physical sensor samples (10M windows / 7.4 continuous days).</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Defect Trip Latency</td>
+                            <td class="mono">1.28 Seconds (20 windows)</td>
+                            <td>Decisive health decay latch upon real bearing raceway micro-spalling inception.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 36px;">
+                <div class="section-tag">PRE-COMPILED BINARY TARGETS</div>
+                <div class="hw-chips">
+                    <span class="chip-badge">ARM Cortex-M0+ (STM32G0/C0, RP2040)</span>
+                    <span class="chip-badge">ARM Cortex-M4 (STM32F4/G4, TI, NXP)</span>
+                    <span class="chip-badge">ARM Cortex-M7 (STM32H7, i.MX RT)</span>
+                    <span class="chip-badge">ARM Cortex-M33 (STM32U5, nRF5340)</span>
+                    <span class="chip-badge">Espressif ESP32 / ESP32-S3</span>
+                    <span class="chip-badge">x86_64 / Apple Silicon Host (SITL)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: 3-Stage Autonomous Safety Architecture -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">CORE ARCHITECTURE</div>
+                <h2 class="section-title">3-Stage Autonomous Protection Architecture</h2>
+                <p class="section-desc">
+                    Eliminates false alarms caused by plant floor noise, dropped tools, and motor startup speed ramping without compromising sub-second defect detection.
+                </p>
+            </div>
+
+            <div class="arch-grid">
+                <div class="arch-card">
+                    <div class="arch-num">SAFEGUARD 01</div>
+                    <h3>Speed-Ramp Transient Gate</h3>
+                    <p>
+                        Monitors rotor acceleration during startup (0 to rated RPM). Discards startup inrush current shocks and torque transient spikes during the initial 1.28s window before establishing steady-state baseline tracking.
+                    </p>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-num">SAFEGUARD 02</div>
+                    <h3>Transient Outlier Shock Shield</h3>
+                    <p>
+                        Distinguishes between continuous structural bearing degradation and isolated mechanical shocks (e.g. dropped wrenches, pipe fluid hammer, or forklift base bumps). Single-sample outliers are filtered prior to health decay.
+                    </p>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-num">SAFEGUARD 03</div>
+                    <h3>Epistemic Anti-Poisoning Lock</h3>
+                    <p>
+                        Prevents model poisoning. When mechanical defect energy rises above nominal baseline thresholds, the adaptation gates instantly clamp to prevent the engine from learning anomalous vibration as "new normal."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Drop-In ANSI C Integration -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">OEM FIRMWARE INTEGRATION</div>
+                <h2 class="section-title">Drop-In C-Linkage Interface</h2>
+                <p class="section-desc">
+                    Integrates into existing FreeRTOS, Zephyr, or bare-metal motor control firmware in fewer than 10 lines of code. No hardware timers or peripherals are hijacked.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="code-bar">
+                    <span>motor_sensor_task.c</span>
+                    <span>Standard ANSI C Header Integration</span>
+                </div>
+                <pre class="code-content"><code><span class="c-com">/* 1. Include the clean public header: */</span>
+<span class="c-kw">#include</span> <span class="c-typ">"ac_engine.h"</span>
+
+<span class="c-typ">void</span> <span class="c-fn">sensor_task_process_vibration</span>(<span class="c-kw">const</span> <span class="c-typ">int32_t</span> *x_fifo, <span class="c-kw">const</span> <span class="c-typ">int32_t</span> *y_fifo, <span class="c-kw">const</span> <span class="c-typ">int32_t</span> *z_fifo) {
+    <span class="c-com">/* 2. Feed 32 accelerometer counts into engine (execution: 101.6 µs): */</span>
+    <span class="c-typ">ac_result_t</span> result = <span class="c-fn">ac_engine_feed_and_evaluate</span>(x_fifo, y_fifo, z_fifo, <span class="c-num">32</span>);
+
+    <span class="c-com">/* 3. Output to local HMI keypad screen or visual status LED: */</span>
+    <span class="c-fn">lcd_set_health_display</span>(result.health_index); <span class="c-com">/* Continuous: 100% -> 0% */</span>
+
+    <span class="c-com">/* 4. Map directly to Modbus Holding Registers or safety trip relay: */</span>
+    <span class="c-kw">if</span> (result.condition == <span class="c-typ">AC_STATE_CRITICAL_FAULT</span>) {
+        <span class="c-fn">plc_trigger_bearing_alarm_relay</span>(); <span class="c-com">/* Autonomous machine protection */</span>
+    }
+}</code></pre>
+            </div>
+
+            <div style="text-align:center; margin-top:40px;">
+                <a href="evaluation.html" class="btn-primary" style="font-size:15px; padding:14px 32px;">
+                    Request Pre-Compiled Static Binary (.a) &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                &copy; 2026 AC Engine. All rights reserved. Proprietary Embedded Firmware IP.
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Overview</a>
+                <a href="datasheet.html">Datasheet</a>
+                <a href="benchmark.html">Lab Benchmark</a>
+                <a href="evaluation.html">Evaluation Protocol</a>
+                <a href="https://www.linkedin.com/in/albert-cornelius-0816a11b5/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

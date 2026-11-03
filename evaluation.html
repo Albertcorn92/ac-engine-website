@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Evaluation Protocol &amp; Intake | AC Engine 5.0</title>
+    <meta name="description" content="Request AC Engine 5.0 Commercial Evaluation SDK (.zip) for your industrial compressors, pumps, and rotating equipment under mutual NDA.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <!-- Top Engineering Spec Stripe -->
+    <div class="top-stripe">
+        <div>CORE REV: <span>5.0.0-PROD</span> &bull; MISRA-C/C++ ALIGNED &bull; ZERO FPU REQUIRED</div>
+        <div>ARM CORTEX-M0+/M4/M7/M33 &bull; ESP32 &bull; HOST EVALUATION</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/logo_icon.png" alt="AC Engine Emblem" class="nav-logo-icon">
+                <div class="brand-text">
+                    AC ENGINE
+                    <span class="brand-badge">v5.0</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Overview</a>
+                <a href="datasheet.html">Silicon Datasheet</a>
+                <a href="benchmark.html">Lab Benchmark</a>
+                <a href="evaluation.html" class="active">Evaluation Protocol</a>
+                <a href="evaluation.html" class="btn-nav">Request Evaluation SDK</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <div class="section-tag">COMMERCIAL OEM ENGAGEMENT</div>
+            <h1>Evaluation Protocol &amp; Technical Intake</h1>
+            <p class="lead">
+                A streamlined, confidential 4-step engineering qualification roadmap designed for OEM VP of Engineering and firmware architecture teams to evaluate our pre-compiled static library on your test dynos.
+            </p>
+        </div>
+    </div>
+
+    <!-- Section: 4-Step Evaluation Workflow -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">QUALIFICATION PATHWAY</div>
+                <h2 class="section-title">How OEMs Evaluate AC Engine</h2>
+                <p class="section-desc">
+                    We eliminate development risk through a zero-cost 30-day dynamometer evaluation phase prior to any commercial licensing commitment.
+                </p>
+            </div>
+
+            <div class="protocol-grid">
+                <div class="protocol-card">
+                    <div class="protocol-step">STEP 01</div>
+                    <h4>Mutual NDA Execution</h4>
+                    <p>Standard 2-page mutual agreement protecting your proprietary kinematics and our compiled static library.</p>
+                </div>
+                <div class="protocol-card">
+                    <div class="protocol-step">STEP 02</div>
+                    <h4>Kinematic Tuning &amp; Delivery</h4>
+                    <p>We deliver <code>AC_Engine_v5.0_Commercial_SDK.zip</code> (55 KB) containing stripped <code>.a</code> static binaries configured for your rated motor RPM and target MCU.</p>
+                </div>
+                <div class="protocol-card">
+                    <div class="protocol-step">STEP 03</div>
+                    <h4>Dyno Bench Validation (30 Days)</h4>
+                    <p>Your firmware team links the static binary into your motor firmware in under 10 minutes. Run it on your dyno to verify 0 false alarms and sub-second defect trips.</p>
+                </div>
+                <div class="protocol-card">
+                    <div class="protocol-step">STEP 04</div>
+                    <h4>Production Design Win</h4>
+                    <p>Upon bench qualification, transition smoothly to production volume licensing ($3 to $5 per unit royalty). Zero recurring cloud fees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Interactive Technical Intake Form -->
+    <section style="background:var(--bg-card-alt);">
+        <div class="container">
+            <div class="eval-box">
+                <div class="section-tag">COMMERCIAL EVALUATION SDK (v5.0) INTAKE</div>
+                <h2 style="font-size:24px; font-weight:800; color:var(--text-title); margin:8px 0 12px;">Request Pre-Compiled Evaluation Package</h2>
+                <p style="font-size:14px; color:var(--text-muted); line-height:1.6; max-width:760px;">
+                    Evaluation packages are provided exclusively to rotating equipment manufacturers (OEMs). To receive pre-compiled binaries configured for your target machine kinematics, complete the technical intake below:
+                </p>
+
+                <!-- Interactive Form -->
+                <form id="evalIntakeForm" onsubmit="event.preventDefault(); submitEvalEmail();">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="evalName">Full Name &amp; Title</label>
+                            <input type="text" id="evalName" class="form-input" placeholder="e.g. Alex Miller, VP of Engineering" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="evalCompany">Company / OEM Name</label>
+                            <input type="text" id="evalCompany" class="form-input" placeholder="e.g. Industrial Equipment Manufacturer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="evalEmail">Corporate Work Email</label>
+                            <input type="email" id="evalEmail" class="form-input" placeholder="name@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="evalEquipment">Machine / Equipment Category</label>
+                            <select id="evalEquipment" class="form-select">
+                                <option value="Rotary Screw Compressor">Rotary Screw Compressor</option>
+                                <option value="Centrifugal / Submersible Pump">Centrifugal / Submersible Pump</option>
+                                <option value="Industrial Blower / Fan">Industrial Blower / Fan</option>
+                                <option value="Motor Drive / Inverter (VFD)">Motor Drive / Inverter (VFD)</option>
+                                <option value="Heavy Gearbox / Transmission">Heavy Gearbox / Transmission</option>
+                                <option value="Other Rotating Equipment">Other Rotating Equipment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="evalMcu">Target MCU Architecture</label>
+                            <input type="text" id="evalMcu" class="form-input" placeholder="e.g. STM32F4, Cortex-M4, TI, ESP32" value="ARM Cortex-M4 (STM32F4)">
+                        </div>
+                        <div class="form-group">
+                            <label for="evalRpm">Rated Motor RPM</label>
+                            <input type="text" id="evalRpm" class="form-input" placeholder="e.g. 1,800 RPM / 3,600 RPM" value="1,800 RPM">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="evalNotes">Evaluation Scope or Dyno Sensor Details (Optional)</label>
+                            <input type="text" id="evalNotes" class="form-input" placeholder="e.g. Analog Devices ADXL355 SPI sensor, 30-day dyno evaluation schedule">
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+                        <button type="submit" class="btn-primary" style="font-size:14px; padding:12px 26px;">
+                            ✉️ Open Pre-Filled Email
+                        </button>
+                        <button type="button" onclick="copyEvalTemplate()" class="btn-secondary" style="font-size:14px; padding:12px 22px;">
+                            📋 Copy Intake Spec to Clipboard
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Direct Contact Cards -->
+                <div class="direct-contact-cards">
+                    <a href="mailto:evaluation@acengine.tech?subject=AC%20Engine%205.0%20Evaluation%20Request&body=Attn:%20AC%20Engine%20Technical%20Evaluation%20Desk,%0A%0AWe%20would%20like%20to%20evaluate%20AC%20Engine%205.0%20for%20our%20equipment.%0A%0ACompany:%0AMachine%20Type:%0AMotor%20Speed%20(RPM):%0ATarget%20MCU%20Architecture:%0A%0AThank%20you," style="text-decoration:none; flex:1;">
+                        <div class="contact-channel-card">
+                            <div class="contact-channel-title">Direct Engineering Email</div>
+                            <div class="contact-channel-val">evaluation@acengine.tech</div>
+                            <div class="contact-channel-desc">All inquiries receive mutual NDA &amp; parameter sheet within 24 hours</div>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/albert-cornelius-0816a11b5/" target="_blank" style="text-decoration:none; flex:1;">
+                        <div class="contact-channel-card">
+                            <div class="contact-channel-title">Executive Contact</div>
+                            <div class="contact-channel-val">Albert Cornelius</div>
+                            <div class="contact-channel-desc">Founder &amp; Systems Architect &bull; LinkedIn Direct Message</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="toast-notification">
+        <span>✓</span>
+        <span id="toastMessage">Evaluation intake spec copied to clipboard!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                &copy; 2026 AC Engine. All rights reserved. Proprietary Embedded Firmware IP.
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Overview</a>
+                <a href="datasheet.html">Datasheet</a>
+                <a href="benchmark.html">Lab Benchmark</a>
+                <a href="evaluation.html">Evaluation Protocol</a>
+                <a href="https://www.linkedin.com/in/albert-cornelius-0816a11b5/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Form Script -->
+    <script>
+        function getEvalData() {
+            return {
+                name: (document.getElementById('evalName').value.trim()) || '[Your Name & Title]',
+                company: (document.getElementById('evalCompany').value.trim()) || '[OEM Company]',
+                email: (document.getElementById('evalEmail').value.trim()) || '[Corporate Email]',
+                equipment: document.getElementById('evalEquipment').value,
+                mcu: (document.getElementById('evalMcu').value.trim()) || 'ARM Cortex-M4',
+                rpm: (document.getElementById('evalRpm').value.trim()) || '1,800 RPM',
+                notes: (document.getElementById('evalNotes').value.trim()) || 'Standard 30-day dyno evaluation'
+            };
+        }
+
+        function showToast(msg) {
+            var toast = document.getElementById('toastNotification');
+            var msgEl = document.getElementById('toastMessage');
+            msgEl.textContent = msg;
+            toast.classList.add('active');
+            setTimeout(function() {
+                toast.classList.remove('active');
+            }, 3500);
+        }
+
+        function submitEvalEmail() {
+            var d = getEvalData();
+            var subject = encodeURIComponent('AC Engine 5.0 Evaluation Request - ' + d.company + ' (' + d.equipment + ')');
+            var body = encodeURIComponent(
+                'Attn: AC Engine Technical Evaluation Desk,\n\n' +
+                'We would like to request the AC Engine 5.0 Commercial Evaluation SDK (.zip) for our rotating equipment.\n\n' +
+                'ENGINEERING SPECIFICATION:\n' +
+                '- Name & Title: ' + d.name + '\n' +
+                '- Company / OEM: ' + d.company + '\n' +
+                '- Work Email: ' + d.email + '\n' +
+                '- Machine Category: ' + d.equipment + '\n' +
+                '- Rated Rotor Speed: ' + d.rpm + '\n' +
+                '- Target MCU Architecture: ' + d.mcu + '\n' +
+                '- Evaluation Scope: ' + d.notes + '\n\n' +
+                'Please provide your mutual NDA and target parameter sheet.\n\n' +
+                'Best regards,\n' + d.name
+            );
+            window.location.href = 'mailto:evaluation@acengine.tech?subject=' + subject + '&body=' + body;
+        }
+
+        function copyEvalTemplate() {
+            var d = getEvalData();
+            var text = 
+                'AC Engine 5.0 Commercial Evaluation Request\n' +
+                '-------------------------------------------\n' +
+                'Name & Title: ' + d.name + '\n' +
+                'Company / OEM: ' + d.company + '\n' +
+                'Work Email: ' + d.email + '\n' +
+                'Machine Category: ' + d.equipment + '\n' +
+                'Rated Rotor Speed: ' + d.rpm + '\n' +
+                'Target MCU Architecture: ' + d.mcu + '\n' +
+                'Scope / Sensor: ' + d.notes + '\n' +
+                '-------------------------------------------\n' +
+                'Destination: evaluation@acengine.tech (Technical Evaluation Desk)';
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function() {
+                    showToast('✓ Intake spec copied to clipboard! Paste into your email client.');
+                }).catch(function() {
+                    fallbackCopy(text);
+                });
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast('✓ Intake spec copied to clipboard! Paste into your email client.');
+        }
+    </script>
+
+</body>
+</html>
