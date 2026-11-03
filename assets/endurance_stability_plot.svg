@@ -43,10 +43,8 @@
 <text x="627.6315789473684" y="373" class="txt-tick2" text-anchor="middle">Day 4.5</text>
 <line x1="811.8421052631579" y1="75" x2="811.8421052631579" y2="355" class="grid2"/>
 <text x="811.8421052631579" y="373" class="txt-tick2" text-anchor="middle">Day 6.0</text>
-<line x1="934.6491228070175" y1="75" x2="934.6491228070175" y2="355" class="grid2"/>
-<text x="934.6491228070175" y="373" class="txt-tick2" text-anchor="middle">Day 7.0 (Fault)</text>
 <line x1="985.0" y1="75" x2="985.0" y2="355" class="grid2"/>
-<text x="985.0" y="373" class="txt-tick2" text-anchor="middle">Day 7.41</text>
+<text x="985.0" y="373" class="txt-tick2" text-anchor="middle">Day 7.41 (End)</text>
 <text x="530.0" y="389" class="txt-axis-label2" text-anchor="middle">Continuous Simulated Runtime (Days / 10,000,000 Evaluation Windows)</text>
 <text x="30" y="215.0" class="txt-axis-label2" transform="rotate(-90 30 215.0)" text-anchor="middle">Health Index (%)</text>
 <rect x="75" y="124.42500000000001" width="859.6491228070175" height="7.650000000000006" fill="rgba(16, 185, 129, 0.08)"/>
