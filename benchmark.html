@@ -200,11 +200,31 @@
             <!-- Architecture Physics Box -->
             <div style="background:#ffffff; border:1px solid var(--border); border-radius:8px; padding:28px; margin-top:32px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
                 <h4 style="color:var(--text-title); font-size:17px; margin-bottom:10px; font-weight:700;">
-                    How Infinite Memory Stability Works in 375 Bytes of RAM
+                    Zero-Buffer Streaming Architecture: Constant 375 Bytes RAM
                 </h4>
-                <p style="font-size:14px; color:var(--text-muted); line-height:1.7;">
-                    Standard cloud algorithms attempt to buffer minutes of raw waveform data, requiring megabytes of external SDRAM. AC Engine utilizes Infinite Impulse Response (IIR/EMA) exponential decay momentum. Because bearing ball impacts occur at high kinematic rates (90 Hz to 200 Hz), a single 64-sample window (128 ms) contains 15 to 25 distinct metallic shocks. The engine extracts the energy instantly in a 32-bit register and locks the baseline, eliminating the need for large historical raw memory buffers while guaranteeing zero numerical overflow.
+                <p style="font-size:14px; color:var(--text-muted); line-height:1.7; margin-bottom:14px;">
+                    Conventional cloud vibration algorithms attempt to buffer 10 to 60 seconds of raw high-speed waveform data in memory, requiring expensive external SDRAM and continuous batch transfers. AC Engine operates as a true real-time streaming pipeline designed specifically for resource-constrained microcontrollers:
                 </p>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:16px;">
+                    <div style="background:var(--bg-main); padding:16px; border-radius:6px; border:1px solid var(--border);">
+                        <strong style="color:var(--text-title); display:block; font-size:13px; margin-bottom:6px;">1. Fixed O(1) Memory Footprint</strong>
+                        <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">
+                            Processes each incoming 32-sample sensor FIFO chunk in real-time. The entire state machine resides in a static 375-byte allocation with zero heap fragmentation (<span class="mono">malloc = 0</span>).
+                        </p>
+                    </div>
+                    <div style="background:var(--bg-main); padding:16px; border-radius:6px; border:1px solid var(--border);">
+                        <strong style="color:var(--text-title); display:block; font-size:13px; margin-bottom:6px;">2. Fixed-Point Register Pipeline</strong>
+                        <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">
+                            RMS, Crest Factor, Kurtosis, and Kinematic Harmonics are evaluated in deterministic 32-bit registers with saturation clamping, preventing arithmetic overflow without requiring an FPU.
+                        </p>
+                    </div>
+                    <div style="background:var(--bg-main); padding:16px; border-radius:6px; border:1px solid var(--border);">
+                        <strong style="color:var(--text-title); display:block; font-size:13px; margin-bottom:6px;">3. Numerical Drift Immunity</strong>
+                        <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">
+                            Recursive baseline tracking eliminates historical memory queues while maintaining flat baseline stability (85.00% &plusmn; 0.08%) across 320 million samples without drift or stack growth.
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div style="text-align:center; margin-top:40px;">
