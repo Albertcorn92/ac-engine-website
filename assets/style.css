@@ -501,27 +501,27 @@ table.spec-table td.mono {
 
 /* Signal Analysis Container */
 .plot-container {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid var(--border-dark);
     border-radius: 8px;
-    padding: 24px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
 }
 
 .plot-meta-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #1e293b;
+    border-bottom: 1px solid var(--border);
     padding-bottom: 14px;
     margin-bottom: 18px;
     font-family: var(--font-mono);
     font-size: 11px;
-    color: #94a3b8;
+    color: var(--text-muted);
 }
 
 .plot-meta-header span.highlight {
-    color: #38bdf8;
+    color: var(--primary);
     font-weight: 600;
 }
 

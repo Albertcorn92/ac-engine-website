@@ -1,69 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 500" width="1060" height="500">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 490" width="1060" height="490">
 <defs>
 
   <style>
-    .bg2 { fill: #0b0f17; }
-    .panel-bg2 { fill: #0f172a; stroke: #334155; stroke-width: 1; }
-    .grid2 { stroke: #1e293b; stroke-width: 1; stroke-dasharray: 2 3; }
-    .txt-title2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; font-weight: 700; fill: #ffffff; }
-    .txt-sub2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #94a3b8; }
-    .txt-axis-label2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; fill: #94a3b8; }
-    .txt-tick2 { font-family: "IBM Plex Mono", Menlo, Consolas, monospace; font-size: 10px; fill: #64748b; }
-    .txt-val-bold2 { font-family: "IBM Plex Mono", Menlo, Consolas, monospace; font-size: 11px; font-weight: 600; }
-    .trace-endur { stroke: #10b981; stroke-width: 2.0; fill: none; }
-    .trace-bound { stroke: #38bdf8; stroke-width: 1.0; stroke-dasharray: 4 4; fill: none; opacity: 0.6; }
-    .trace-drop { stroke: #ef4444; stroke-width: 2.5; fill: none; }
+    .bg-canvas2 { fill: #ffffff; }
+    .panel-box2 { fill: #ffffff; stroke: #94a3b8; stroke-width: 1.2; }
+    .grid-line2 { stroke: #e2e8f0; stroke-width: 1; }
+    .txt-fig-num2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 700; fill: #0f172a; }
+    .txt-fig-sub2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #64748b; }
+    .txt-subhead2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 700; fill: #1e293b; text-transform: uppercase; }
+    .txt-axis2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; fill: #334155; }
+    .txt-tick2 { font-family: "IBM Plex Mono", Menlo, Consolas, monospace; font-size: 10px; fill: #475569; }
+    .txt-callout-bold2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10.5px; font-weight: 700; }
+    .txt-mono-num2 { font-family: "IBM Plex Mono", Menlo, Consolas, monospace; font-size: 10.5px; font-weight: 600; }
+    
+    .trace-endur { stroke: #15803d; stroke-width: 2.0; fill: none; }
+    .trace-bound { stroke: #0284c7; stroke-width: 1.0; stroke-dasharray: 4 4; fill: none; opacity: 0.7; }
+    .trace-drop { stroke: #b91c1c; stroke-width: 2.2; fill: none; }
   </style>
 
 </defs>
-<rect width="1060" height="500" class="bg2" rx="10"/>
-<rect x="1" y="1" width="1058" height="498" fill="none" stroke="#1e293b" stroke-width="1.5" rx="9"/>
-<text x="50" y="32" class="txt-title2">Long-Term Numerical Endurance Stability &#8226; 10,000,000 Continuous Inferences (7.41 Days)</text>
-<text x="50" y="50" class="txt-sub2">Stress Test: 320,000,000 physical sensor samples stream &#8226; 0 False Alarms &#8226; Flat 85.00% Mean Health Index (Zero Drift)</text>
-<rect x="75" y="75" width="910" height="280" class="panel-bg2" rx="4"/>
-<line x1="75" y1="345.0" x2="985" y2="345.0" class="grid2"/>
-<text x="65" y="349.0" class="txt-tick2" text-anchor="end">0%</text>
-<line x1="75" y1="294.0" x2="985" y2="294.0" class="grid2"/>
-<text x="65" y="298.0" class="txt-tick2" text-anchor="end">20%</text>
-<line x1="75" y1="243.0" x2="985" y2="243.0" class="grid2"/>
-<text x="65" y="247.0" class="txt-tick2" text-anchor="end">40%</text>
-<line x1="75" y1="192.0" x2="985" y2="192.0" class="grid2"/>
-<text x="65" y="196.0" class="txt-tick2" text-anchor="end">60%</text>
-<line x1="75" y1="141.0" x2="985" y2="141.0" class="grid2"/>
-<text x="65" y="145.0" class="txt-tick2" text-anchor="end">80%</text>
-<line x1="75" y1="90.0" x2="985" y2="90.0" class="grid2"/>
-<text x="65" y="94.0" class="txt-tick2" text-anchor="end">100%</text>
-<line x1="75.0" y1="75" x2="75.0" y2="355" class="grid2"/>
-<text x="75.0" y="373" class="txt-tick2" text-anchor="middle">Day 0.0</text>
-<line x1="259.2105263157895" y1="75" x2="259.2105263157895" y2="355" class="grid2"/>
-<text x="259.2105263157895" y="373" class="txt-tick2" text-anchor="middle">Day 1.5</text>
-<line x1="443.42105263157896" y1="75" x2="443.42105263157896" y2="355" class="grid2"/>
-<text x="443.42105263157896" y="373" class="txt-tick2" text-anchor="middle">Day 3.0</text>
-<line x1="627.6315789473684" y1="75" x2="627.6315789473684" y2="355" class="grid2"/>
-<text x="627.6315789473684" y="373" class="txt-tick2" text-anchor="middle">Day 4.5</text>
-<line x1="811.8421052631579" y1="75" x2="811.8421052631579" y2="355" class="grid2"/>
-<text x="811.8421052631579" y="373" class="txt-tick2" text-anchor="middle">Day 6.0</text>
-<line x1="985.0" y1="75" x2="985.0" y2="355" class="grid2"/>
-<text x="985.0" y="373" class="txt-tick2" text-anchor="middle">Day 7.41 (End)</text>
-<text x="530.0" y="389" class="txt-axis-label2" text-anchor="middle">Continuous Simulated Runtime (Days / 10,000,000 Evaluation Windows)</text>
-<text x="30" y="215.0" class="txt-axis-label2" transform="rotate(-90 30 215.0)" text-anchor="middle">Health Index (%)</text>
-<rect x="75" y="124.42500000000001" width="859.6491228070175" height="7.650000000000006" fill="rgba(16, 185, 129, 0.08)"/>
-<line x1="75" y1="124.42500000000001" x2="934.6491228070175" y2="124.42500000000001" class="trace-bound"/>
-<line x1="75" y1="132.07500000000002" x2="934.6491228070175" y2="132.07500000000002" class="trace-bound"/>
-<polyline points="75.0,128.2 82.2,128.2 89.3,128.1 96.5,128.0 103.7,128.0 110.8,127.9 118.0,128.0 125.1,128.0 132.3,128.0 139.5,128.1 146.6,128.2 153.8,128.3 161.0,128.4 168.1,128.5 175.3,128.5 182.5,128.5 189.6,128.6 196.8,128.5 203.9,128.5 211.1,128.4 218.3,128.3 225.4,128.2 232.6,128.2 239.8,128.1 246.9,128.0 254.1,128.0 261.3,127.9 268.4,128.0 275.6,128.0 282.7,128.0 289.9,128.1 297.1,128.2 304.2,128.3 311.4,128.4 318.6,128.5 325.7,128.5 332.9,128.6 340.1,128.6 347.2,128.5 354.4,128.5 361.5,128.4 368.7,128.3 375.9,128.2 383.0,128.1 390.2,128.1 397.4,128.0 404.5,128.0 411.7,127.9 418.9,128.0 426.0,128.0 433.2,128.1 440.4,128.1 447.5,128.2 454.7,128.3 461.8,128.4 469.0,128.5 476.2,128.5 483.3,128.6 490.5,128.6 497.7,128.5 504.8,128.5 512.0,128.4 519.2,128.3 526.3,128.2 533.5,128.1 540.6,128.1 547.8,128.0 555.0,128.0 562.1,127.9 569.3,128.0 576.5,128.0 583.6,128.1 590.8,128.1 598.0,128.2 605.1,128.3 612.3,128.4 619.4,128.5 626.6,128.5 633.8,128.6 640.9,128.6 648.1,128.5 655.3,128.5 662.4,128.4 669.6,128.3 676.8,128.2 683.9,128.1 691.1,128.1 698.2,128.0 705.4,128.0 712.6,127.9 719.7,128.0 726.9,128.0 734.1,128.1 741.2,128.1 748.4,128.2 755.6,128.3 762.7,128.4 769.9,128.5 777.0,128.5 784.2,128.6 791.4,128.6 798.5,128.5 805.7,128.5 812.9,128.4 820.0,128.3 827.2,128.2 834.4,128.1 841.5,128.1 848.7,128.0 855.8,128.0 863.0,127.9 870.2,128.0 877.3,128.0 884.5,128.1 891.7,128.1 898.8,128.2 906.0,128.3 913.2,128.4 920.3,128.5 927.5,128.5" class="trace-endur"/>
-<polyline points="934.6,128.2 934.6,128.2 938.2,165.8 941.8,203.4 945.4,241.0 949.0,278.6 952.6,316.2 956.2,316.2 959.8,316.2 963.4,316.2 967.0,316.2 970.6,316.2 974.2,316.2 977.8,316.2 981.4,316.2 985.0,316.2" class="trace-drop"/>
-<line x1="934.6491228070175" y1="75" x2="934.6491228070175" y2="355" class="trace-drop" stroke-dasharray="3 3"/>
-<rect x="764.6491228070175" y="87" width="160" height="24" fill="#1e293b" stroke="#f87171" stroke-width="1.2" rx="4"/>
-<text x="772.6491228070175" y="103" class="txt-val-bold2" fill="#f87171">&#8226; DEFECT INJECTED (DAY 7.0)</text>
-<rect x="810" y="305" width="165" height="26" fill="#1e293b" stroke="#ef4444" stroke-width="1.2" rx="4"/>
-<text x="818" y="322" class="txt-val-bold2" fill="#f87171">&#8226; TRIP LATCHED (1.28s)</text>
-<rect x="215" y="87" width="380" height="50" fill="#1e293b" stroke="#334155" stroke-width="1.2" rx="5"/>
-<text x="230" y="107" class="txt-val-bold2" font-size="11.5" fill="#34d399">&#8226; ZERO FALSE ALARMS ACROSS 7.41 DAYS</text>
-<text x="230" y="124" class="txt-tick2" fill="#cbd5e1">Mean Health: <tspan fill="#ffffff" font-weight="600">85.00%</tspan> &#8226; StdDev: <tspan fill="#ffffff" font-weight="600">0.08%</tspan> &#8226; Zero Numerical Drift</text>
+<rect width="1060" height="490" class="bg-canvas2" rx="6"/>
+<rect x="1" y="1" width="1058" height="488" fill="none" stroke="#cbd5e1" stroke-width="1.2" rx="5"/>
+<text x="50" y="32" class="txt-fig-num2">Figure 2. Long-Term Numerical Stability Across 10,000,000 Inferences (7.41 Days)</text>
+<text x="50" y="48" class="txt-fig-sub2">Continuous Stream: 320,000,000 physical sensor samples &#8226; 0 False Alarms &#8226; Mean Health = 85.00% &#177; 0.08%</text>
+<rect x="75" y="70" width="910" height="280" class="panel-box2"/>
+<line x1="75" y1="340.0" x2="985" y2="340.0" class="grid-line2"/>
+<text x="67" y="344.0" class="txt-tick2" text-anchor="end">0%</text>
+<line x1="75" y1="289.0" x2="985" y2="289.0" class="grid-line2"/>
+<text x="67" y="293.0" class="txt-tick2" text-anchor="end">20%</text>
+<line x1="75" y1="238.0" x2="985" y2="238.0" class="grid-line2"/>
+<text x="67" y="242.0" class="txt-tick2" text-anchor="end">40%</text>
+<line x1="75" y1="187.0" x2="985" y2="187.0" class="grid-line2"/>
+<text x="67" y="191.0" class="txt-tick2" text-anchor="end">60%</text>
+<line x1="75" y1="136.0" x2="985" y2="136.0" class="grid-line2"/>
+<text x="67" y="140.0" class="txt-tick2" text-anchor="end">80%</text>
+<line x1="75" y1="85.0" x2="985" y2="85.0" class="grid-line2"/>
+<text x="67" y="89.0" class="txt-tick2" text-anchor="end">100%</text>
+<line x1="75.0" y1="70" x2="75.0" y2="350" class="grid-line2"/>
+<text x="75.0" y="366" class="txt-tick2" text-anchor="middle">Day 0.0</text>
+<line x1="259.2105263157895" y1="70" x2="259.2105263157895" y2="350" class="grid-line2"/>
+<text x="259.2105263157895" y="366" class="txt-tick2" text-anchor="middle">Day 1.5</text>
+<line x1="443.42105263157896" y1="70" x2="443.42105263157896" y2="350" class="grid-line2"/>
+<text x="443.42105263157896" y="366" class="txt-tick2" text-anchor="middle">Day 3.0</text>
+<line x1="627.6315789473684" y1="70" x2="627.6315789473684" y2="350" class="grid-line2"/>
+<text x="627.6315789473684" y="366" class="txt-tick2" text-anchor="middle">Day 4.5</text>
+<line x1="811.8421052631579" y1="70" x2="811.8421052631579" y2="350" class="grid-line2"/>
+<text x="811.8421052631579" y="366" class="txt-tick2" text-anchor="middle">Day 6.0</text>
+<line x1="985.0" y1="70" x2="985.0" y2="350" class="grid-line2"/>
+<text x="985.0" y="366" class="txt-tick2" text-anchor="middle">Day 7.41 (End)</text>
+<text x="530.0" y="382" class="txt-axis2" text-anchor="middle">Simulated Continuous Runtime (Days / 10,000,000 Windows)</text>
+<text x="30" y="210.0" class="txt-axis2" transform="rotate(-90 30 210.0)" text-anchor="middle">Health Index (%)</text>
+<rect x="75" y="119.42500000000001" width="859.6491228070175" height="7.650000000000006" fill="#ecfdf5"/>
+<line x1="75" y1="119.42500000000001" x2="934.6491228070175" y2="119.42500000000001" class="trace-bound"/>
+<line x1="75" y1="127.07500000000002" x2="934.6491228070175" y2="127.07500000000002" class="trace-bound"/>
+<polyline points="75.0,123.2 82.2,123.2 89.3,123.1 96.5,123.0 103.7,123.0 110.8,122.9 118.0,123.0 125.1,123.0 132.3,123.0 139.5,123.1 146.6,123.2 153.8,123.3 161.0,123.4 168.1,123.5 175.3,123.5 182.5,123.5 189.6,123.6 196.8,123.5 203.9,123.5 211.1,123.4 218.3,123.3 225.4,123.2 232.6,123.2 239.8,123.1 246.9,123.0 254.1,123.0 261.3,122.9 268.4,123.0 275.6,123.0 282.7,123.0 289.9,123.1 297.1,123.2 304.2,123.3 311.4,123.4 318.6,123.5 325.7,123.5 332.9,123.6 340.1,123.6 347.2,123.5 354.4,123.5 361.5,123.4 368.7,123.3 375.9,123.2 383.0,123.1 390.2,123.1 397.4,123.0 404.5,123.0 411.7,122.9 418.9,123.0 426.0,123.0 433.2,123.1 440.4,123.1 447.5,123.2 454.7,123.3 461.8,123.4 469.0,123.5 476.2,123.5 483.3,123.6 490.5,123.6 497.7,123.5 504.8,123.5 512.0,123.4 519.2,123.3 526.3,123.2 533.5,123.1 540.6,123.1 547.8,123.0 555.0,123.0 562.1,122.9 569.3,123.0 576.5,123.0 583.6,123.1 590.8,123.1 598.0,123.2 605.1,123.3 612.3,123.4 619.4,123.5 626.6,123.5 633.8,123.6 640.9,123.6 648.1,123.5 655.3,123.5 662.4,123.4 669.6,123.3 676.8,123.2 683.9,123.1 691.1,123.1 698.2,123.0 705.4,123.0 712.6,122.9 719.7,123.0 726.9,123.0 734.1,123.1 741.2,123.1 748.4,123.2 755.6,123.3 762.7,123.4 769.9,123.5 777.0,123.5 784.2,123.6 791.4,123.6 798.5,123.5 805.7,123.5 812.9,123.4 820.0,123.3 827.2,123.2 834.4,123.1 841.5,123.1 848.7,123.0 855.8,123.0 863.0,122.9 870.2,123.0 877.3,123.0 884.5,123.1 891.7,123.1 898.8,123.2 906.0,123.3 913.2,123.4 920.3,123.5 927.5,123.5" class="trace-endur"/>
+<polyline points="934.6,123.3 934.6,123.2 938.2,160.8 941.8,198.4 945.4,236.0 949.0,273.6 952.6,311.2 956.2,311.2 959.8,311.2 963.4,311.2 967.0,311.2 970.6,311.2 974.2,311.2 977.8,311.2 981.4,311.2 985.0,311.2" class="trace-drop"/>
+<line x1="934.6491228070175" y1="70" x2="934.6491228070175" y2="350" stroke="#b91c1c" stroke-width="1.2" stroke-dasharray="3 3"/>
+<rect x="769.6491228070175" y="82" width="155" height="24" fill="#ffffff" stroke="#b91c1c" stroke-width="1.2" rx="3"/>
+<text x="777.6491228070175" y="98" class="txt-callout-bold2" fill="#b91c1c">&#9658; Defect Injected (Day 7.0)</text>
+<rect x="815" y="300" width="160" height="24" fill="#ffffff" stroke="#b91c1c" stroke-width="1.2" rx="3"/>
+<text x="823" y="316" class="txt-callout-bold2" fill="#b91c1c">&#9658; Relay Trip (1.28s)</text>
+<rect x="215" y="82" width="360" height="46" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="4"/>
+<text x="227" y="100" class="txt-callout-bold2" fill="#15803d">&#8226; Zero False Alarms Across 7.41 Days</text>
+<text x="227" y="116" class="txt-tick2" fill="#475569">Mean Health: <tspan fill="#0f172a" font-weight="600">85.00%</tspan> &#8226; StdDev: <tspan fill="#0f172a" font-weight="600">0.08%</tspan> (Zero Drift)</text>
 
-<g transform="translate(50, 425)">
-  <rect width="960" height="48" fill="#0f172a" stroke="#334155" stroke-width="1" rx="6"/>
-  <text x="24" y="29" class="txt-axis-label2" font-size="11">TOTAL INFERENCE BENCHMARK: <tspan class="txt-val-bold2" fill="#38bdf8">10,000,000 Windows</tspan> &#8226; SAMPLE STREAM: <tspan class="txt-val-bold2" fill="#ffffff">320,000,000 Samples</tspan> &#8226; HOST SITL TIME: <tspan class="txt-val-bold2" fill="#34d399">23.44 Seconds (426,700/sec)</tspan> &#8226; STACK DRIFT: <tspan class="txt-val-bold2" fill="#34d399">0 Bytes</tspan></text>
+<g transform="translate(50, 420)">
+  <rect width="960" height="46" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" rx="4"/>
+  <text x="24" y="28" class="txt-callout" font-size="10.5">BENCHMARK TOTAL: <tspan class="txt-mono-num2" fill="#0369a1">10,000,000 Windows</tspan> &#8226; SAMPLE STREAM: <tspan class="txt-mono-num2" fill="#0f172a">320,000,000 Counts</tspan> &#8226; HOST EXECUTION: <tspan class="txt-mono-num2" fill="#15803d">23.44s (426,700/sec)</tspan> &#8226; STACK DRIFT: <tspan class="txt-mono-num2" fill="#15803d">0 Bytes</tspan></text>
 </g>
 
 </svg>
