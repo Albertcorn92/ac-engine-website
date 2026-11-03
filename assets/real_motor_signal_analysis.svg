@@ -99,7 +99,7 @@
 <text x="292.5" y="560" class="txt-axis" text-anchor="middle">Frequency (Hz)</text>
 <text x="37" y="430.0" class="txt-axis" transform="rotate(-90 37 430.0)" text-anchor="middle">Normalized PSD (%)</text>
 <rect x="75" y="330" width="435" height="36" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-<text x="87" y="353" class="txt-subhead">Harmonic Resonance Spectrum (0 - 250 Hz)</text>
+<text x="87" y="353" class="txt-subhead">Resonance Spectrum (FFT)</text>
 <line x1="340" y1="350" x2="360" y2="350" class="trace-fft-norm"/>
 <text x="365" y="353" class="txt-callout" font-size="9.5">Baseline</text>
 <line x1="425" y1="350" x2="445" y2="350" class="trace-fft-fault"/>
