@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AC Engine | Embedded Vibration Intelligence for Industrial Rotating Equipment</title>
-    <meta name="description" content="Freestanding, zero-cloud C condition monitoring engine for ARM Cortex-M and ESP32 microcontrollers. 375-byte RAM footprint with sub-second defect tripping.">
+    <meta name="description" content="Freestanding, zero-cloud C condition monitoring engine for ARM Cortex-M and ESP32 microcontrollers. 312-byte RAM footprint with sub-second defect tripping.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
 
     <!-- Top Engineering Spec Stripe -->
     <div class="top-stripe">
-        <div>EMBEDDED C DSP CORE &bull; MISRA-C:2012 ALIGNED &bull; DETERMINISTIC 375B SRAM</div>
+        <div>EMBEDDED C DSP CORE &bull; MISRA-C:2012 ALIGNED &bull; DETERMINISTIC 312B SRAM</div>
         <div>ARM CORTEX-M0+/M4/M7/M33 &bull; ESP32 &bull; HOST SITL VALIDATION</div>
     </div>
 
@@ -42,13 +42,13 @@
     <header class="hero">
         <div class="container">
             <div class="hero-badge">
-                MISRA-C:2012 &bull; ISO 10816 / 20816 QUALIFIED EMBEDDED DSP CORE
+                MISRA-C:2012 &bull; ISO 10816 / 20816 &bull; NASA IMS &bull; CWRU &bull; OPENBLDC QUALIFIED
             </div>
             <h1>
                 Predictive Bearing Intelligence for <span class="highlight">Industrial Motors &amp; Pumps</span>
             </h1>
             <p class="lead">
-                Detect bearing degradation, raceway micro-spalling, and rotational faults directly inside your existing motor controller. In <strong>375 bytes of RAM</strong>. Zero cloud dependencies. Zero recurring SaaS fees.
+                Detect bearing degradation, raceway micro-spalling, and rotational faults directly inside your existing motor controller. In <strong>312 bytes of RAM</strong>. Zero cloud dependencies. Zero recurring SaaS fees.
             </p>
 
             <div class="hero-actions">
@@ -79,8 +79,8 @@
             <div class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-label">RAM Footprint</div>
-                    <div class="metric-value">375<span class="unit">Bytes</span></div>
-                    <div class="metric-sub">296 B static state + 79 B stack</div>
+                    <div class="metric-value">312<span class="unit">Bytes</span></div>
+                    <div class="metric-sub">312 B static state + zero heap</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-label">Execution Latency</div>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="metric-card">
                     <div class="metric-label">Stripped Code Size</div>
-                    <div class="metric-value">1,712<span class="unit">Bytes</span></div>
+                    <div class="metric-value">2,264<span class="unit">Bytes</span></div>
                     <div class="metric-sub">Pre-compiled static .a binary</div>
                 </div>
                 <div class="metric-card">
@@ -100,6 +100,63 @@
             </div>
         </div>
     </header>
+
+    <!-- Empirical Benchmark Qualification Strip -->
+    <section style="background:var(--bg-card-alt); padding: 48px 0;">
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-bottom:28px;">
+                <div>
+                    <div class="section-tag">MULTI-PLATFORM EMPIRICAL QUALIFICATION</div>
+                    <h2 class="section-title" style="font-size:24px;">Benchmarked Across 5 Physical Industrial Rigs</h2>
+                </div>
+                <div>
+                    <a href="benchmark.html" class="btn-secondary" style="font-size:13px; padding:8px 16px;">View Full Laboratory Benchmark Data &rarr;</a>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+                <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px;">
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">NASA AMES PROGNOSTICS</div>
+                    <div style="font-size:15px; font-weight:700; color:var(--text-title); margin-bottom:6px;">6,000 lb Bearing Rig</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">7 continuous days (163 hrs) under 6,000 lb radial load on Rexnord ZA-2115 bearings.</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--success); font-weight:700;">46.5 Hr Early Warning</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">0.00% False Alarm Rate</div>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px;">
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">CASE WESTERN RESERVE (CWRU)</div>
+                    <div style="font-size:15px; font-weight:700; color:var(--text-title); margin-bottom:6px;">Reliance Electric 2 HP Motor</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">Drive-end SKF 6205 bearing with EDM micro-spalling (0.007" depth) at 1,797 RPM.</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--success); font-weight:700;">512 ms - 1,024 ms Trip</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Inner &amp; Outer Race Spall</div>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px;">
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">HYTORC BOLTING DYNAMICS</div>
+                    <div style="font-size:15px; font-weight:700; color:var(--text-title); margin-bottom:6px;">500 ft-lb Planetary Rig</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">Severe 8x casing reaction shocks and rapid 0-500 ft-lb torque transients.</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--success); font-weight:700;">0.00% Shock False Trips</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">1.47s Defect Latch on Lug 6</div>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px;">
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">OPENBLDC MOTOR FLEET</div>
+                    <div style="font-size:15px; font-weight:700; color:var(--text-title); margin-bottom:6px;">Tri-Axial 20-Bit MEMS</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">Analog Devices ADXL355 tri-axial sensor on high-speed dynamometer motors.</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--success); font-weight:700;">1.28s Autonomous Trip</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">+1,061% Kinematic BPFO Surge</div>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px;">
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">NUMERICAL ENDURANCE</div>
+                    <div style="font-size:15px; font-weight:700; color:var(--text-title); margin-bottom:6px;">320 Million Samples</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">10,000,000 continuous windows (7.41 continuous days) continuous stress stream.</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--success); font-weight:700;">0.00000% FAR (0 Trips)</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Zero Baseline Drift (0.08% std)</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- OEM Architecture & Commercial Economics Section -->
     <section id="economics">

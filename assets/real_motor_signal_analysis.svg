@@ -160,12 +160,12 @@
   <!-- Column 1 -->
   <text x="24" y="48" class="txt-axis" font-size="10">Target Core:</text>
   <text x="24" y="64" class="txt-callout-bold" font-size="11" fill="#0f172a">ARM Cortex-M0+/M4/M7 &amp; ESP32</text>
-  <text x="24" y="82" class="txt-callout">Active SRAM: <tspan class="txt-mono-num" fill="#15803d">375 Bytes (.bss + stack)</tspan></text>
+  <text x="24" y="82" class="txt-callout">Active SRAM: <tspan class="txt-mono-num" fill="#15803d">312 Bytes (.bss state)</tspan></text>
   
   <!-- Column 2 -->
   <text x="340" y="48" class="txt-axis" font-size="10">Worst-Case Execution (WCET):</text>
   <text x="340" y="64" class="txt-callout-bold" font-size="11" fill="#0369a1">101.6 µs @ 240 MHz (&lt;0.2% CPU)</text>
-  <text x="340" y="82" class="txt-callout">Flash ROM: <tspan class="txt-mono-num" fill="#0369a1">1,712 Bytes (.a static)</tspan></text>
+  <text x="340" y="82" class="txt-callout">Flash ROM: <tspan class="txt-mono-num" fill="#0369a1">2,264 Bytes (.a static)</tspan></text>
   
   <!-- Column 3 -->
   <text x="660" y="48" class="txt-axis" font-size="10">False Alarm Rate (FAR):</text>
