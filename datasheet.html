@@ -101,14 +101,14 @@
                             <td>MISRA Rule 21.3 compliant. Prevents runtime memory fragmentation and memory leaks.</td>
                         </tr>
                         <tr>
-                            <td class="strong">Continuous Endurance Qualification</td>
-                            <td class="mono">0.00000% False Alarm Rate</td>
-                            <td>Validated across 320,000,000 physical sensor samples (10M windows / 7.4 continuous days).</td>
+                            <td class="strong">Hostile Dyno Stress Qualification</td>
+                            <td class="mono">0.000% False Alarm Rate</td>
+                            <td>Observed across 10,000 continuous qualification windows (320,000 samples @ 500 Hz) under 15 dropped tool shocks, 133 fluid hammer pulses, and 1,000 windows of VFD EMI.</td>
                         </tr>
                         <tr>
                             <td class="strong">Defect Trip Latency</td>
-                            <td class="mono">1.28 Seconds (20 windows)</td>
-                            <td>Decisive health decay latch upon real bearing raceway micro-spalling inception.</td>
+                            <td class="mono">512 ms - 1,472 ms</td>
+                            <td>API 670 / ISO 20816 2-window confirmation latch upon real bearing raceway micro-spalling inception.</td>
                         </tr>
                         <tr>
                             <td class="strong">Sensor Ingestion Agility</td>
@@ -125,15 +125,24 @@
             </div>
 
             <div style="margin-top: 36px;">
-                <div class="section-tag">PRE-COMPILED BINARY TARGETS</div>
+                <div class="section-tag">PHYSICAL HARDWARE TESTBEDS (LAB QUALIFIED)</div>
+                <div class="hw-chips">
+                    <span class="chip-badge" style="background:#f0fdf4; border-color:#86efac; color:#166534;">Espressif ESP32-S3 (Xtensa LX7 @ 240 MHz Hardware Bench)</span>
+                    <span class="chip-badge" style="background:#f0fdf4; border-color:#86efac; color:#166534;">x86_64 / Apple Silicon Host (SITL Automated Test Suite)</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 24px;">
+                <div class="section-tag">PRE-COMPILED INTEGRATION TARGETS (READY FOR CUSTOMER DYNO QUALIFICATION)</div>
                 <div class="hw-chips">
                     <span class="chip-badge">ARM Cortex-M0+ (STM32G0/C0, RP2040)</span>
-                    <span class="chip-badge">ARM Cortex-M4 (STM32F4/G4, TI, NXP)</span>
+                    <span class="chip-badge">ARM Cortex-M4 (STM32F4/G4, TI MSPM0, NXP)</span>
                     <span class="chip-badge">ARM Cortex-M7 (STM32H7, i.MX RT)</span>
                     <span class="chip-badge">ARM Cortex-M33 (STM32U5, nRF5340)</span>
-                    <span class="chip-badge">Espressif ESP32 / ESP32-S3</span>
-                    <span class="chip-badge">x86_64 / Apple Silicon Host (SITL)</span>
                 </div>
+                <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
+                    Pre-compiled freestanding static libraries (<code>libac_engine.a</code>) verified via <code>llvm-size</code> (312B SRAM, 0 heap) and <code>llvm-objdump</code> (clean Thumb-2 machine code), delivered for customer test-bench dyno integration under Mutual NDA.
+                </p>
             </div>
 
             <div style="margin-top: 24px;">
