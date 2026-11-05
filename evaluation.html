@@ -56,7 +56,7 @@
                 <div class="section-tag">QUALIFICATION PATHWAY</div>
                 <h2 class="section-title">How OEMs Evaluate AC Engine</h2>
                 <p class="section-desc">
-                    We eliminate development risk through a zero-cost 30-day dynamometer evaluation phase prior to any commercial licensing commitment.
+                    We eliminate engineering risk through a structured 60-day dynamometer evaluation under Mutual NDA prior to any commercial licensing commitment.
                 </p>
             </div>
 
@@ -144,7 +144,7 @@
                         </div>
                         <div class="form-group full-width">
                             <label for="evalNotes">Evaluation Scope or Dyno Sensor Details (Optional)</label>
-                            <input type="text" id="evalNotes" class="form-input" placeholder="e.g. Analog Devices ADXL355 SPI sensor, 30-day dyno evaluation schedule">
+                            <input type="text" id="evalNotes" class="form-input" placeholder="e.g. Analog Devices ADXL355 SPI sensor, 60-day dyno evaluation schedule">
                         </div>
                     </div>
 
@@ -211,7 +211,7 @@
                 equipment: document.getElementById('evalEquipment').value,
                 mcu: (document.getElementById('evalMcu').value.trim()) || 'ARM Cortex-M4',
                 rpm: (document.getElementById('evalRpm').value.trim()) || '1,800 RPM',
-                notes: (document.getElementById('evalNotes').value.trim()) || 'Standard 30-day dyno evaluation'
+                notes: (document.getElementById('evalNotes').value.trim()) || 'Standard 60-day dyno evaluation'
             };
         }
 
