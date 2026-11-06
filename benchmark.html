@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physical Lab Benchmarks &amp; 320M Sample Validation | AC Engine</title>
-    <meta name="description" content="Physical laboratory vibration benchmarks across 320,000,000 real sensor samples (NASA Ames IMS, CWRU Motor, Planetary Torque Rig, OpenBLDC). 0.00000% False Alarm Rate.">
+    <meta name="description" content="Physical laboratory vibration benchmarks across NASA Ames IMS, CWRU 2 HP Motor, Planetary Torque Rig, and OpenBLDC testbeds. 0.00% False Alarm Rate observed across qualification runs.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -125,7 +125,7 @@
                             <td>320,000,000 continuous sensor samples (10M windows / 7.41 days)</td>
                             <td>Long-term arithmetic stability and zero drift verification</td>
                             <td><span class="badge-win">N/A</span> 100% stable baseline</td>
-                            <td><span class="badge-win">0.00000%</span> 0 watchdog trips</td>
+                            <td><span class="badge-win">0 Trips Observed</span> 0.00% FAR</td>
                             <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0.08% std dev</span></td>
                         </tr>
                     </tbody>
@@ -449,9 +449,9 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-tag">BENCHMARK 05 &bull; MULTI-DAY CONTINUOUS STABILITY</div>
-                <h2 class="section-title">Zero False Alarms Across 320 Million Sensor Samples</h2>
+                <h2 class="section-title">Zero False Alarms Across 320 Million Sample Accelerated Stress Stream</h2>
                 <p class="section-desc">
-                    Industrial equipment manufacturers cannot tolerate nuisance false alarms or watchdog timer resets. AC Engine was subjected to multi-day continuous endurance qualification (10,000,000 windows / 7.41 days).
+                    Industrial equipment manufacturers cannot tolerate nuisance false alarms, register rounding drift, or watchdog timer resets. AC Engine was subjected to multi-day accelerated numerical endurance streaming (10,000,000 windows / 7.41 days equivalent) to verify zero baseline drift and long-term memory stability.
                 </p>
             </div>
 
@@ -475,13 +475,13 @@
                             <tr>
                                 <td class="strong">48-Hour Continuous Stress Stream</td>
                                 <td class="mono">86,400,000 Samples (2.7M Windows)</td>
-                                <td><span class="badge-win">0 Trips</span> 0.0000000% FAR</td>
+                                <td><span class="badge-win">0 Trips Observed</span> 0.00% FAR</td>
                                 <td class="mono">Mean Health = 85.01% (Zero Drift)</td>
                             </tr>
                             <tr>
                                 <td class="strong">7.41-Day Continuous Multi-Day Run</td>
                                 <td class="mono">320,000,000 Samples (10M Windows)</td>
-                                <td><span class="badge-win">0 Trips</span> 0.0000000% FAR</td>
+                                <td><span class="badge-win">0 Trips Observed</span> 0.00% FAR</td>
                                 <td class="mono">Mean Health = 85.00% &bull; StdDev = 0.08%</td>
                             </tr>
                             <tr>
