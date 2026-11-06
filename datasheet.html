@@ -73,12 +73,12 @@
                         <tr>
                             <td class="strong">SRAM Consumption</td>
                             <td class="mono">312 Bytes Total</td>
-                            <td>312 Bytes static .bss state machine + ~72 Bytes active stack frame. Zero heap growth (0 malloc).</td>
+                            <td>Context API: 0 Bytes Static BSS (ac_engine.o). Per-instance context struct: exactly 312 Bytes caller-allocated. Zero heap growth (0 malloc).</td>
                         </tr>
                         <tr>
                             <td class="strong">Flash / ROM Consumption</td>
-                            <td class="mono">3,452 Bytes</td>
-                            <td>Stripped static library object (.a). Compiles directly into your application firmware image.</td>
+                            <td class="mono">5.3 KB to 16.5 KB</td>
+                            <td>Stripped static library (.a) across architectures (Host: 5.3–8.9 KB, Cortex-M4/M33: 15.1 KB, Cortex-M0+: 16.5 KB with embedded soft-math).</td>
                         </tr>
                         <tr>
                             <td class="strong">Physical Benchmark Qualification</td>
@@ -87,13 +87,13 @@
                         </tr>
                         <tr>
                             <td class="strong">Worst-Case Execution Time (WCET)</td>
-                            <td class="mono">101.6 µs @ 240 MHz</td>
-                            <td>24,396 hardware clock cycles. Consumes &lt;0.2% CPU when evaluated at 15.6 Hz.</td>
+                            <td class="mono">2.04 µs host / 101.6 µs M4</td>
+                            <td>2.04 µs measured host execution; ~101.6 µs on 64 MHz ARM Cortex-M4 (0.16% CPU load at 64 ms cadence). Zero dynamic loops.</td>
                         </tr>
                         <tr>
                             <td class="strong">Arithmetic Unit</td>
                             <td class="mono">100% Fixed-Point Integer</td>
-                            <td>Zero FPU required. Pure 32/64-bit integer bit-shift and Newton-Raphson square root.</td>
+                            <td>Zero FPU required. Pure 32/64-bit integer fixed-point arithmetic with binary integer square root and Parseval-Goertzel harmonic evaluation.</td>
                         </tr>
                         <tr>
                             <td class="strong">Dynamic Memory Allocation</td>
@@ -107,8 +107,8 @@
                         </tr>
                         <tr>
                             <td class="strong">Defect Trip Latency</td>
-                            <td class="mono">512 ms - 1,472 ms</td>
-                            <td>API 670 / ISO 20816 2-window confirmation latch upon real bearing raceway micro-spalling inception.</td>
+                            <td class="mono">&lt; 0.85 Seconds</td>
+                            <td>API 670 / ISO 20816 2-window confirmation latch (~448 ms Incipient Warning, ~832 ms Critical Trip confirmation; ~576 ms stepped spalls).</td>
                         </tr>
                         <tr>
                             <td class="strong">Sensor Ingestion Agility</td>
