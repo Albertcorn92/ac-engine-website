@@ -165,7 +165,7 @@
   <!-- Column 2 -->
   <text x="340" y="48" class="txt-axis" font-size="10">Worst-Case Execution (WCET):</text>
   <text x="340" y="64" class="txt-callout-bold" font-size="11" fill="#0369a1">101.6 µs @ 240 MHz (&lt;0.2% CPU)</text>
-  <text x="340" y="82" class="txt-callout">Flash ROM: <tspan class="txt-mono-num" fill="#0369a1">3,452 Bytes (.a static)</tspan></text>
+  <text x="340" y="82" class="txt-callout">Flash ROM: <tspan class="txt-mono-num" fill="#0369a1">15.3 KB (Cortex-M4 static)</tspan></text>
   
   <!-- Column 3 -->
   <text x="660" y="48" class="txt-axis" font-size="10">False Alarm Rate (FAR):</text>
