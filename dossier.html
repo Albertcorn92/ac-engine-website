@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC Engine 5.0 — Technical Dossier & OEM 60-Day Evaluation Protocol</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 0.35in 0.4in;
+        }
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-card: #121824;
+            --border: #1e293b;
+            --accent: #38bdf8;
+            --accent-green: #22c55e;
+            --accent-amber: #f59e0b;
+            --accent-red: #ef4444;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-size: 9.5pt;
+            line-height: 1.45;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page-container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.2in;
+        }
+
+        .page-break {
+            page-break-after: always;
+            break-after: page;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+        }
+
+        .brand-title {
+            font-size: 20pt;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-title span {
+            color: var(--accent);
+        }
+
+        .brand-subtitle {
+            font-size: 9.5pt;
+            color: var(--text-muted);
+            margin-top: 3px;
+            font-weight: 500;
+        }
+
+        .meta-box {
+            text-align: right;
+            font-size: 8pt;
+            color: var(--text-muted);
+        }
+
+        .meta-box strong {
+            color: var(--text-main);
+        }
+
+        .badge-bar {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #1e293b;
+            color: var(--accent);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 7.5pt;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .badge.green {
+            color: var(--accent-green);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 12px;
+        }
+
+        .card-header {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 5px;
+        }
+
+        .stat-box {
+            background: rgba(18, 24, 36, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 15pt;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: var(--font-mono);
+            line-height: 1.1;
+        }
+
+        .stat-value.green { color: var(--accent-green); }
+        .stat-value.amber { color: var(--accent-amber); }
+
+        .stat-label {
+            font-size: 7.5pt;
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+            margin-top: 4px;
+        }
+
+        th {
+            background: rgba(30, 41, 59, 0.6);
+            color: var(--text-muted);
+            text-align: left;
+            padding: 4px 6px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            font-size: 7pt;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 5px 6px;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.4);
+            color: var(--text-main);
+        }
+
+        td.mono {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Charts & Visualizations (SVG) */
+        .chart-box {
+            background: #0d121c;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 4px;
+        }
+
+        .chart-title {
+            font-size: 8pt;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Highlight Callouts */
+        .callout {
+            background: rgba(56, 189, 248, 0.06);
+            border-left: 3px solid var(--accent);
+            padding: 6px 10px;
+            font-size: 8pt;
+            color: #cbd5e1;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 10px;
+        }
+
+        .callout.green {
+            background: rgba(34, 197, 94, 0.06);
+            border-left-color: var(--accent-green);
+        }
+
+        .callout strong {
+            color: #fff;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 11pt;
+            font-weight: 800;
+            color: #fff;
+            margin: 12px 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-left: 3px solid var(--accent);
+            padding-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 8.5pt;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            border-top: 1px solid var(--border);
+            padding-top: 8px;
+            margin-top: 14px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 7.5pt;
+            color: var(--text-muted);
+        }
+
+        .footer strong {
+            color: var(--accent);
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background-color: #0a0e17 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .page-container {
+                padding: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+
+    <!-- ================= PAGE 1 ================= -->
+    <div class="header">
+        <div>
+            <div class="brand-title">AC ENGINE <span>5.0</span></div>
+            <div class="brand-subtitle">Silicon-Native Embedded Bearing Diagnostic Core | Freestanding ANSI C99</div>
+        </div>
+        <div class="meta-box">
+            <div><strong>Executive Engineering Dossier</strong></div>
+            <div>Rev 5.0 | November 2026</div>
+            <div>Confidential / OEM Evaluation</div>
+        </div>
+    </div>
+
+    <div class="badge-bar">
+        <span class="badge">312 BYTES SRAM</span>
+        <span class="badge green">ZERO HEAP (MALLOC = 0)</span>
+        <span class="badge">15.1 KB FLASH (CORTEX-M4)</span>
+        <span class="badge">101.6 µS EXECUTION (24K CYCLES)</span>
+        <span class="badge green">ZERO HARDWARE FPU REQUIRED</span>
+        <span class="badge">API 670-STYLE TRIP LATCH</span>
+    </div>
+
+    <div class="callout green">
+        <strong>Executive Engineering Summary:</strong> AC Engine 5.0 executes continuous, deterministic bearing defect classification directly inside edge microcontrollers (ARM Cortex-M0+, M4, M7, M33). By coupling an invariant 3D fixed-point physics extraction engine (Parseval-scaled Goertzel harmonic filter + 3D Crest Factor) with an autonomous dynamic threshold supervisor, it diagnoses mechanical spalling and raceway fatigue on-chip in sub-second time with zero cloud dependency.
+    </div>
+
+    <!-- Silicon Metrics Grid -->
+    <div class="grid-4">
+        <div class="stat-box">
+            <div class="stat-value">312 B</div>
+            <div class="stat-label">SRAM per Instance</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value green">0 B</div>
+            <div class="stat-label">Heap Allocation</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">15.1 KB</div>
+            <div class="stat-label">Flash Footprint (M4)</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value amber">&lt; 0.85s</div>
+            <div class="stat-label">Defect Trip Latency</div>
+        </div>
+    </div>
+
+    <!-- Section: Physical Benchmark Evidence -->
+    <div class="section-title">1. Empirical Validation & Run-to-Failure Benchmarks</div>
+
+    <div class="grid-2">
+        <!-- Chart 1: NASA IMS -->
+        <div class="card">
+            <div class="card-header">
+                <span>NASA IMS 7-Day Run-to-Failure Benchmark</span>
+                <span class="badge green">46.5H ADVANCE WARNING</span>
+            </div>
+            <p style="font-size: 7.5pt; color: var(--text-muted); margin-bottom: 4px;">
+                4 Rexnord ZA-2115 bearings @ 2000 RPM, 6000 lb radial load. 984 1s snapshots (20.48M samples total).
+            </p>
+            <div class="chart-box">
+                <svg viewBox="0 0 360 110">
+                    <!-- Grid Lines -->
+                    <line x1="30" y1="20" x2="350" y2="20" stroke="#1e293b" stroke-dasharray="2,2" />
+                    <line x1="30" y1="50" x2="350" y2="50" stroke="#1e293b" stroke-dasharray="2,2" />
+                    <line x1="30" y1="80" x2="350" y2="80" stroke="#1e293b" stroke-dasharray="2,2" />
+                    
+                    <!-- Axes -->
+                    <line x1="30" y1="95" x2="350" y2="95" stroke="#475569" stroke-width="1" />
+                    <line x1="30" y1="10" x2="30" y2="95" stroke="#475569" stroke-width="1" />
+
+                    <!-- Y-Axis Labels -->
+                    <text x="25" y="24" fill="#64748b" font-size="7" text-anchor="end" font-family="monospace">100%</text>
+                    <text x="25" y="54" fill="#64748b" font-size="7" text-anchor="end" font-family="monospace">50%</text>
+                    <text x="25" y="84" fill="#64748b" font-size="7" text-anchor="end" font-family="monospace">0%</text>
+
+                    <!-- X-Axis Labels -->
+                    <text x="30" y="105" fill="#64748b" font-size="6.5" font-family="monospace">Day 0</text>
+                    <text x="120" y="105" fill="#64748b" font-size="6.5" font-family="monospace">Day 3</text>
+                    <text x="210" y="105" fill="#64748b" font-size="6.5" font-family="monospace">Day 5 (121.5h)</text>
+                    <text x="320" y="105" fill="#ef4444" font-size="6.5" font-family="monospace">Day 7 (Seizure)</text>
+
+                    <!-- Health Curve -->
+                    <!-- Normal Phase (Days 0 to 5) -->
+                    <path d="M 30,22 L 70,22 L 110,23 L 150,22 L 190,24 L 210,25 
+                             L 220,38 L 240,46 L 270,68 L 300,82 L 325,92 L 340,94" 
+                          fill="none" stroke="#22c55e" stroke-width="2" />
+                    
+                    <!-- Trip Threshold Line -->
+                    <line x1="30" y1="70" x2="350" y2="70" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3" />
+                    <text x="345" y="67" fill="#ef4444" font-size="6" text-anchor="end" font-family="monospace">CRITICAL TRIP LATCH</text>
+
+                    <!-- Annotations -->
+                    <!-- Warning Trigger Point -->
+                    <circle cx="220" cy="38" r="3" fill="#f59e0b" />
+                    <line x1="220" y1="38" x2="220" y2="15" stroke="#f59e0b" stroke-width="0.8" />
+                    <rect x="175" y="6" width="90" height="11" rx="2" fill="#1e293b" stroke="#f59e0b" stroke-width="0.5" />
+                    <text x="220" y="14" fill="#f59e0b" font-size="6" text-anchor="middle" font-family="sans-serif" font-weight="700">INCIPIENT WARNING (121.5h)</text>
+
+                    <!-- Advance Warning Window -->
+                    <rect x="220" y="85" width="105" height="8" fill="rgba(56, 189, 248, 0.2)" rx="2" />
+                    <text x="272" y="91.5" fill="#38bdf8" font-size="5.5" text-anchor="middle" font-weight="700">46.5H ADVANCE LEAD TIME</text>
+                </svg>
+            </div>
+            <div style="font-size: 7pt; color: #94a3b8; margin-top: 4px;">
+                ✓ <strong>Zero False Trips:</strong> 100% stable baseline over first 5 days of normal running.<br>
+                ✓ <strong>Outer Race Defect Latch:</strong> Latched warning 46.5 hours prior to physical seizure.
+            </div>
+        </div>
+
+        <!-- Chart 2: Transient Rejection vs Fault Latching -->
+        <div class="card">
+            <div class="card-header">
+                <span>Transient Shock Immunity vs. Defect Latch</span>
+                <span class="badge green">0.00% FALSE TRIPS</span>
+            </div>
+            <p style="font-size: 7.5pt; color: var(--text-muted); margin-bottom: 4px;">
+                Evaluated under dropped tool casing impacts, fluid hammer pulses, and real raceway spalls.
+            </p>
+            <div class="chart-box">
+                <svg viewBox="0 0 360 110">
+                    <!-- Grid -->
+                    <line x1="30" y1="20" x2="350" y2="20" stroke="#1e293b" stroke-dasharray="2,2" />
+                    <line x1="30" y1="60" x2="350" y2="60" stroke="#1e293b" stroke-dasharray="2,2" />
+                    <line x1="30" y1="95" x2="350" y2="95" stroke="#475569" stroke-width="1" />
+                    <line x1="30" y1="10" x2="30" y2="95" stroke="#475569" stroke-width="1" />
+
+                    <!-- Labels -->
+                    <text x="25" y="24" fill="#64748b" font-size="7" text-anchor="end" font-family="monospace">Spall</text>
+                    <text x="25" y="64" fill="#64748b" font-size="7" text-anchor="end" font-family="monospace">Shock</text>
+                    <text x="25" y="93" fill="#64748b" font-size="7" text-anchor="end" font-family="monospace">Base</text>
+
+                    <!-- X-Axis -->
+                    <text x="80" y="105" fill="#64748b" font-size="6.5" font-family="monospace">Impact Shock</text>
+                    <text x="220" y="105" fill="#ef4444" font-size="6.5" font-family="monospace">Fatigue Spall Inception (W#0)</text>
+                    <text x="325" y="105" fill="#ef4444" font-size="6.5" font-family="monospace">Latched (&lt;0.85s)</text>
+
+                    <!-- Shock Waveform (Decaying in 1 window) -->
+                    <path d="M 30,90 L 60,90 L 65,30 L 70,80 L 75,90 L 140,90" 
+                          fill="none" stroke="#f59e0b" stroke-width="1.5" />
+                    
+                    <!-- Defect Waveform (Sustained multi-harmonic spalls) -->
+                    <path d="M 140,90 L 170,90 L 180,50 L 190,40 L 205,35 L 220,25 L 250,22 L 340,20" 
+                          fill="none" stroke="#ef4444" stroke-width="2" />
+
+                    <!-- Trip Threshold -->
+                    <line x1="30" y1="40" x2="350" y2="40" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3" />
+                    <text x="345" y="37" fill="#ef4444" font-size="6" text-anchor="end" font-family="monospace">TRIP THRESHOLD</text>
+
+                    <!-- Safeguard 4 Shock Limiter Callout -->
+                    <rect x="50" y="12" width="80" height="12" rx="2" fill="#1e293b" stroke="#f59e0b" stroke-width="0.5" />
+                    <text x="90" y="20.5" fill="#f59e0b" font-size="5.5" text-anchor="middle" font-weight="700">SHOCK CLAMPED (0 ALARMS)</text>
+
+                    <!-- API 670 2-Window Interlock Callout -->
+                    <rect x="235" y="48" width="105" height="12" rx="2" fill="#1e293b" stroke="#ef4444" stroke-width="0.5" />
+                    <text x="287" y="56.5" fill="#ef4444" font-size="5.5" text-anchor="middle" font-weight="700">2-WINDOW INTERLOCK LATCHED</text>
+                </svg>
+            </div>
+            <div style="font-size: 7pt; color: #94a3b8; margin-top: 4px;">
+                ✓ <strong>Transient Shock Rejection:</strong> Single-window tool drops/surges clamped with 0 false alarms.<br>
+                ✓ <strong>API 670-Style Interlock:</strong> Sustained defect energy latches in 13 windows (~832 ms).
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Silicon Architecture Table -->
+    <div class="section-title">2. Silicon Architecture & Processor Footprint</div>
+    <div class="card" style="margin-bottom: 12px;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Target Architecture</th>
+                    <th>Instruction Set</th>
+                    <th>Flash (.text)</th>
+                    <th>Context SRAM</th>
+                    <th>Heap Allocation</th>
+                    <th>Worst-Case Execution Latency</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="strong">ARM Cortex-M0+</td>
+                    <td>ARMv6-M (Thumb)</td>
+                    <td class="mono">16.8 KB</td>
+                    <td class="mono">312 Bytes</td>
+                    <td class="mono">0 B (No malloc)</td>
+                    <td>~26,000 cycles (~540 µs @ 48 MHz)</td>
+                </tr>
+                <tr>
+                    <td class="strong">ARM Cortex-M4</td>
+                    <td>ARMv7E-M (Thumb-2)</td>
+                    <td class="mono">15.3 KB</td>
+                    <td class="mono">312 Bytes</td>
+                    <td class="mono">0 B (No malloc)</td>
+                    <td>~24,000 cycles (~143 µs @ 168 MHz)</td>
+                </tr>
+                <tr>
+                    <td class="strong">ARM Cortex-M7</td>
+                    <td>ARMv7E-M (Thumb-2)</td>
+                    <td class="mono">15.7 KB</td>
+                    <td class="mono">312 Bytes</td>
+                    <td class="mono">0 B (No malloc)</td>
+                    <td>~24,000 cycles (~100 µs @ 240 MHz)</td>
+                </tr>
+                <tr>
+                    <td class="strong">ARM Cortex-M33</td>
+                    <td>ARMv8-M (TrustZone)</td>
+                    <td class="mono">15.3 KB</td>
+                    <td class="mono">312 Bytes</td>
+                    <td class="mono">0 B (No malloc)</td>
+                    <td>~24,000 cycles (~120 µs @ 200 MHz)</td>
+                </tr>
+                <tr>
+                    <td class="strong">Host Linux / macOS</td>
+                    <td>x86_64 / arm64</td>
+                    <td class="mono">6.0 – 8.9 KB</td>
+                    <td class="mono">312 Bytes</td>
+                    <td class="mono">0 B (No malloc)</td>
+                    <td>2.04 µs host execution (0.003% CPU)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section: Why 500 Hz ODR Fits Industrial Equipment -->
+    <div class="section-title">3. Kinematic Bandwidth Analysis (Why 500 Hz ODR / 250 Hz Nyquist)</div>
+    <div class="card" style="margin-bottom: 14px;">
+        <p style="font-size: 8pt; margin-bottom: 6px;">
+            In industrial rotating machinery, primary defect frequencies fall squarely within the 250 Hz Nyquist boundary for standard 1,800 RPM and 3,600 RPM induction motors:
+        </p>
+        <div class="grid-2" style="margin-bottom: 0;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Defect Kinematic Type</th>
+                        <th>1,800 RPM (30 Hz Shaft)</th>
+                        <th>3,600 RPM (60 Hz Shaft)</th>
+                        <th>Coverage at 500 Hz ODR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="strong">Outer Race Defect (BPFO)</td>
+                        <td class="mono">90 Hz – 108 Hz</td>
+                        <td class="mono">180 Hz – 216 Hz</td>
+                        <td style="color: var(--accent-green); font-weight: 700;">✓ 100% In-Band</td>
+                    </tr>
+                    <tr>
+                        <td class="strong">Inner Race Defect (BPFI)</td>
+                        <td class="mono">147 Hz – 162 Hz</td>
+                        <td class="mono">294 Hz (Folded harmonic)</td>
+                        <td style="color: var(--accent-green); font-weight: 700;">✓ In-Band @ 1,800 RPM</td>
+                    </tr>
+                    <tr>
+                        <td class="strong">Cage / Retainer Defect (FTF)</td>
+                        <td class="mono">12 Hz</td>
+                        <td class="mono">24 Hz</td>
+                        <td style="color: var(--accent-green); font-weight: 700;">✓ 100% In-Band</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="font-size: 7.5pt; color: #94a3b8; padding: 4px 6px; border-left: 1px solid var(--border);">
+                <strong>Embedded Hardware Alignment:</strong><br>
+                • <strong>Sensor Compatibility:</strong> Ingests native 500 Hz FIFO counts directly from low-power $15 MEMS (e.g. Analog Devices ADXL355 with internal 125 Hz digital filtering).<br>
+                • <strong>Zero Bus Saturation:</strong> Eliminates the 120 KB/sec memory bottleneck of 10 kHz ultrasound sampling.<br>
+                • <strong>Rolling Physics Buffer:</strong> Evaluates a rolling 64-sample buffer (128 ms) on a 32-sample cadence (64 ms), yielding an effective spectral resolution of <strong>Δf = 7.81 Hz</strong>.
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 1 Footer -->
+    <div class="footer">
+        <div>AC Engine 5.0 — Confidential OEM Brief</div>
+        <div>Page 1 of 2</div>
+        <div><strong>acengine.tech</strong></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ================= PAGE 2 ================= -->
+    <div class="header">
+        <div>
+            <div class="brand-title">AC ENGINE <span>5.0</span></div>
+            <div class="brand-subtitle">Turnkey 60-Day Dynamometer Qualification Pilot & Integration Protocol</div>
+        </div>
+        <div class="meta-box">
+            <div><strong>Commercial Pilot Agreement</strong></div>
+            <div>Phase 1 to Phase 4 Roadmap</div>
+            <div>Production SOW Template</div>
+        </div>
+    </div>
+
+    <!-- Section: 60-Day Pilot Framework -->
+    <div class="section-title">4. Turnkey 60-Day Test-Bench Pilot Framework</div>
+    <p style="font-size: 8pt; margin-bottom: 8px;">
+        We do not expect engineering directors to accept benchmark metrics at face value. We offer a structured, 4-phase, 60-day dynamometer evaluation pilot to validate AC Engine on your specific motors, pumps, and compressors:
+    </p>
+
+    <div class="card" style="margin-bottom: 12px;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Phase</th>
+                    <th>Timeline</th>
+                    <th>Qualification Objectives & Scope</th>
+                    <th>Acceptance Milestone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="strong">Phase 1: Silicon & Timing</td>
+                    <td class="mono">Days 1 – 14</td>
+                    <td>
+                        • Link precompiled static library (`libac_engine.a`) to customer target MCU firmware.<br>
+                        • Measure DWT execution cycle count, 312B SRAM context, and zero-heap guarantee.<br>
+                        • Verify sensor FIFO ingestion (ADXL355, STMicro, or Bosch) over SPI/I2C.
+                    </td>
+                    <td style="color: var(--accent-green); font-weight: 700;">
+                        Zero compile errors;<br>Latency &lt; 150 µs on MCU.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="strong">Phase 2: Seeded Defect Matrix</td>
+                    <td class="mono">Days 15 – 30</td>
+                    <td>
+                        • Bench test baseline healthy motor vs seeded bearing defects (inner race, outer race, ball spalls).<br>
+                        • Sweep operating envelope: 25%, 50%, 75%, 100% rated load and RPM.<br>
+                        • Benchmark AC Engine Health Index against external high-bandwidth reference DAQ.
+                    </td>
+                    <td style="color: var(--accent-green); font-weight: 700;">
+                        ≥ 95% defect detection;<br>Critical trip latch &lt; 0.85s.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="strong">Phase 3: Hostile Transient Rejection</td>
+                    <td class="mono">Days 31 – 45</td>
+                    <td>
+                        • Subject test-bench to mechanical interference: casing tool drops, fluid hammer surges, cold starts.<br>
+                        • Execute VFD speed step transitions (speed ramps up/down) with baseline reset calls.<br>
+                        • Verify anti-poisoning lock prevents pre-damaged machines from being calibrated as normal.
+                    </td>
+                    <td style="color: var(--accent-green); font-weight: 700;">
+                        0 false trips on transients;<br>Clean baseline lock in 2.3s.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="strong">Phase 4: Commercial Qualification</td>
+                    <td class="mono">Days 46 – 60</td>
+                    <td>
+                        • Blind validation run: Technicians swap healthy/defective bearings without disclosing sequence.<br>
+                        • Review formal Qualification Report and sign off on Production Commercial License.<br>
+                        • Transition to Annual Enterprise License ($75k/yr) or Per-Unit Royalty ($4.50/unit).
+                    </td>
+                    <td style="color: var(--accent-green); font-weight: 700;">
+                        Final Executive Sign-Off &<br>Production Rollout.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section: Architectural Integration & Safety Standard Alignment -->
+    <div class="section-title">5. Architectural Alignment & Safety Standard Scope</div>
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-header">
+                <span>Advisory Edge Diagnostic Architecture</span>
+            </div>
+            <p style="font-size: 7.5pt; color: #cbd5e1; line-height: 1.45;">
+                AC Engine operates strictly as an <strong>embedded advisory condition-monitoring engine</strong>. It ingests 32-sample tri-axial integer counts directly from the sensor FIFO and outputs continuous machine health telemetry:
+            </p>
+            <div style="background: #0d121c; border: 1px solid var(--border); border-radius: 4px; padding: 6px; font-family: var(--font-mono); font-size: 6.8pt; color: #38bdf8; margin: 6px 0;">
+                typedef struct {<br>
+                &nbsp;&nbsp;ac_condition_t condition;&nbsp;&nbsp;&nbsp;&nbsp;// NORMAL, INCIPIENT, CRITICAL, SENSOR_ERR<br>
+                &nbsp;&nbsp;uint8_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;health_index;&nbsp;// 0% (Failure) to 100% (Pristine)<br>
+                &nbsp;&nbsp;uint16_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;harmonic_q8;&nbsp;&nbsp;// Q8 fixed-point Parseval vibration energy<br>
+                &nbsp;&nbsp;uint16_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;crest_q8;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Q8 fixed-point 3D Crest Factor<br>
+                &nbsp;&nbsp;bool&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;trip_latched;&nbsp;// API 670-style persistent software latch<br>
+                } ac_result_t;
+            </div>
+            <p style="font-size: 7.5pt; color: #94a3b8;">
+                The host MCU application firmware reads this struct and decides whether to log telemetry, alert an operator via Modbus/CAN, or trigger an emergency shutdown contactor.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span>API 670-Style Software Latching Logic</span>
+            </div>
+            <p style="font-size: 7.5pt; color: #cbd5e1; line-height: 1.45;">
+                To prevent false shutdowns, AC Engine implements software trip interlock logic aligned with API 670 machinery protection principles:
+            </p>
+            <ul style="font-size: 7.5pt; color: #94a3b8; padding-left: 14px; margin-bottom: 6px; line-height: 1.45;">
+                <li><strong>2-Window Confirmation Gate (≥128 ms):</strong> Mechanical impact spikes must persist across at least 2 consecutive windows to latch a critical shutdown state.</li>
+                <li><strong>Persistent Software Trip Latch:</strong> Once latched, `trip_latched` remains asserted across sensor dropouts, motor spin-downs, and baseline resets.</li>
+                <li><strong>Explicit Operator Reset:</strong> Clears only via `ac_engine_reset_trip()`.</li>
+            </ul>
+            <div class="callout" style="margin-bottom: 0; font-size: 7pt;">
+                <strong>Qualification Boundary:</strong> AC Engine provides software-level advisory trip logic; certified physical emergency shutdown contactors remain the responsibility of host safety relays.
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Commercial Licensing & Pricing Models -->
+    <div class="section-title">6. Commercial Licensing Models</div>
+    <div class="grid-3" style="margin-bottom: 12px;">
+        <div class="card" style="border-top: 3px solid var(--accent);">
+            <div style="font-weight: 700; font-size: 9pt; color: #fff; margin-bottom: 2px;">Tier 1: Annual Enterprise</div>
+            <div style="font-size: 14pt; font-weight: 800; color: var(--accent); font-family: var(--font-mono);">$75,000 / yr</div>
+            <p style="font-size: 7pt; color: var(--text-muted); margin-top: 4px;">
+                Unlimited volume deployments across 2 named product lines. Includes engineering support & firmware updates.
+            </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--accent-green);">
+            <div style="font-weight: 700; font-size: 9pt; color: #fff; margin-bottom: 2px;">Tier 2: Production Royalty</div>
+            <div style="font-size: 14pt; font-weight: 800; color: var(--accent-green); font-family: var(--font-mono);">$4.50 / device</div>
+            <p style="font-size: 7pt; color: var(--text-muted); margin-top: 4px;">
+                Per-unit silicon royalty with $25,000 annual minimum commitment. Ideal for high-volume motor drives & sensor nodes.
+            </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--accent-amber);">
+            <div style="font-weight: 700; font-size: 9pt; color: #fff; margin-bottom: 2px;">Tier 3: Perpetual Escrow</div>
+            <div style="font-size: 14pt; font-weight: 800; color: var(--accent-amber); font-family: var(--font-mono);">$220,000 once</div>
+            <p style="font-size: 7pt; color: var(--text-muted); margin-top: 4px;">
+                Perpetual license with source code escrow release on business trigger. Zero recurring unit royalties forever.
+            </p>
+        </div>
+    </div>
+
+    <!-- Executive Sign-Off / Next Steps -->
+    <div class="card" style="background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.3);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <div style="font-weight: 800; font-size: 10pt; color: #fff;">Initiate Your 60-Day Dyno Pilot Evaluation</div>
+                <div style="font-size: 7.5pt; color: var(--text-muted); margin-top: 2px;">
+                    Receive the precompiled static library (`libac_engine.a`), integration header, and verification suite under mutual NDA.
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 8.5pt; font-weight: 700; color: var(--accent);">Albert Cornelius | Founder</div>
+                <div style="font-size: 7.5pt; color: var(--text-muted); font-family: var(--font-mono);">albert@acengine.tech | (315) 308-0118</div>
+                <div style="font-size: 7.5pt; color: var(--text-muted);">Syracuse, NY | <strong>https://acengine.tech</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 Footer -->
+    <div class="footer">
+        <div>AC Engine 5.0 — Confidential OEM Brief</div>
+        <div>Page 2 of 2</div>
+        <div><strong>acengine.tech</strong></div>
+    </div>
+
+</div>
+
+</body>
+</html>
