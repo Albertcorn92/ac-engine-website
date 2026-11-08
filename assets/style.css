@@ -349,34 +349,29 @@ nav {
 }
 
 @media (max-width: 860px) {
-    .mobile-nav-toggle {
-        display: flex;
+    .nav-inner {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: space-between;
     }
 
     .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #ffffff;
-        border-bottom: 2px solid var(--border-strong);
-        flex-direction: column;
-        padding: 24px 28px;
+        display: flex;
         gap: 16px;
-        align-items: stretch;
-        box-shadow: var(--shadow-xl);
-        z-index: 999;
-        transform: translateY(-8px);
-        opacity: 0;
-        transition: transform var(--transition-base), opacity var(--transition-base);
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: 13px;
     }
 
-    .nav-links.is-open {
-        display: flex;
-        transform: translateY(0);
-        opacity: 1;
+    .nav-links a:not(.btn-nav) {
+        padding: 4px 0;
     }
+
+    .btn-nav {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+}
 
     .nav-links a:not(.btn-nav) {
         padding: 10px 0;

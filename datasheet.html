@@ -9,17 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css?v=6.0">
 </head>
 <body>
-
-    <!-- Accessibility Skip Link -->
-    <a href="#main" class="skip-link">Skip to main content</a>
 
     <!-- Top Engineering Spec Stripe -->
     <div class="top-stripe">
         <div class="top-stripe-left">
-            <span>DOC ID: ACE-DS-5001-REV5.2</span> &bull; 
             <span>EMBEDDED C DSP CORE</span> &bull; 
             <span>MISRA-C:2012 ALIGNED</span> &bull; 
             <span>DETERMINISTIC 312B SRAM</span>
@@ -40,7 +36,6 @@
                     <span class="brand-badge">EMBEDDED DSP</span>
                 </div>
             </a>
-            <button class="mobile-nav-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">☰</button>
             <div class="nav-links">
                 <a href="index.html">Overview</a>
                 <a href="datasheet.html" class="active">Silicon Datasheet</a>
@@ -50,7 +45,6 @@
             </div>
         </div>
     </nav>
-    <div class="nav-backdrop"></div>
 
     <!-- Main Content Container -->
     <main id="main">
@@ -58,22 +52,6 @@
     <!-- Page Header -->
     <div class="page-header">
         <div class="container">
-            <!-- Texas Instruments Style Document Control Banner -->
-            <div class="doc-control-banner">
-                <div class="doc-item">
-                    <span>DOCUMENT:</span> <strong>ACE-DS-5001-REV5.2</strong>
-                </div>
-                <div class="doc-item">
-                    <span>CLASSIFICATION:</span> <strong>PUBLIC OEM ENGINEERING SPECIFICATION</strong>
-                </div>
-                <div class="doc-item">
-                    <span>REVISED:</span> <strong>NOVEMBER 2026</strong>
-                </div>
-                <div class="doc-item">
-                    <span>STATUS:</span> <span class="doc-status-badge">PRODUCTION DATA</span>
-                </div>
-            </div>
-
             <div class="section-tag">OFFICIAL TECHNICAL SPECIFICATION</div>
             <h1>Deterministic Silicon Datasheet</h1>
             <p class="lead">
@@ -411,41 +389,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Mobile Navigation Toggle Script -->
-    <script>
-        (function() {
-            var toggleBtn = document.querySelector('.mobile-nav-toggle');
-            var navLinks = document.querySelector('.nav-links');
-            var backdrop = document.querySelector('.nav-backdrop');
-
-            if (toggleBtn && navLinks && backdrop) {
-                function toggleMenu() {
-                    var isOpen = navLinks.classList.contains('is-open');
-                    if (isOpen) {
-                        navLinks.classList.remove('is-open');
-                        backdrop.classList.remove('is-active');
-                        toggleBtn.setAttribute('aria-expanded', 'false');
-                        toggleBtn.textContent = '☰';
-                    } else {
-                        navLinks.classList.add('is-open');
-                        backdrop.classList.add('is-active');
-                        toggleBtn.setAttribute('aria-expanded', 'true');
-                        toggleBtn.textContent = '✕';
-                    }
-                }
-
-                toggleBtn.addEventListener('click', toggleMenu);
-                backdrop.addEventListener('click', toggleMenu);
-
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
-                        toggleMenu();
-                    }
-                });
-            }
-        })();
-    </script>
 
 </body>
 </html>
