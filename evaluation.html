@@ -3,44 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commercial Evaluation Protocol &amp; Intake | AC Engine</title>
+    <title>Commercial Evaluation Protocol &amp; Technical Intake | AC Engine</title>
     <meta name="description" content="Request AC Engine Commercial Evaluation SDK (.zip) for your industrial compressors, pumps, and rotating equipment under mutual NDA.">
+    <link rel="icon" type="image/png" href="assets/logo_icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
+    <!-- Accessibility Skip Link -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
     <!-- Top Engineering Spec Stripe -->
     <div class="top-stripe">
-        <div>EMBEDDED C DSP CORE &bull; MISRA-C:2012 ALIGNED &bull; DETERMINISTIC 312B SRAM</div>
-        <div>ARM CORTEX-M0+/M4/M7/M33 &bull; ESP32 &bull; HOST SITL VALIDATION</div>
+        <div class="top-stripe-left">
+            <span>DOC ID: ACE-EV-5001-REV5.2</span> &bull; 
+            <span>EMBEDDED C DSP CORE</span> &bull; 
+            <span>MISRA-C:2012 ALIGNED</span> &bull; 
+            <span>DETERMINISTIC 312B SRAM</span>
+        </div>
+        <div class="top-stripe-right">
+            <span class="top-stripe-dot"></span>
+            <span>ARM CORTEX-M0+/M4/M7/M33 &bull; ESP32-S3 &bull; HOST SITL</span>
+        </div>
     </div>
 
     <!-- Navigation -->
     <nav>
         <div class="nav-inner">
-            <a href="index.html" class="nav-brand">
-                <img src="assets/logo_icon.png" alt="AC Engine Emblem" class="nav-logo-icon">
+            <a href="index.html" class="nav-brand" aria-label="AC Engine Homepage">
+                <img src="assets/logo_icon.png" alt="AC Engine Emblem" class="nav-logo-icon" width="34" height="34">
                 <div class="brand-text">
                     AC ENGINE
-                    <span class="brand-badge">EMBEDDED C</span>
+                    <span class="brand-badge">EMBEDDED DSP</span>
                 </div>
             </a>
+            <button class="mobile-nav-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">☰</button>
             <div class="nav-links">
                 <a href="index.html">Overview</a>
                 <a href="datasheet.html">Silicon Datasheet</a>
                 <a href="benchmark.html">Lab Benchmark</a>
                 <a href="evaluation.html" class="active">Evaluation Protocol</a>
-                <a href="evaluation.html" class="btn-nav">Request Evaluation SDK</a>
+                <a href="evaluation.html" class="btn-nav">Request Evaluation SDK &rarr;</a>
             </div>
         </div>
     </nav>
+    <div class="nav-backdrop"></div>
+
+    <!-- Main Content Container -->
+    <main id="main">
 
     <!-- Page Header -->
     <div class="page-header">
         <div class="container">
+            <!-- Texas Instruments Style Document Control Banner -->
+            <div class="doc-control-banner">
+                <div class="doc-item">
+                    <span>OEM ROADMAP:</span> <strong>ACE-EV-5001-REV5.2</strong>
+                </div>
+                <div class="doc-item">
+                    <span>LEGAL FRAMEWORK:</span> <strong>2-PAGE MUTUAL NDA &bull; 60-DAY DYNO BENCH TRIAL</strong>
+                </div>
+                <div class="doc-item">
+                    <span>REVISED:</span> <strong>NOVEMBER 2026</strong>
+                </div>
+                <div class="doc-item">
+                    <span>STATUS:</span> <span class="doc-status-badge">ACTIVE PROTOCOL</span>
+                </div>
+            </div>
+
             <div class="section-tag">COMMERCIAL OEM ENGAGEMENT</div>
             <h1>Evaluation Protocol &amp; Technical Intake</h1>
             <p class="lead">
@@ -86,26 +119,44 @@
     </section>
 
     <!-- Section: Interactive Technical Intake Form -->
-    <section style="background:var(--bg-card-alt);">
+    <section style="background:var(--bg-subtle);">
         <div class="container">
             <div class="eval-box">
                 <div class="section-tag">COMMERCIAL EVALUATION SDK INTAKE</div>
                 <h2 style="font-size:24px; font-weight:800; color:var(--text-title); margin:8px 0 12px;">Request Pre-Compiled Evaluation Package</h2>
-                <p style="font-size:14px; color:var(--text-muted); line-height:1.6; max-width:760px;">
+                <p style="font-size:14px; color:var(--text-muted); line-height:1.6; max-width:780px;">
                     Evaluation packages are provided exclusively to rotating equipment manufacturers (OEMs). To receive pre-compiled binaries configured for your target machine kinematics, complete the technical intake below:
                 </p>
 
-                <!-- Fast Inquiry Card for Early Explorers -->
-                <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:18px 20px; margin-bottom:28px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;">
-                    <div>
-                        <div style="font-size:14px; font-weight:700; color:var(--text-title); margin-bottom:4px;">Not sure if your motor or drive hardware is compatible?</div>
-                        <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">
-                            Request our 2-Page Silicon Datasheet and an initial compatibility assessment before completing the full technical intake.
+                <!-- Direct Intake Info Banner -->
+                <div class="pdf-dossier-banner">
+                    <div class="pdf-dossier-meta">
+                        <div class="pdf-dossier-title">
+                            <span>📄</span> Confidential Technical Dossier &amp; Evaluation Package
+                            <span class="pdf-tag">DIRECT INTAKE</span>
+                        </div>
+                        <div class="pdf-dossier-desc">
+                            To protect proprietary machine kinematics and static binary IP, our 2-page Technical Dossier and Evaluation Kit are delivered directly to verified engineering personnel under standard Mutual NDA.
                         </div>
                     </div>
-                    <a href="mailto:evaluation@acengine.tech?subject=AC%20Engine%20Datasheet%20%26%20Compatibility%20Inquiry&body=Hi%20Albert,%0A%0AWe%20would%20like%20to%20review%20the%202-page%20Silicon%20Datasheet%20and%20discuss%20preliminary%20hardware%20compatibility.%0A%0ACompany:%0AEquipment%20Type:%0A%0AThank%20you," class="btn-secondary" style="font-size:13px; padding:10px 18px; white-space:nowrap;">
-                        📄 Request Datasheet &rarr;
-                    </a>
+                </div>
+
+                <!-- 3-Minute Live Zoom Demo Card -->
+                <div class="pdf-dossier-banner" style="border-left-color: #0284c7; background: #f8fafc; margin-top: 14px; margin-bottom: 28px;">
+                    <div class="pdf-dossier-meta">
+                        <div class="pdf-dossier-title">
+                            <span>⚡</span> 3-Minute Live Silicon &amp; Dyno Zoom Demonstration
+                            <span class="pdf-tag" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;">DIRECT WITH CTO</span>
+                        </div>
+                        <div class="pdf-dossier-desc">
+                            Witness AC Engine executing in real-time inside an ARM microcontroller with live ADXL355 sensor streaming, 10x transient casing shock clamping, simulated raceway spall inception, and instantaneous API 670 trip relay latching in 180 seconds.
+                        </div>
+                    </div>
+                    <div style="flex-shrink:0;">
+                        <a href="mailto:albert@acengine.tech?subject=Request%203-Minute%20Live%20Zoom%20Demo%20-%20AC%20Engine&body=Hi%20Albert,%0A%0AI%20would%20like%20to%20schedule%20a%20brief%203-minute%20live%20technical%20Zoom%20demo%20of%20AC%20Engine%20for%20our%20engineering%20team.%0A%0ACompany:%20%0AName:%20%0ATitle:%20%0AEquipment%20Category:%20%0ATarget%20MCU%20or%20Sensor:%20" class="btn-primary" style="font-size:13px; padding:10px 18px; white-space:nowrap;">
+                            Request 3-Min Zoom Demo &rarr;
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Interactive Form -->
@@ -136,11 +187,11 @@
                         </div>
                         <div class="form-group">
                             <label for="evalMcu">Target MCU Architecture</label>
-                            <input type="text" id="evalMcu" class="form-input" placeholder="e.g. STM32F4, Cortex-M4, TI, ESP32" value="ARM Cortex-M4 (STM32F4)">
+                            <input type="text" id="evalMcu" class="form-input" placeholder="e.g. STM32F4, Cortex-M4, TI MSPM0, ESP32" value="ARM Cortex-M4 (STM32F4)">
                         </div>
                         <div class="form-group">
                             <label for="evalRpm">Rated Motor RPM</label>
-                            <input type="text" id="evalRpm" class="form-input" placeholder="e.g. 1,800 RPM / 3,600 RPM" value="1,800 RPM">
+                            <input type="text" id="evalRpm" class="form-input" placeholder="e.g. 1,800 RPM / 3,600 RPM / VFD" value="1,800 RPM">
                         </div>
                         <div class="form-group full-width">
                             <label for="evalNotes">Evaluation Scope or Dyno Sensor Details (Optional)</label>
@@ -158,26 +209,80 @@
                     </div>
                 </form>
 
-                <!-- Direct Contact Cards -->
+                <!-- Executive Intake & Direct Contact Cards -->
                 <div class="direct-contact-cards">
-                    <a href="mailto:evaluation@acengine.tech?subject=AC%20Engine%20Evaluation%20Request&body=Attn:%20AC%20Engine%20Technical%20Evaluation%20Desk,%0A%0AWe%20would%20like%20to%20evaluate%20AC%20Engine%20for%20our%20equipment.%0A%0ACompany:%0AMachine%20Type:%0AMotor%20Speed%20(RPM):%0ATarget%20MCU%20Architecture:%0A%0AThank%20you," style="text-decoration:none; flex:1;">
-                        <div class="contact-channel-card">
-                            <div class="contact-channel-title">Direct Engineering Email</div>
+                    <div class="contact-channel-card">
+                        <div>
+                            <div class="contact-channel-title">Technical Evaluation Desk</div>
                             <div class="contact-channel-val">evaluation@acengine.tech</div>
-                            <div class="contact-channel-desc">All inquiries receive mutual NDA &amp; parameter sheet within 24 hours</div>
+                            <div class="contact-channel-desc">All inquiries receive mutual NDA &amp; parameter sheet within 24 hours. Pre-compiled static library binaries (.a) delivered upon execution.</div>
                         </div>
-                    </a>
-                    <a href="https://www.linkedin.com/in/albert-cornelius-0816a11b5/" target="_blank" style="text-decoration:none; flex:1;">
-                        <div class="contact-channel-card">
-                            <div class="contact-channel-title">Executive Contact</div>
+                        <div style="margin-top:14px;">
+                            <a href="mailto:evaluation@acengine.tech?subject=AC%20Engine%20Evaluation%20Request" class="btn-secondary" style="font-size:12px; padding:6px 14px; width:100%; justify-content:center;">
+                                Email Technical Desk &rarr;
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-channel-card">
+                        <div>
+                            <div class="contact-channel-title">Business Development</div>
+                            <div class="contact-channel-val">Robert Viavattine</div>
+                            <div class="contact-channel-desc">Head of Business Development &bull; Commercial Onboarding, Mutual NDA Execution &amp; Tiered OEM Volume Licensing.</div>
+                        </div>
+                        <div style="margin-top:14px;">
+                            <a href="mailto:robert@acengine.tech?subject=AC%20Engine%20Commercial%20Inquiry" class="btn-secondary" style="font-size:12px; padding:6px 14px; width:100%; justify-content:center;">
+                                Email Robert Viavattine &rarr;
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-channel-card">
+                        <div>
+                            <div class="contact-channel-title">Engineering Architecture</div>
                             <div class="contact-channel-val">Albert Cornelius</div>
-                            <div class="contact-channel-desc">Founder &amp; Systems Architect &bull; LinkedIn Direct Message</div>
+                            <div class="contact-channel-desc">Founder &amp; CTO &bull; Systems Architect &bull; Embry-Riddle Aeronautical University &bull; Embedded Systems &amp; Flight Software Reliability.</div>
                         </div>
-                    </a>
+                        <div style="margin-top:14px; display:flex; gap:8px;">
+                            <a href="https://www.linkedin.com/in/albert-cornelius-0816a11b5/" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:12px; padding:6px 14px; flex:1; justify-content:center;">
+                                LinkedIn &rarr;
+                            </a>
+                            <a href="mailto:albert@acengine.tech" class="btn-secondary" style="font-size:12px; padding:6px 14px; flex:1; justify-content:center;">
+                                Email &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confidentiality & Technical IP Assurance FAQ -->
+                <div style="background:#ffffff; border:1px solid var(--border); border-radius:8px; padding:28px; margin-top:36px; box-shadow:var(--shadow-sm);">
+                    <div class="section-tag">CONFIDENTIALITY &amp; TECHNICAL IP ASSURANCE</div>
+                    <h3 style="font-size:18px; font-weight:800; color:var(--text-title); margin:6px 0 16px;">
+                        Enterprise OEM Qualification Principles
+                    </h3>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+                        <div style="background:var(--bg-page); padding:18px; border-radius:6px; border:1px solid var(--border);">
+                            <strong style="color:var(--text-title); display:block; font-size:13px; margin-bottom:6px;">1. Standard 2-Page Mutual NDA</strong>
+                            <p style="font-size:12px; color:var(--text-muted); line-height:1.6; margin:0;">
+                                Protects your proprietary machine kinematic ratios, bearing part numbers, and test dyno sensor traces while safeguarding our pre-compiled static library binaries.
+                            </p>
+                        </div>
+                        <div style="background:var(--bg-page); padding:18px; border-radius:6px; border:1px solid var(--border);">
+                            <strong style="color:var(--text-title); display:block; font-size:13px; margin-bottom:6px;">2. Zero Source Code Leak Hazards</strong>
+                            <p style="font-size:12px; color:var(--text-muted); line-height:1.6; margin:0;">
+                                Delivered as clean, stripped Thumb-2 / Xtensa static libraries (<code>libac_engine.a</code>) linking against your linker script in under 10 minutes. 100% offline and air-gapped.
+                            </p>
+                        </div>
+                        <div style="background:var(--bg-page); padding:18px; border-radius:6px; border:1px solid var(--border);">
+                            <strong style="color:var(--text-title); display:block; font-size:13px; margin-bottom:6px;">3. Direct Systems Support</strong>
+                            <p style="font-size:12px; color:var(--text-muted); line-height:1.6; margin:0;">
+                                Every evaluation includes up to 10 hours of remote engineering support with our embedded systems team to ensure seamless SPI FIFO ingestion and Modbus register integration.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Toast Notification -->
     <div id="toastNotification" class="toast-notification">
@@ -188,7 +293,7 @@
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
-            <div>
+            <div class="footer-copy">
                 &copy; 2026 AC Engine. All rights reserved. Proprietary Embedded Firmware IP.
             </div>
             <div class="footer-links">
@@ -196,12 +301,12 @@
                 <a href="datasheet.html">Datasheet</a>
                 <a href="benchmark.html">Lab Benchmark</a>
                 <a href="evaluation.html">Evaluation Protocol</a>
-                <a href="https://www.linkedin.com/in/albert-cornelius-0816a11b5/" target="_blank">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/albert-cornelius-0816a11b5/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
         </div>
     </footer>
 
-    <!-- Interactive Form Script -->
+    <!-- Interactive Form Script & Mobile Nav -->
     <script>
         function getEvalData() {
             return {
@@ -282,6 +387,39 @@
             document.body.removeChild(ta);
             showToast('✓ Intake spec copied to clipboard! Paste into your email client.');
         }
+
+        // Mobile Nav Drawer Toggle
+        (function() {
+            var toggleBtn = document.querySelector('.mobile-nav-toggle');
+            var navLinks = document.querySelector('.nav-links');
+            var backdrop = document.querySelector('.nav-backdrop');
+
+            if (toggleBtn && navLinks && backdrop) {
+                function toggleMenu() {
+                    var isOpen = navLinks.classList.contains('is-open');
+                    if (isOpen) {
+                        navLinks.classList.remove('is-open');
+                        backdrop.classList.remove('is-active');
+                        toggleBtn.setAttribute('aria-expanded', 'false');
+                        toggleBtn.textContent = '☰';
+                    } else {
+                        navLinks.classList.add('is-open');
+                        backdrop.classList.add('is-active');
+                        toggleBtn.setAttribute('aria-expanded', 'true');
+                        toggleBtn.textContent = '✕';
+                    }
+                }
+
+                toggleBtn.addEventListener('click', toggleMenu);
+                backdrop.addEventListener('click', toggleMenu);
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
+                        toggleMenu();
+                    }
+                });
+            }
+        })();
     </script>
 
 </body>
