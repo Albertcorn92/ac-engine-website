@@ -1,7 +1,7 @@
 /* ==========================================================================
    AC ENGINE SYSTEMS - TIER-1 INDUSTRIAL EMBEDDED STYLESHEET
    Benchmark Standards: Analog Devices (analog.com) • Texas Instruments (ti.com)
-   Bently Nevada / Baker Hughes (bently.com) • MISRA-C:2012 • API 670 5th Ed.
+   Bently Nevada / Baker Hughes (bently.com) • Freestanding ANSI C99 • White Corporate Tech Theme
    ========================================================================== */
 
 :root {
@@ -41,13 +41,13 @@
     --emerald-bg: #ecfdf5;
     --emerald-border: #a7f3d0;
 
-    /* Alert Amber (Incipient Warning / ISO Zone B/C) */
+    /* Alert Amber (warning state) */
     --amber: #f59e0b;
     --amber-dark: #92400e;
     --amber-bg: #fffbeb;
     --amber-border: #fde68a;
 
-    /* Trip Crimson (API 670 Trip / ISO Zone D / Shutdown) */
+    /* Trip Crimson (latched software alert) */
     --crimson: #ef4444;
     --crimson-dark: #991b1b;
     --crimson-bg: #fef2f2;

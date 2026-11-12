@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physical Lab Benchmarks &amp; 320M Sample Validation | AC Engine</title>
-    <meta name="description" content="Physical laboratory vibration benchmarks across NASA Ames IMS, CWRU 2 HP Motor, Planetary Torque Rig, and OpenBLDC testbeds. 0.00% False Alarm Rate observed across qualification runs.">
+    <title>Empirical Lab Benchmarks &amp; 193 Real-Stream Validation | AC Engine</title>
+    <meta name="description" content="Real-data vibration qualification across 193 decimated .acbin streams from 7 public datasets (NASA IMS, CWRU, FEMTO-ST, MFPT, UORED-VAFCLS, Ottawa TVS, SEU) plus OpenBLDC ADXL355 motors.">
     <link rel="icon" type="image/png" href="assets/logo_icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
     <div class="top-stripe">
         <div class="top-stripe-left">
             <span>EMBEDDED C DSP CORE</span> &bull; 
-            <span>MISRA-C:2012 ALIGNED</span> &bull; 
+            <span>FREESTANDING ANSI C99</span> &bull; 
             <span>DETERMINISTIC 312B SRAM</span>
         </div>
         <div class="top-stripe-right">
@@ -52,21 +52,21 @@
     <!-- Page Header -->
     <div class="page-header">
         <div class="container">
-            <div class="section-tag">PHYSICAL RIG VALIDATION &bull; ISO 10816 / ISO 20816 SEVERITY ZONES</div>
-            <h1>Empirical Vibration Qualification Across Global Machinery Benchmarks</h1>
+            <div class="section-tag">PHYSICAL RIG VALIDATION &bull; 193 REAL .ACBIN STREAMS + OPENBLDC FLEET</div>
+            <h1>Empirical Vibration Qualification Across Real Machinery Datasets</h1>
             <p class="lead">
-                Verified laboratory benchmarks across 320+ million physical sensor samples from peer-reviewed industrial datasets: NASA Ames Prognostics, Case Western Reserve University (CWRU), Paderborn University, FEMTO-ST PRONOSTIA, MFPT Society, University of Ottawa, and 4TU / PHM09 industrial pump and drivetrain benchmarks.
+                Honest, reproducible C-library benchmarks across <strong>193 real decimated 500 Hz <span class="mono">.acbin</span> streams</strong> spanning 7 public datasets (NASA Ames IMS, CWRU, FEMTO-ST PRONOSTIA, MFPT, UORED-VAFCLS, University of Ottawa TVS, and SEU Gearbox) plus real ADXL355 dynamometer telemetry from the <strong>OpenBLDC 3-motor fleet</strong>. Includes full disclosure of operating boundaries and explicit exclusions.
             </p>
 
             <!-- Technical Dossier Request Card -->
             <div class="pdf-dossier-banner">
                 <div class="pdf-dossier-meta">
                     <div class="pdf-dossier-title">
-                        <span>📄</span> Comprehensive 2-Page Technical Dossier &amp; Rig Data
+                        <span>📄</span> Official AC Engine 5.0 Technical Dossier &amp; Rig Logs
                         <span class="pdf-tag">2-PAGE SPEC</span>
                     </div>
                     <div class="pdf-dossier-desc">
-                        Full failure mode logs, harmonic resonance spectra, and licensing schedules for OEM engineering review.
+                        Measured static library byte sizes (8.4–16.6 KB -O3), host timing (4.17 µs), failure-mode logs, and commercial licensing schedules.
                     </div>
                 </div>
                 <a href="evaluation.html" class="btn-primary" style="font-size:13px; padding:10px 20px;">
@@ -77,14 +77,15 @@
             <!-- In-Page Anchor Jump Bar -->
             <div class="benchmark-jump-bar">
                 <span class="benchmark-jump-label">Jump to Test Rig:</span>
-                <a href="#rig-nasa">1. NASA Ames IMS (6,000 lb)</a>
-                <a href="#rig-cwru">2. CWRU 2 HP Motor</a>
-                <a href="#rig-paderborn">3. Paderborn FAG 6203 (PMSM)</a>
-                <a href="#rig-femto">4. FEMTO-ST 4,000 N Rig</a>
-                <a href="#rig-mfpt">5. MFPT Stepped Load &amp; Gearbox</a>
-                <a href="#rig-ottawa">6. Ottawa Non-Stationary VFD</a>
-                <a href="#rig-pump-gearbox">7. Slurry Pump &amp; PHM09</a>
-                <a href="#rig-endurance">8. 320M Numerical Endurance</a>
+                <a href="#rig-openbldc">1. OpenBLDC ADXL355 Fleet</a>
+                <a href="#rig-endurance">2. Continuous Phase &amp; Dyno Stress</a>
+                <a href="#rig-uored">3. UORED-VAFCLS (60 Brgs)</a>
+                <a href="#rig-femto">4. FEMTO-ST PRONOSTIA (8 Runs)</a>
+                <a href="#rig-ottawa">5. Ottawa TVS VFD Sweeps</a>
+                <a href="#rig-cwru">6. CWRU 2 HP Motor</a>
+                <a href="#rig-mfpt">7. MFPT Stepped Loads</a>
+                <a href="#rig-nasa">8. NASA IMS &amp; SEU Gearbox</a>
+                <a href="#exclusions">9. Exclusions &amp; Limitations</a>
             </div>
         </div>
     </div>
@@ -94,9 +95,9 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-tag">MASTER EMPIRICAL QUALIFICATION MATRIX</div>
-                <h2 class="section-title">Multi-Platform Diagnostic Performance Summary</h2>
+                <h2 class="section-title">Multi-Platform Measured C-Engine Performance Summary</h2>
                 <p class="section-desc">
-                    Every benchmark is evaluated with identical pre-compiled static library binaries (<span class="mono">libac_engine.a</span>) consuming exactly 312 bytes of SRAM with zero heap dynamic memory.
+                    Evaluated directly with compiled ANSI C99 code (<span class="mono">sizeof(ac_engine_t) == 312</span> bytes SRAM, 0 malloc, zero FPU, 6-window sustained confirmation interlock). Host timing: 4.17 µs avg (4.17 µs p50, <span class="mono">236,549 evals/sec</span>).
                 </p>
             </div>
 
@@ -104,124 +105,103 @@
                 <table class="spec-table">
                     <thead>
                         <tr>
-                            <th style="width: 18%;">Test Rig &amp; Source</th>
-                            <th style="width: 22%;">Physical Hardware &amp; Sensor</th>
-                            <th style="width: 20%;">Defect Mode Evaluated</th>
-                            <th style="width: 15%;">Trip Latency / Advance Notice</th>
-                            <th style="width: 12%;">False Alarm Rate</th>
-                            <th style="width: 13%;">Memory Footprint</th>
+                            <th style="width: 19%;">Test Rig &amp; Dataset</th>
+                            <th style="width: 23%;">Ingested Real Streams</th>
+                            <th style="width: 22%;">Observed Fault Detection</th>
+                            <th style="width: 18%;">Observed Healthy / False Trips</th>
+                            <th style="width: 18%;">Documented Boundary / Note</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="strong">
-                                NASA Ames Prognostics IMS Rig
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Run-to-Failure Campaign</div>
+                                OpenBLDC ADXL355 Fleet
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Motors 10, 20, 30 (Front+Rear)</div>
                             </td>
-                            <td>4x Rexnord ZA-2115 Bearings, 6,000 lb radial load, 2,000 RPM continuous</td>
-                            <td>Natural raceway micro-spalling to cage destruction</td>
-                            <td><span class="badge-win">46.5 Hours</span> Advance warning prior to failure</td>
-                            <td><span class="badge-win">0.00%</span> 0 trips across 107 baseline hrs</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0 malloc</span></td>
+                            <td>Real 1,000 Hz CSV &amp; 500 Hz BIN (10,435w M10F, 8,223w M30F nominal)</td>
+                            <td><span class="badge-win">512–704 ms</span> M10F/M30F @ 1 kHz; M30F 576 ms @ 500 Hz</td>
+                            <td><span class="badge-win">0.00% CritFAR</span> M10F (1 kHz/500 Hz) &amp; M30 F/R</td>
+                            <td>M10R (1 kHz) 92.24%; M20 speed shift 19.3% warn / 50–94% 500Hz crit</td>
                         </tr>
                         <tr>
                             <td class="strong">
-                                Case Western Reserve (CWRU)
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Reliance Electric 2 HP Rig</div>
+                                OEM Dyno Stress (M10 Front)
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">1,000 Hz Real + Shock Gate</div>
                             </td>
-                            <td>Drive-end SKF 6205 bearing, 1,797 RPM, 12 kHz accelerometer</td>
-                            <td>Inner race, outer race, and ball EDM micro-spalls (0.007")</td>
-                            <td><span class="badge-win">512 ms - 1,024 ms</span> Sub-second fault trip</td>
-                            <td><span class="badge-win">0.00%</span> 0 trips on healthy baseline</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0 malloc</span></td>
-                        </tr>
-                        <tr>
-                            <td class="strong">
-                                Paderborn University (PU)
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">PMSM Industrial Drivetrain</div>
-                            </td>
-                            <td>FAG 6203 deep-groove bearing, 900–1,500 RPM, 64 kHz decimated to 500 Hz</td>
-                            <td>14 authentic fatigue run-to-failure bearings (KA04, KI04, KA15, KA22)</td>
-                            <td><span class="badge-win">320 ms - 576 ms</span> Critical trip latch</td>
-                            <td><span class="badge-win">0.00%</span> 0 trips across K001–K006 fleet</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0 malloc</span></td>
+                            <td>100 nominal windows + <span class="mono">+1,000 mg/axis</span> shock + notched fault</td>
+                            <td><span class="badge-win">~544 ms</span> 1stC #16, EndH 13%</td>
+                            <td><span class="badge-win">0.00000% FAR</span> (0/100 FA; Shock H=97%)</td>
+                            <td>37w (1.18s) auto-calibration lock</td>
                         </tr>
                         <tr>
                             <td class="strong">
                                 FEMTO-ST / PRONOSTIA
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Accelerated Overload Rig</div>
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">8 Run-to-Failure Bearings</div>
                             </td>
-                            <td>NSK 6804RS ball bearing, 1,800 RPM under 4,000 N extreme radial load</td>
-                            <td>Unseeded run-to-failure through full destruction (&gt; 20g shock)</td>
-                            <td><span class="badge-win">Zone D Tripped</span> ~0.6s advance warning</td>
-                            <td><span class="badge-win">0.00%</span> 0 trips on healthy phase</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0 malloc</span></td>
+                            <td>25.6 kHz decimated to 500 Hz (<span class="mono">8/8</span> <span class="mono">.acbin</span>, 36–45w cal)</td>
+                            <td><span class="badge-win">8/8 Progression</span> <span class="mono">B1_1</span> holds D0–D6 &amp; trips D7 (8%)</td>
+                            <td><span class="badge-win">B1_1 D0–D6 Clean</span> <span class="mono">B3_2</span> warns D9 (38%)</td>
+                            <td><span class="mono">B1_2..B1_4</span> show early D0 0.1s burst-seam latches</td>
                         </tr>
                         <tr>
                             <td class="strong">
-                                MFPT Society Benchmark
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Stepped Loads &amp; Plant Cases</div>
+                                UORED-VAFCLS (CC BY 4.0)
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">60 Bearings / 20 Triplets</div>
                             </td>
-                            <td>Nice Bearing rig, stepped loads 25–300 lbs, 1,500 RPM (25 Hz)</td>
-                            <td>Stepped load immunity; planetary gearbox spall, pump unbalance, oil whirl</td>
-                            <td><span class="badge-win">192 ms - 448 ms</span> Latched on spall &amp; whirl</td>
-                            <td><span class="badge-win">0.00%</span> 100% load variation immunity</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0 malloc</span></td>
+                            <td>42 kHz decimated to 500 Hz (<span class="mono">H / Developing / Fault</span>)</td>
+                            <td><span class="badge-win">16/20 Dev, 14/20 Flt</span> (<span class="mono">Inner 5/5</span>, <span class="mono">Cage 4/4 Dev</span>)</td>
+                            <td><span class="badge-win">20/20 Healthy 0 Crit</span> (<span class="mono">16/20</span> strictly <span class="mono">W=0,C=0,P=0</span>)</td>
+                            <td><span class="mono">2/20</span> (<span class="mono">B08</span>, <span class="mono">B16</span>) cold-boot flagged <span class="mono">PREEXISTING</span></td>
                         </tr>
                         <tr>
                             <td class="strong">
-                                University of Ottawa (UORED)
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Dynamic Speed Simulator</div>
+                                Univ. of Ottawa TVS (CC BY 4.0)
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">36 Variable-Speed Runs</div>
                             </td>
-                            <td>Rexnord ER16K bearing under linear VFD sweeps (600 &harr; 2,100 RPM)</td>
-                            <td>Rapid throttle acceleration &amp; deceleration transients</td>
-                            <td><span class="badge-win">256 ms</span> In-flight fault trip</td>
-                            <td><span class="badge-win">0.00%</span> 0 throttle false trips</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0 malloc</span></td>
+                            <td>200 kHz decimated to 500 Hz across Profiles A, B, C, D</td>
+                            <td><span class="badge-win">Inner 3/3 (A–D)</span>; <span class="badge-win">Outer 8/9</span> (<span class="mono">3/3</span> A–B, <span class="mono">2/3</span> C–D)</td>
+                            <td><span class="badge-win">0 Crit (A–C Healthy)</span> (<span class="mono">MinH 70–88%</span>)</td>
+                            <td>Profile D steep accel healthy tail trips (115 crit, <span class="mono">MinH 14%</span>)</td>
                         </tr>
                         <tr>
                             <td class="strong">
-                                Slurry Pump &amp; Gearbox
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">4TU / Twente &amp; PHM09</div>
+                                CWRU 2 HP Motor
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">16 .acbin (0.007" @ 0–3 HP)</div>
                             </td>
-                            <td>Centrifugal slurry pump (4-vane impeller) &amp; multi-stage 24T pinion gearbox</td>
-                            <td>Fluid cavitation turbulence surges; chipped pinion gear teeth</td>
-                            <td><span class="badge-win">64 ms Incipient</span> 384 ms critical trip</td>
-                            <td><span class="badge-win">0.00%</span> 0 cavitation false trips</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0 malloc</span></td>
+                            <td>12 kHz decimated to 500 Hz (Norm, IR, Ball, OR x 4 loads)</td>
+                            <td><span class="badge-win">12/12 Faults (0–3 HP)</span> (<span class="mono">1stC=#9–#33</span> windows)</td>
+                            <td><span class="badge-win">0.00% CritFAR (1–3 HP)</span> (594–596w held-out)</td>
+                            <td>0 HP healthy shifts trigger 93.59% CritFAR; HF &lt;200 Hz attenuated</td>
                         </tr>
                         <tr>
                             <td class="strong">
-                                Planetary Bolting &amp; Torque Rig
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Planetary Gearbox Bolting</div>
+                                MFPT (CC BY-NC-SA 4.0)
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">20 .acbin Stepped Loads</div>
                             </td>
-                            <td>500 ft-lb bolting tool, 10 lug rundown cycles, 8x casing reaction shocks</td>
-                            <td>Planetary stage gear/bearing raceway fatigue</td>
-                            <td><span class="badge-win">1,472 ms</span> Latched on Lug 6 under shock</td>
-                            <td><span class="badge-win">0.00%</span> 0 shock false alarms</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0 malloc</span></td>
+                            <td>3 Baselines, 7 Variable-Load IR, 10 Outer Race @ 500 Hz</td>
+                            <td><span class="badge-win">5/7 Var-Load IR</span> (<span class="mono">vload_3..7</span>, <span class="mono">EndH 8–21%</span>)</td>
+                            <td><span class="badge-win">3/3 Baselines 0 Crit</span> (<span class="mono">W=32–79</span>)</td>
+                            <td><span class="mono">1/10</span> OR (<span class="mono">OR_vload_3</span> 16 crit); HF OR modulated above 250 Hz Nyquist</td>
                         </tr>
                         <tr>
                             <td class="strong">
-                                OpenBLDC High-Speed Dyno
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Industrial Motor Fleet</div>
+                                NASA Ames IMS (8 Channels)
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Set 1 (4) &amp; Set 2 (4) @ 500 Hz</div>
                             </td>
-                            <td>Analog Devices ADXL355 20-bit tri-axial MEMS accelerometer</td>
-                            <td>Ball/raceway micro-spall (+1,061% BPFO harmonic surge)</td>
-                            <td><span class="badge-win">1,280 ms</span> 20 analysis windows</td>
-                            <td><span class="badge-win">0.00%</span> 0 trips on Motors 10 &amp; 20</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0 malloc</span></td>
+                            <td>20 kHz decimated to 500 Hz (15w per snapshot)</td>
+                            <td><span class="badge-win">1st_B3 (8%) &amp; 1st_B4 (15%)</span> catastrophic collapse</td>
+                            <td><span class="badge-amber">Drift / Cross-Talk</span> (<span class="mono">1st_B2</span> 87%; <span class="mono">2nd_B2..4</span> trip)</td>
+                            <td>2,000 RPM @ 500 Hz lacks >=1 kHz HF carrier band for <span class="mono">2nd_B1</span></td>
                         </tr>
                         <tr>
                             <td class="strong">
-                                Continuous Multi-Day Endurance
-                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Numerical Integrity Run</div>
+                                SEU Gearbox &amp; Bearing (45 ch)
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Gearset (20_0/30_2) &amp; Brg</div>
                             </td>
-                            <td>320,000,000 continuous sensor samples (10M windows / 7.41 days)</td>
-                            <td>Long-term arithmetic stability and zero drift verification</td>
-                            <td><span class="badge-win">100% Stable</span> Zero register drift</td>
-                            <td><span class="badge-win">0 Trips Observed</span> 0.00% FAR</td>
-                            <td class="mono">312 B RAM<br><span style="font-size:11px; color:var(--text-muted);">0.08% std dev</span></td>
+                            <td>Parallel/Planetary/Motor + Bearing <span class="mono">.acbin</span> @ 500 Hz</td>
+                            <td><span class="badge-win">20_0 Parallel</span> Chipped (3,187c) &amp; Surface (3,183c)</td>
+                            <td><span class="badge-win">0 Crit Parallel Healthy</span> (<span class="mono">W=785</span>, <span class="mono">EndH 92%</span>)</td>
+                            <td><span class="mono">Miss=0/Root=0</span> on 20_0 parallel; <span class="mono">30_2</span> &amp; bearingset flag <span class="mono">pre=1</span> at cal</td>
                         </tr>
                     </tbody>
                 </table>
@@ -229,308 +209,94 @@
         </div>
     </section>
 
-    <!-- Deep-Dive 1: NASA Ames IMS 6,000 lb Bearing Run-to-Failure Rig -->
-    <section id="rig-nasa" style="background:var(--bg-subtle);">
+    <!-- Deep-Dive 1: OpenBLDC ADXL355 Fleet & Signal Analysis -->
+    <section id="rig-openbldc" style="background:var(--bg-subtle);">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">BENCHMARK 01 &bull; NASA AMES PROGNOSTICS DATA REPOSITORY</div>
-                <h2 class="section-title">NASA IMS 6,000 lb Bearing Run-to-Failure Campaign</h2>
+                <div class="section-tag">BENCHMARK 01 &bull; OPENBLDC ADXL355 FLEET (REAL 1 kHz / 500 Hz)</div>
+                <h2 class="section-title">OpenBLDC 3-Motor Fleet &amp; Held-Out Motor 30 Signal Analysis</h2>
                 <p class="section-desc">
-                    4 Rexnord ZA-2115 double-row tapered roller bearings mounted on a continuous drive shaft running at 2,000 RPM under 6,000 lbs coupled radial load. Monitored continuously over 7 full days (163 hours / 984 data snapshots) until catastrophic mechanical cage destruction.
-                </p>
-            </div>
-
-            <!-- NASA Phase Table -->
-            <div class="spec-table-container">
-                <table class="spec-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 22%;">Run-to-Failure Stage</th>
-                            <th style="width: 18%;">Elapsed Run Time</th>
-                            <th style="width: 18%;">Snapshot Index</th>
-                            <th style="width: 22%;">Engine Health &amp; ISO 10816 State</th>
-                            <th style="width: 20%;">Diagnostic Action &amp; Relay Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="strong">1. Auto-Calibration Lock</td>
-                            <td class="mono">0.0 - 5.8 Hours</td>
-                            <td class="mono">Snapshots 1 - 35</td>
-                            <td><span class="badge-win">100.0%</span> ISO Zone A (Good)</td>
-                            <td>Locked kinematic baseline in 35 windows</td>
-                        </tr>
-                        <tr>
-                            <td class="strong">2. Healthy Baseline Operation</td>
-                            <td class="mono">5.8 - 107.0 Hours</td>
-                            <td class="mono">Snapshots 36 - 611</td>
-                            <td><span class="badge-win">100.0%</span> ISO Zone A (Good)</td>
-                            <td><span class="badge-win">0.00% False Trips</span> across 611 windows</td>
-                        </tr>
-                        <tr>
-                            <td class="strong">3. Incipient Micro-Spall Trip</td>
-                            <td class="mono">116.5 Hours</td>
-                            <td class="mono">Snapshot 703</td>
-                            <td><span class="badge-amber">74.0%</span> ISO Zone B (Alert)</td>
-                            <td><span class="badge-loss">CRITICAL_FAULT Latched</span><br><strong>46.5 Hours Before Catastrophic Halt</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="strong">4. Advanced Raceway Degradation</td>
-                            <td class="mono">141.0 Hours</td>
-                            <td class="mono">Snapshot 850</td>
-                            <td><span class="badge-amber">45.0%</span> ISO Zone C (Alarm)</td>
-                            <td>Pre-warning horn / Modbus alarm active</td>
-                        </tr>
-                        <tr>
-                            <td class="strong">5. Complete Cage Destruction</td>
-                            <td class="mono">163.0 Hours</td>
-                            <td class="mono">Snapshot 984</td>
-                            <td><span class="badge-loss">21.0%</span> ISO Zone D (Shutdown)</td>
-                            <td>Immediate emergency drive disconnect</td>
-                        </tr>
-                        <tr style="background:#f8fafc;">
-                            <td class="strong">Control Bearing 4 (Companion)</td>
-                            <td class="mono">0.0 - 163.0 Hours</td>
-                            <td class="mono">Snapshots 1 - 984</td>
-                            <td><span class="badge-win">96.0% - 100.0%</span> (Normal)</td>
-                            <td><span class="badge-win">0 False Alarms</span> across 163 continuous hours</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:24px; margin-top:28px; box-shadow:var(--shadow-sm);">
-                <h4 style="font-size:16px; font-weight:800; color:var(--text-title); margin-bottom:8px;">
-                    Engineering Significance: 46.5 Hours Advance Warning
-                </h4>
-                <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;">
-                    In high-throughput automated logistics facilities and industrial production lines, an unexpected motor seizure causes catastrophic mechanical damage to drivetrains, belts, and guide rails. AC Engine's recursive fixed-point harmonic extractor detected subsurface spall energy at Snapshot 703—giving plant operators <strong>46.5 hours of advance notice</strong> to safely divert autonomous vehicles and schedule bearing replacement during scheduled maintenance windows.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Deep-Dive 2: Case Western Reserve University (CWRU) Motor Benchmark -->
-    <section id="rig-cwru">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">BENCHMARK 02 &bull; CASE WESTERN RESERVE UNIVERSITY</div>
-                <h2 class="section-title">CWRU 2 HP Reliance Electric Motor Benchmark</h2>
-                <p class="section-desc">
-                    480,000 physical sensor samples from a 2 HP Reliance Electric motor (1,797 RPM, 0 HP load, 12 kHz drive-end sampling). Evaluated across electro-discharge machined (EDM) bearing faults with 0.007" defect diameters on SKF 6205-2RS JEM deep-groove ball bearings.
-                </p>
-            </div>
-
-            <div class="spec-table-container">
-                <table class="spec-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 24%;">Vibration Mode &amp; Bearing State</th>
-                            <th style="width: 18%;">Sampling &amp; Volume</th>
-                            <th style="width: 18%;">Measured RMS Energy</th>
-                            <th style="width: 20%;">Autonomous Detection Latency</th>
-                            <th style="width: 20%;">Post-Trip Health Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="strong">Normal Operational Baseline</td>
-                            <td class="mono">12 kHz (60 Windows)</td>
-                            <td class="mono">0.071 g RMS (Floor)</td>
-                            <td><span class="badge-win">Calibrated in 2.3s</span> (36 Win)</td>
-                            <td><span class="badge-win">100.0%</span> (0.00% False Trips)</td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Inner Race Spall (BPFI &bull; 0.007")</td>
-                            <td class="mono">12 kHz (60 Windows)</td>
-                            <td class="mono">0.661 g RMS (<span style="color:var(--crimson-dark); font-weight:700;">+830% Surge</span>)</td>
-                            <td><span class="badge-win">512 ms Latency</span> (8 Windows)</td>
-                            <td><span class="badge-loss">18.0%</span> ISO Zone D (Trip)</td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Outer Race Spall (BPFO &bull; 0.007")</td>
-                            <td class="mono">12 kHz (60 Windows)</td>
-                            <td class="mono">0.632 g RMS (<span style="color:var(--crimson-dark); font-weight:700;">+790% Surge</span>)</td>
-                            <td><span class="badge-win">1,024 ms Latency</span> (16 Windows)</td>
-                            <td><span class="badge-loss">24.0%</span> ISO Zone D (Trip)</td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Ball Element Spall (BSF &bull; 0.007")</td>
-                            <td class="mono">12 kHz (60 Windows)</td>
-                            <td class="mono">0.220 g RMS (<span style="color:var(--primary); font-weight:700;">+210% Surge</span>)</td>
-                            <td><span class="badge-win">2,880 ms Latency</span> (45 Windows)</td>
-                            <td><span class="badge-amber">52.0%</span> ISO Zone C (Alarm)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:6px; padding:24px; margin-top:28px;">
-                <h4 style="font-size:16px; font-weight:800; color:var(--text-title); margin-bottom:8px;">
-                    Sub-Second Raceway Spalling Discrimination
-                </h4>
-                <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;">
-                    Because inner race spalling strikes rolling elements at shaft rotational frequency plus ball pass frequency (BPFI = 162 Hz at 1,797 RPM), it generates intense localized impact energy (+830% RMS). AC Engine's dual harmonic-RMS integrator trips in exactly <strong>512 milliseconds</strong>. Outer race spalls (BPFO = 107 Hz) are latched in <strong>1,024 milliseconds</strong>, fully preventing thermal runaway before motor windings can overheat.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Deep-Dive 3: Industrial Planetary Bolting Rig & Reaction Shock Bench -->
-    <section id="rig-bolting" style="background:var(--bg-subtle);">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">BENCHMARK 03 &bull; INDUSTRIAL BOLTING DYNO</div>
-                <h2 class="section-title">500 ft-lb Planetary Bolting &amp; Duty-Cycle Benchmark</h2>
-                <p class="section-desc">
-                    High-torque industrial bolting tools operate under violent transient shocks (8x baseline amplitude) and rapid 0 to 500 ft-lb torque ramps. Tested across 10 lug rundown cycles to prove immunity to dropped tool impacts and casing shock spikes.
-                </p>
-            </div>
-
-            <div class="spec-table-container">
-                <table class="spec-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 22%;">Duty-Cycle Phase</th>
-                            <th style="width: 20%;">Torque / Shock Level</th>
-                            <th style="width: 18%;">Engine State</th>
-                            <th style="width: 20%;">Impulse Filter Behavior</th>
-                            <th style="width: 20%;">Health Degradation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="strong">Bench Rest (0 RPM Floor)</td>
-                            <td class="mono">0 ft-lb (Noise Floor)</td>
-                            <td><span class="badge-win">Standby Mode</span></td>
-                            <td>0 RPM gate prevents false calibration</td>
-                            <td class="mono">Health = 100.0%</td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Lugs 1 - 5 (Normal Bolting)</td>
-                            <td class="mono">0 - 500 ft-lb (8x Shocks)</td>
-                            <td><span class="badge-win">Steady Tracking</span></td>
-                            <td>Clamps single-window impact spikes</td>
-                            <td><span class="badge-win">0.00% False Trips</span></td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Lug 6 (Incipient Gearbox Spall)</td>
-                            <td class="mono">350 ft-lb Tightening</td>
-                            <td><span class="badge-loss">CRITICAL_FAULT</span></td>
-                            <td>Latched in 1,472 ms (23 windows)</td>
-                            <td><span class="badge-loss">Health = 18.0%</span></td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Lugs 7 - 10 (Post-Fault Run)</td>
-                            <td class="mono">Torque Disabled</td>
-                            <td><span class="badge-loss">Fault Latched</span></td>
-                            <td>Continuous lockout prevents restart</td>
-                            <td><span class="badge-loss">Relay Tripped</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:24px; margin-top:28px; box-shadow:var(--shadow-sm);">
-                <h4 style="font-size:16px; font-weight:800; color:var(--text-title); margin-bottom:8px;">
-                    Impulse Shock Limiting Architecture
-                </h4>
-                <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;">
-                    Conventional threshold algorithms produce constant false trips in handheld power tools and automated guided vehicles due to casing knocks, floor expansion joints, and reaction bar slap. AC Engine incorporates an impulse shock limiter that clamps single-window spikes to 2x baseline while evaluating persistent structural energy drift, maintaining a <strong>0.00% False Alarm Rate</strong> under violent industrial mechanical shocks.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Deep-Dive 4: OpenBLDC Signal Analysis Plot (Motor 30) -->
-    <section id="rig-openbldc">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">BENCHMARK 04 &bull; OPENBLDC DYNAMOMETER FLEET</div>
-                <h2 class="section-title">Physical Signal Analysis on Held-Out Motor 30</h2>
-                <p class="section-desc">
-                    Raw 20-bit dynamic acceleration waveform correlated against narrowband harmonic resonance extraction and edge health decay latching on Analog Devices ADXL355 tri-axial MEMS.
+                    Real Analog Devices ADXL355 20-bit tri-axial MEMS vibration streams evaluated across Motors 10, 20, and 30 (Front &amp; Rear channels) at native 1,000 Hz CSV (<span class="mono">32 ms/win</span>) and decimated 500 Hz BIN (<span class="mono">64 ms/win</span>).
                 </p>
             </div>
 
             <div class="plot-container">
-                <img src="assets/real_motor_signal_analysis.svg" alt="Physical Motor Signal Analysis Plot" class="plot-svg-frame" width="1060" height="740">
+                <img src="assets/real_motor_signal_analysis.svg" alt="Empirical ADXL355 Motor 30 Signal Analysis Plot" class="plot-svg-frame" width="1060" height="740">
             </div>
 
             <div class="plot-explanation-grid">
                 <div class="plot-expl-card">
                     <div class="plot-expl-num">PANEL 01 &bull; TOP</div>
                     <h4>Raw Dynamic Acceleration (mg)</h4>
-                    <p>Captures 3-axis accelerometer counts under normal running torque followed by real mechanical impact shocks when sub-surface ball/raceway spalling initiates.</p>
+                    <p>Motor 30 nominal baseline windows (w36–w55) followed by real notched ball-bearing raceway impacts sampled on ADXL355 &plusmn;4g (128,000 LSB/g).</p>
                 </div>
                 <div class="plot-expl-card">
                     <div class="plot-expl-num">PANEL 02 &bull; BOTTOM LEFT</div>
-                    <h4>Harmonic Resonance Spectrum (0 - 250 Hz)</h4>
-                    <p>Dual-spectrum overlay showing healthy motor baseline (blue dashed) vs. bearing defect spall peaks at 1X shaft speed (8.3 Hz), BPFO (94 Hz), and 2X BPFO (188 Hz).</p>
+                    <h4>500 Hz FFT Spectrum (0–250 Hz)</h4>
+                    <p>Overlay comparing nominal 8.33 Hz (500 RPM) baseline vs. damaged bearing harmonic content peaking at <strong>29.4 Hz</strong> and <strong>58.8 Hz (2X)</strong>.</p>
                 </div>
                 <div class="plot-expl-card">
                     <div class="plot-expl-num">PANEL 03 &bull; BOTTOM RIGHT</div>
-                    <h4>Autonomous Health Index &amp; ISO 10816</h4>
-                    <p>Continuous edge health rating mapped against ISO 10816 Zones A, B, C, and D. Latches decisive safety trip in 1.28 seconds (20 windows) upon defect inception.</p>
+                    <h4>Compiled C Engine Health Decay</h4>
+                    <p>Direct execution of <span class="mono">ac_engine_evaluate_ctx</span> (5.04 µs via Python ctypes harness; 4.17–4.20 µs native C++) latches critical trip at <strong>0.70 s (Window #11)</strong> after fault transition.</p>
                 </div>
             </div>
 
-            <!-- Statistical Feature Shift Table -->
-            <div style="margin-top: 40px;">
-                <div class="section-tag">EMPIRICAL FEATURE SHIFT METRICS</div>
+            <!-- OpenBLDC Fleet Table -->
+            <div style="margin-top: 32px;">
+                <div class="section-tag">MULTI-MOTOR FLEET MATRIX (1,000 Hz CSV &amp; 500 Hz BIN)</div>
                 <div class="spec-table-container">
                     <table class="spec-table">
                         <thead>
                             <tr>
-                                <th>Statistical Vibration Parameter</th>
-                                <th>Healthy Motor 30 Baseline</th>
-                                <th>Damaged Bearing (Spalled)</th>
-                                <th>Metric Shift &Delta;</th>
-                                <th>Alarm Threshold Status</th>
+                                <th style="width: 22%;">Motor &amp; Sensor Mount</th>
+                                <th style="width: 20%;">Calibration Lock</th>
+                                <th style="width: 28%;">Nominal Stream Result</th>
+                                <th style="width: 30%;">Fault Stream Latency &amp; Verdict</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="strong">Acceleration RMS</td>
-                                <td class="mono">18.4 mg (0.0184 g)</td>
-                                <td class="mono">29.0 mg (0.0290 g)</td>
-                                <td><span class="badge-win">+57.6% Shift</span> Decisive energy increase</td>
-                                <td>Breached Dynamic Limit</td>
+                                <td class="strong">Motor 10 Front (1 kHz CSV)</td>
+                                <td class="mono">37w (1.18 s)</td>
+                                <td><span class="badge-win">0.00% CritFAR</span> (10,435w; W=0, C=0)</td>
+                                <td><span class="badge-loss">1stC = #21 (~704 ms)</span> &bull; 2,982/3,003 crit, EndH=8%</td>
                             </tr>
                             <tr>
-                                <td class="strong">Peak-to-Peak Transient Shock</td>
-                                <td class="mono">39.2 mg</td>
-                                <td class="mono">111.0 mg</td>
-                                <td><span class="badge-win">+183.2% Shift</span> Raceway micro-impacts</td>
-                                <td>Breached Absolute Floor</td>
+                                <td class="strong">Motor 10 Front (500 Hz BIN)</td>
+                                <td class="mono">36w (2.30 s)</td>
+                                <td><span class="badge-win">0.00% CritFAR</span> (5,198w; W=4, C=0)</td>
+                                <td><span class="badge-loss">1stC = #594</span> (1stW=#34) &bull; 905/1,499 crit, EndH=75%</td>
                             </tr>
                             <tr>
-                                <td class="strong">Vibration Kurtosis (Spikiness)</td>
-                                <td class="mono">2.65 (Gaussian Distribution)</td>
-                                <td class="mono">4.92 (Heavy-Tailed Impacts)</td>
-                                <td><span class="badge-win">+85.6% Shift</span> Confirms metal spalling</td>
-                                <td>Critical Inception Flagged</td>
+                                <td class="strong">Motor 30 Front (1 kHz CSV)</td>
+                                <td class="mono">36w (1.15 s)</td>
+                                <td><span class="badge-win">0.00% CritFAR</span> (8,223w; W=3, C=0)</td>
+                                <td><span class="badge-loss">1stC = #15 (~512 ms)</span> &bull; 2,480/2,495 crit, EndH=8%</td>
                             </tr>
                             <tr>
-                                <td class="strong">Crest Factor (Peak / RMS)</td>
-                                <td class="mono">2.13 (Normal Operational Hum)</td>
-                                <td class="mono">3.83 (Severe Shock Impulses)</td>
-                                <td><span class="badge-win">+79.8% Shift</span> Raceway pit impact</td>
-                                <td>Incipient Warning Tripped</td>
+                                <td class="strong">Motor 30 Front (500 Hz BIN)</td>
+                                <td class="mono">36w (2.30 s)</td>
+                                <td><span class="badge-win">0.00% CritFAR</span> (4,091w; W=175, C=0)</td>
+                                <td><span class="badge-loss">1stC = #8 (~576 ms)</span> &bull; 1,237/1,245 crit, EndH=8%</td>
                             </tr>
                             <tr>
-                                <td class="strong">BPFO Kinematic Harmonic Power</td>
-                                <td class="mono">0.42 mg&sup2; (Floor Baseline)</td>
-                                <td class="mono">4.88 mg&sup2; (Harmonic Spike)</td>
-                                <td><span class="badge-win">+1,061% Surge</span> Outer race resonance</td>
-                                <td>Resonant Filter Locked</td>
+                                <td class="strong">Motor 30 Rear (1 kHz / 500 Hz)</td>
+                                <td class="mono">40w / 36w</td>
+                                <td><span class="badge-win">0.00% CritFAR</span> (W=24 @ 1k / W=309 @ 500Hz)</td>
+                                <td><span class="badge-loss">1stC = #445 (1k) / #16 (500Hz)</span> &bull; EndH=59% / 38%</td>
                             </tr>
                             <tr>
-                                <td class="strong">Autonomous Health Index</td>
-                                <td class="mono">100.0% (Zone A &bull; Good)</td>
-                                <td class="mono">11.3% (Zone D &bull; Trip Shutdown)</td>
-                                <td><span class="badge-win">Latched in 1.28s</span> (20 windows)</td>
-                                <td>Hardware Relay Fired</td>
+                                <td class="strong">Motor 10 Rear (1 kHz vs 500 Hz)</td>
+                                <td class="mono">39w / 37w</td>
+                                <td><span class="badge-win">0.00% @ 500 Hz</span>; <span class="badge-amber">92.24% @ 1 kHz</span></td>
+                                <td>1stC=#17 (~576 ms @ 1k) / #24 (~1,600 ms @ 500Hz); HF resonance sensitivity @ 1 kHz</td>
+                            </tr>
+                            <tr style="background:#f8fafc;">
+                                <td class="strong">Motor 20 Front &amp; Rear (Known Shift)</td>
+                                <td class="mono">36–39w</td>
+                                <td><span class="badge-amber">19.28% Warn / 0% Crit (F 1k)</span>; <span class="badge-amber">50.2%–93.9% @ 500Hz</span></td>
+                                <td>Speed/regime shifts exceed static cal envelope without RPM tachometer reset</td>
                             </tr>
                         </tbody>
                     </table>
@@ -539,103 +305,73 @@
         </div>
     </section>
 
-    <!-- Deep-Dive 5: Multi-Day 320 Million Sample Numerical Endurance Stability -->
-    <section id="rig-endurance" style="background:var(--bg-subtle);">
+    <!-- Deep-Dive 2: Continuous Phase Replay & OEM Dyno Qualification -->
+    <section id="rig-endurance">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">BENCHMARK 05 &bull; MULTI-DAY CONTINUOUS STABILITY</div>
-                <h2 class="section-title">Zero False Alarms Across 320 Million Sample Accelerated Stress Stream</h2>
+                <div class="section-tag">BENCHMARK 02 &bull; CONTINUOUS PHASE STABILITY &amp; OEM DYNO STRESS</div>
+                <h2 class="section-title">66,041-Window Phase-Cycle Replay &amp; Shock Immunity Qualification</h2>
                 <p class="section-desc">
-                    Industrial equipment manufacturers cannot tolerate nuisance false alarms, register rounding drift, or watchdog timer resets. AC Engine was subjected to multi-day accelerated numerical endurance streaming (10,000,000 windows / 7.41 days equivalent) to verify zero baseline drift and long-term memory stability.
+                    Long-duration stability verified over exact integer phase cycles (66,041 healthy windows on Motor 30 nominal data, 2,113,312 phase-unique samples) followed by 1,245 fault windows, alongside the 1,000 Hz OEM dyno transient shock qualification harness (<span class="mono">bin/oem_dyno_eval</span>) and 16 standalone C/C++ stress harnesses.
                 </p>
             </div>
 
             <!-- Endurance SVG Plot -->
             <div class="plot-container">
-                <img src="assets/endurance_stability_plot.svg" alt="Multi-Day Endurance Stability Plot" class="plot-svg-frame" width="1060" height="490" loading="lazy">
+                <img src="assets/endurance_stability_plot.svg" alt="Continuous Phase-Cycle Stability & Fault Injection Plot" class="plot-svg-frame" width="1060" height="490" loading="lazy">
             </div>
 
-            <div style="margin-top: 36px;">
+            <div style="margin-top: 32px;">
                 <div class="spec-table-container">
                     <table class="spec-table">
                         <thead>
                             <tr>
-                                <th style="width: 25%;">Endurance Campaign</th>
-                                <th style="width: 25%;">Sample Volume</th>
-                                <th style="width: 25%;">False Alarm Trips</th>
-                                <th style="width: 25%;">Numerical Stability Metric</th>
+                                <th style="width: 26%;">Qualification Harness</th>
+                                <th style="width: 24%;">Input Stream</th>
+                                <th style="width: 24%;">Observed False Trips / Safeguard</th>
+                                <th style="width: 26%;">Measured Metric</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="strong">48-Hour Continuous Stress Stream</td>
-                                <td class="mono">86,400,000 Samples (2.7M Windows)</td>
-                                <td><span class="badge-win">0 Trips Observed</span> 0.00% FAR</td>
-                                <td class="mono">Mean Health = 85.01% (Zero Drift)</td>
+                                <td class="strong">Motor 30 Phase-Cycle Replay</td>
+                                <td class="mono">66,041w Healthy + 1,245w Fault</td>
+                                <td><span class="badge-win">0 Trips Observed</span> (0.000% FAR)</td>
+                                <td class="mono">Mean Health = 89.96% &plusmn; 4.68% (66%–100%); Trip @ 0.70s (Min 8%)</td>
                             </tr>
                             <tr>
-                                <td class="strong">7.41-Day Continuous Multi-Day Run</td>
-                                <td class="mono">320,000,000 Samples (10M Windows)</td>
-                                <td><span class="badge-win">0 Trips Observed</span> 0.00% FAR</td>
-                                <td class="mono">Mean Health = 85.00% &bull; StdDev = 0.08%</td>
+                                <td class="strong">OEM Dyno Evaluation (<span class="mono">oem_dyno_eval</span>)</td>
+                                <td class="mono">M10 Front 1 kHz + +1,000 mg Shock</td>
+                                <td><span class="badge-win">0/100 FA</span> + Shock Held (H=97%)</td>
+                                <td class="mono">Cal=37w (1.18s) &bull; Fault 1stC=#16 (~544 ms), EndH=13%</td>
                             </tr>
                             <tr>
-                                <td class="strong">Real Bearing Spall Detection Latency</td>
-                                <td class="mono">Held-Out Motor 30 Damage Run</td>
-                                <td><span class="badge-win">Latched in 1.28s</span> (20 windows)</td>
-                                <td class="mono">93.7% detection rate across fault run</td>
+                                <td class="strong">SDK Verification &amp; Timing (<span class="mono">benchmark_timing</span>)</td>
+                                <td class="mono">libac_engine.a (-O3 arm64)</td>
+                                <td><span class="badge-win">8/8 Assertions PASS</span> (312B, 0 undef)</td>
+                                <td class="mono">4.17 &micro;s avg (p50 4.17, p99 4.38 &micro;s; 236,549 evals/s)</td>
+                            </tr>
+                            <tr>
+                                <td class="strong">16 Synthetic/Hybrid C/C++ Corner &amp; Endurance Harnesses (+5 Real-Data Suites = 21 Built)</td>
+                                <td class="mono">Corner, shock &amp; 48h/7.4d endurance</td>
+                                <td><span class="badge-win">16/16 EXIT=0</span> (clean C/C++ build)</td>
+                                <td class="mono">6-window interlock, 0-RPM flatline, clamp &amp; wrap checks</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
-            <!-- Architecture Physics Box -->
-            <div style="background:#ffffff; border:1px solid var(--border); border-radius:8px; padding:28px; margin-top:32px; box-shadow:var(--shadow-sm);">
-                <h4 style="color:var(--text-title); font-size:17px; margin-bottom:10px; font-weight:800;">
-                    Zero-Buffer Streaming Architecture: Constant 312 Bytes RAM
-                </h4>
-                <p style="font-size:14px; color:var(--text-muted); line-height:1.7; margin-bottom:14px;">
-                    Conventional cloud vibration algorithms attempt to buffer 10 to 60 seconds of raw high-speed waveform data in memory, requiring expensive external SDRAM and continuous batch transfers. AC Engine operates as a true real-time streaming pipeline designed specifically for resource-constrained microcontrollers:
-                </p>
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:16px;">
-                    <div style="background:var(--bg-page); padding:18px; border-radius:6px; border:1px solid var(--border);">
-                        <strong style="color:var(--text-title); display:block; font-size:14px; margin-bottom:6px;">1. Fixed O(1) Memory Footprint</strong>
-                        <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">
-                            Processes each incoming 32-sample sensor FIFO chunk in real-time. The entire state machine resides in a static 312-byte allocation with zero heap fragmentation (<span class="mono">malloc = 0</span>).
-                        </p>
-                    </div>
-                    <div style="background:var(--bg-page); padding:18px; border-radius:6px; border:1px solid var(--border);">
-                        <strong style="color:var(--text-title); display:block; font-size:14px; margin-bottom:6px;">2. Fixed-Point Register Pipeline</strong>
-                        <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">
-                            RMS, Crest Factor, Kurtosis, and Kinematic Harmonics are evaluated in deterministic 32-bit registers with saturation clamping, preventing arithmetic overflow without requiring an FPU.
-                        </p>
-                    </div>
-                    <div style="background:var(--bg-page); padding:18px; border-radius:6px; border:1px solid var(--border);">
-                        <strong style="color:var(--text-title); display:block; font-size:14px; margin-bottom:6px;">3. Numerical Drift Immunity</strong>
-                        <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">
-                            Recursive baseline tracking eliminates historical memory queues while maintaining flat baseline stability (85.00% &plusmn; 0.08%) across 320 million samples without drift or stack growth.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align:center; margin-top:40px;">
-                <a href="evaluation.html" class="btn-primary" style="font-size:15px; padding:14px 32px;">
-                    Request Evaluation Package for Your Dyno &rarr;
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Deep-Dive: Paderborn University FAG 6203 PMSM Drivetrain Benchmark -->
-    <section id="rig-paderborn">
+    <!-- Deep-Dive 3: UORED-VAFCLS (60 Bearings / 20 Triplets) -->
+    <section id="rig-uored" style="background:var(--bg-subtle);">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">BENCHMARK 06 &bull; PADERBORN UNIVERSITY (KAT)</div>
-                <h2 class="section-title">FAG 6203 PMSM Industrial Drivetrain Benchmark</h2>
+                <div class="section-tag">BENCHMARK 03 &bull; UORED-VAFCLS (CC BY 4.0)</div>
+                <h2 class="section-title">University of Ottawa Constant-Speed Bearing Triplets (60 Bearings)</h2>
                 <p class="section-desc">
-                    Modular testbed at the Chair of Design and Drive Technology (Lessmeier et al., 2016) comprising permanent magnet synchronous motor (PMSM), load motor, and FAG 6203 deep-groove ball bearing (D<sub>p</sub>=28.5mm, d<sub>b</sub>=6.75mm, Z=8). Decimated from 64 kHz to 500 Hz ODR across 4 operating regimes and 14 authentic accelerated fatigue bearings.
+                    All 20 bearing progression triplets (60 real <span class="mono">.acbin</span> streams decimated from 42 kHz to 500 Hz: Healthy, Developing, and Fault across Inner, Outer, Cage, and Ball damage classes). Each group calibrates independently on its healthy prefix (27–36w) and tests held-out healthy tails plus Developing and Fault states.
                 </p>
             </div>
 
@@ -643,79 +379,63 @@
                 <table class="spec-table">
                     <thead>
                         <tr>
-                            <th style="width: 26%;">Operating Regime / Test Condition</th>
-                            <th style="width: 20%;">Speed / Load Parameters</th>
-                            <th style="width: 20%;">Defect Mode Evaluated</th>
-                            <th style="width: 17%;">Trip Latency</th>
-                            <th style="width: 17%;">Health Index &amp; Relay</th>
+                            <th style="width: 24%;">Cohort / Defect Group</th>
+                            <th style="width: 18%;">Cal &amp; Held-Out Tails</th>
+                            <th style="width: 20%;">Developing Flagged</th>
+                            <th style="width: 20%;">Established Fault Flagged</th>
+                            <th style="width: 18%;">Observed Limitation</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="strong">Regime 1: N15_M07_F10</td>
-                            <td class="mono">1,500 RPM &bull; 0.7 Nm &bull; 1,000 N</td>
-                            <td>KA04 Real Outer Race Spall</td>
-                            <td><span class="badge-win">448 ms</span> (7 Win)</td>
-                            <td><span class="badge-loss">23.0%</span> Trip Latched</td>
+                            <td class="strong">Healthy Baseline Fleet (B01–B20)</td>
+                            <td><span class="badge-win">20/20 Zero Crit</span></td>
+                            <td class="mono">16/20 strictly W=0, C=0, P=0</td>
+                            <td class="mono">4/20 non-zero warn only</td>
+                            <td><span class="mono">B08</span> (<span class="mono">P=120</span>) &amp; <span class="mono">B16</span> (<span class="mono">P=129</span>) flagged <span class="mono">PREEXISTING</span> at cold boot</td>
                         </tr>
                         <tr>
-                            <td class="strong">Regime 2: N09_M07_F10</td>
-                            <td class="mono">900 RPM &bull; 0.7 Nm &bull; 1,000 N</td>
-                            <td>KI04 Real Inner Race Pitting</td>
-                            <td><span class="badge-win">320 ms</span> (5 Win)</td>
-                            <td><span class="badge-loss">16.0%</span> Trip Latched</td>
+                            <td class="strong">Inner Race Defects (B01–B05)</td>
+                            <td class="mono">Cal 36w nominal</td>
+                            <td><span class="badge-win">5/5 Flagged</span> (warn|crit)</td>
+                            <td><span class="badge-win">5/5 Flagged</span> (crit)</td>
+                            <td>Cleanest class separation @ 500 Hz</td>
                         </tr>
                         <tr>
-                            <td class="strong">Regime 3: N15_M01_F10</td>
-                            <td class="mono">1,500 RPM &bull; 0.1 Nm &bull; 1,000 N</td>
-                            <td>KA15 Low-Torque Flaking</td>
-                            <td><span class="badge-win">448 ms</span> (7 Win)</td>
-                            <td><span class="badge-loss">22.0%</span> Trip Latched</td>
+                            <td class="strong">Outer Race Defects (B06–B10)</td>
+                            <td class="mono">Cal 27–36w (<span class="mono">B08</span> Pre)</td>
+                            <td><span class="badge-win">B07/B10 crit; B06 warn</span></td>
+                            <td><span class="badge-win">Tracked in active group</span></td>
+                            <td>Structural resonance differences across housings</td>
                         </tr>
                         <tr>
-                            <td class="strong">Regime 4: N15_M07_F04</td>
-                            <td class="mono">1,500 RPM &bull; 0.7 Nm &bull; 400 N</td>
-                            <td>KA22 Low-Radial-Load Spall</td>
-                            <td><span class="badge-win">576 ms</span> (9 Win)</td>
-                            <td><span class="badge-loss">26.0%</span> Trip Latched</td>
+                            <td class="strong">Cage Defects (B17–B20)</td>
+                            <td class="mono">Cal 36w nominal</td>
+                            <td><span class="badge-win">4/4 Dev Flagged</span></td>
+                            <td><span class="badge-win">Tracked</span></td>
+                            <td>Sub-synchronous modulation captured</td>
                         </tr>
-                        <tr style="background:#f8fafc;">
-                            <td class="strong">Healthy Baseline Fleet K001–K006</td>
-                            <td class="mono">All 4 Regimes Tested</td>
-                            <td>Baseline Manufacturing Variance</td>
-                            <td><span class="badge-win">Calibrated in 2.3s</span></td>
-                            <td><span class="badge-win">0.00% FAR</span> (0 Trips)</td>
-                        </tr>
-                        <tr style="background:#f8fafc;">
-                            <td class="strong">Cold-Boot Safeguard 1 Rejection</td>
-                            <td class="mono">Extent 3 Heavy Spall at Boot</td>
-                            <td>Pre-Existing Defect Lockout</td>
-                            <td><span class="badge-amber">Immediate Gate</span></td>
-                            <td><span class="badge-amber">Locked PREEXISTING</span></td>
+                        <tr>
+                            <td class="strong">Ball Defects (B11–B14)</td>
+                            <td class="mono">Cal 36w nominal</td>
+                            <td><span class="badge-amber">Dev warn / B13 crit</span></td>
+                            <td><span class="badge-amber">Attenuated @ 500 Hz</span></td>
+                            <td>Ball spin impact sidebands exceed 250 Hz Nyquist in mild states</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-            <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:24px; margin-top:28px; box-shadow:var(--shadow-sm);">
-                <h4 style="font-size:16px; font-weight:800; color:var(--text-title); margin-bottom:8px;">
-                    Authentic Accelerated Fatigue vs. Artificially Seeded Faults
-                </h4>
-                <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;">
-                    While traditional benchmarks use wire-cut EDM notches with sharp artificial boundaries, Paderborn University bearings were run to fatigue under lubrication starvation, producing natural subsurface micro-spalls, raceway flaking, and plastic pitting. AC Engine demonstrated consistent sub-600 ms critical fault trips across all 4 operational regimes without requiring regime-specific tuning.
-                </p>
-            </div>
         </div>
     </section>
 
-    <!-- Deep-Dive: FEMTO-ST / PRONOSTIA Accelerated Overload Benchmark -->
-    <section id="rig-femto" style="background:var(--bg-subtle);">
+    <!-- Deep-Dive 4: FEMTO-ST PRONOSTIA -->
+    <section id="rig-femto">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">BENCHMARK 07 &bull; FEMTO-ST INSTITUTE</div>
-                <h2 class="section-title">FEMTO-ST / PRONOSTIA 4,000 N Overload Benchmark</h2>
+                <div class="section-tag">BENCHMARK 04 &bull; FEMTO-ST / PRONOSTIA (8 RUNS)</div>
+                <h2 class="section-title">PRONOSTIA Accelerated Overload Run-to-Failure Campaign</h2>
                 <p class="section-desc">
-                    Accelerated bearing life testing rig (Nectoux et al., 2012) operating under extreme constant 4,000 N radial load on NSK 6804RS ball bearings at 1,800 RPM (30.0 Hz). Decimated from 25.6 kHz to 500 Hz ODR to evaluate unseeded run-to-failure degradation right through catastrophic mechanical destruction.
+                    All 8 ingested real run-to-failure bearings (25.6 kHz decimated to 500 Hz: <span class="mono">B1_1–B1_4</span>, <span class="mono">B2_1–B2_2</span>, <span class="mono">B3_1–B3_2</span>). Every run auto-calibrates on healthy start (36–45w) and tracks end-of-life collapse across lifecycle deciles D0–D9.
                 </p>
             </div>
 
@@ -723,114 +443,34 @@
                 <table class="spec-table">
                     <thead>
                         <tr>
-                            <th style="width: 24%;">Lifecycle Degradation Stage</th>
-                            <th style="width: 20%;">Radial Load / Operating Regime</th>
-                            <th style="width: 20%;">Vibration Dynamic Level</th>
-                            <th style="width: 18%;">Autonomous Latency</th>
-                            <th style="width: 18%;">Diagnostic Outcome</th>
+                            <th style="width: 24%;">Run-to-Failure Stream</th>
+                            <th style="width: 18%;">Cal Lock</th>
+                            <th style="width: 28%;">Lifecycle Progression</th>
+                            <th style="width: 15%;">Terminal Health</th>
+                            <th style="width: 15%;">Disclosure / Note</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="strong">1. Healthy Initial Baseline</td>
-                            <td class="mono">4,000 N &bull; 1,800 RPM</td>
-                            <td class="mono">0.055 g RMS (Nominal)</td>
-                            <td><span class="badge-win">Calibrated in 2.3s</span></td>
-                            <td><span class="badge-win">0.00% FAR</span> (0 Trips)</td>
+                            <td class="strong">Bearing 1_1 (4,000 N / 1,800 RPM)</td>
+                            <td class="mono">36w</td>
+                            <td><span class="badge-win">0 crit D0–D6</span>, trips decisively in D7</td>
+                            <td class="mono">EndH = 8%</td>
+                            <td>Cleanest monotonic progression</td>
                         </tr>
                         <tr>
-                            <td class="strong">2. Incipient Subsurface Flaking</td>
-                            <td class="mono">4,000 N Radial Overload</td>
-                            <td class="mono">0.020g &rarr; 0.120g Micro-Spall</td>
-                            <td><span class="badge-amber">Window #78 Latched</span></td>
-                            <td><span class="badge-amber">Incipient Warning</span></td>
+                            <td class="strong">Bearings 1_2, 1_3, 1_4, 2_1, 2_2</td>
+                            <td class="mono">36–45w</td>
+                            <td>Full degradation latched (<span class="mono">8/8</span> active)</td>
+                            <td class="mono">EndH = 8%</td>
+                            <td><span class="mono">B1_2..B1_4</span> show D0 0.1s burst-seam latches</td>
                         </tr>
                         <tr>
-                            <td class="strong">3. Critical Overload Spalling</td>
-                            <td class="mono">4,000 N Radial Overload</td>
-                            <td class="mono">0.350g+ Macro-Spall Impacts</td>
-                            <td><span class="badge-win">Window #87 Fired</span></td>
-                            <td><span class="badge-loss">ISO Zone D Tripped</span></td>
-                        </tr>
-                        <tr>
-                            <td class="strong">4. Full Mechanical Destruction</td>
-                            <td class="mono">4,000 N Radial Overload</td>
-                            <td class="mono">Tested to 29.5g Peak Shock (&gt; 20g)</td>
-                            <td><span class="badge-win">Held Permanently</span></td>
-                            <td><span class="badge-loss">API 670 Permanent Latch</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:24px; margin-top:28px; box-shadow:var(--shadow-sm);">
-                <h4 style="font-size:16px; font-weight:800; color:var(--text-title); margin-bottom:8px;">
-                    Integer Arithmetic Stability Under Extreme &gt; 20g Destruction
-                </h4>
-                <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;">
-                    During the final mechanical destruction phase of the PRONOSTIA benchmark, violent shaft impact shock exceeds 20g (&gt; 2,560,000 counts in 20-bit ADXL355 scale). AC Engine's 64-bit integer accumulators with saturation clamping maintained numerical bounds with zero arithmetic overflow, register wrapping, or unhandled exceptions, holding the API 670 trip relay permanently latched throughout seizure.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Deep-Dive: MFPT Society Stepped Loads & Industrial Cases -->
-    <section id="rig-mfpt">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">BENCHMARK 08 &bull; MFPT SOCIETY</div>
-                <h2 class="section-title">MFPT Society Stepped Loads &amp; Specialized Cases</h2>
-                <p class="section-desc">
-                    Nice Bearing Company ball bearing test rig operating at 1,500 RPM (25 Hz) under dynamic stepped radial loads (25 to 300 lbs), alongside three authentic industrial case studies: low-speed planetary gearboxes, pump dynamic unbalance, and hydrodynamic sleeve bearing oil whirl instability.
-                </p>
-            </div>
-
-            <div class="spec-table-container">
-                <table class="spec-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 25%;">Test Case &amp; Machinery Type</th>
-                            <th style="width: 22%;">Kinematic Operating Regime</th>
-                            <th style="width: 20%;">Dynamic Stressor</th>
-                            <th style="width: 17%;">Observed Latency</th>
-                            <th style="width: 16%;">Diagnostic Verdict</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="strong">Dynamic Stepped Radial Loads</td>
-                            <td class="mono">1,500 RPM (25.0 Hz)</td>
-                            <td class="mono">Stepped 25 &rarr; 300 lbs (7 Steps)</td>
-                            <td><span class="badge-win">0 False Trips</span></td>
-                            <td><span class="badge-win">100% Load Immunity</span></td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Seeded Outer Race Spall</td>
-                            <td class="mono">1,500 RPM &bull; BPFO = 81.1 Hz</td>
-                            <td class="mono">150 lbs Constant Radial Load</td>
-                            <td><span class="badge-win">448 ms</span> (Window #7)</td>
-                            <td><span class="badge-loss">Critical Trip Latched</span></td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Case 1: Planetary Gearbox</td>
-                            <td class="mono">300 RPM Carrier (5.0 Hz)</td>
-                            <td class="mono">Planet Pass f<sub>ppf</sub> = 18.2 Hz</td>
-                            <td><span class="badge-win">448 ms</span> (Window #7)</td>
-                            <td><span class="badge-loss">Gearbox Spall Tripped</span></td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Case 2: Pump Dynamic Unbalance</td>
-                            <td class="mono">1,500 RPM Operational Pump</td>
-                            <td class="mono">1X Dynamic Unbalance Surge</td>
-                            <td><span class="badge-win">0 False Trips</span></td>
-                            <td><span class="badge-win">ISO Zone B Tolerant</span></td>
-                        </tr>
-                        <tr>
-                            <td class="strong">Case 3: Oil Whirl Instability</td>
-                            <td class="mono">Sleeve Bearing Subsynchronous</td>
-                            <td class="mono">0.44x f<sub>r</sub> Whirl (11.0 Hz)</td>
-                            <td><span class="badge-win">192 ms</span> (Window #3)</td>
-                            <td><span class="badge-loss">Oil Whirl Tripped</span></td>
+                            <td class="strong">Bearing 3_1 &amp; Bearing 3_2 (5,000 N)</td>
+                            <td class="mono">36w</td>
+                            <td><span class="mono">B3_1</span> degrades to 41%; <span class="mono">B3_2</span> <span class="mono">W=112, C=9</span> (D9)</td>
+                            <td class="mono">EndH = 41% / 38%</td>
+                            <td>Late-life severity rise before cut-off</td>
                         </tr>
                     </tbody>
                 </table>
@@ -838,14 +478,14 @@
         </div>
     </section>
 
-    <!-- Deep-Dive: University of Ottawa Dynamic VFD Speed Sweeps -->
+    <!-- Deep-Dive 5: University of Ottawa TVS Variable-Speed Sweeps -->
     <section id="rig-ottawa" style="background:var(--bg-subtle);">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">BENCHMARK 09 &bull; UNIVERSITY OF OTTAWA (UORED)</div>
-                <h2 class="section-title">Non-Stationary VFD Dynamic Speed Sweeps</h2>
+                <div class="section-tag">BENCHMARK 05 &bull; UNIVERSITY OF OTTAWA TVS (CC BY 4.0)</div>
+                <h2 class="section-title">Time-Varying Rotational Speed Sweeps (36 Real Runs)</h2>
                 <p class="section-desc">
-                    SpectraQuest Machinery Fault Simulator with Rexnord / Link-Belt ER16K bearings (Huang et al.) subjected to continuous triangular VFD speed sweeps from 600 RPM (10 Hz) to 2,100 RPM (35 Hz). Decimated from 200 kHz to 500 Hz ODR to evaluate false trip immunity under rapid motor throttle transients.
+                    SpectraQuest Machinery Fault Simulator (200 kHz decimated to 500 Hz) across Profiles A, B, C, and D (Healthy, Inner, and Outer race faults, 3 trials per cell).
                 </p>
             </div>
 
@@ -853,65 +493,51 @@
                 <table class="spec-table">
                     <thead>
                         <tr>
-                            <th style="width: 25%;">VFD Throttle Profile</th>
-                            <th style="width: 22%;">Speed Range &amp; Sweep Time</th>
-                            <th style="width: 20%;">Centrifugal Scaling</th>
-                            <th style="width: 17%;">False Alarm Trips</th>
-                            <th style="width: 16%;">Diagnostic Outcome</th>
+                            <th style="width: 24%;">Speed Profile</th>
+                            <th style="width: 28%;">Held-Out Healthy Tail</th>
+                            <th style="width: 24%;">Inner Race Faults</th>
+                            <th style="width: 24%;">Outer Race Faults</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="strong">Baseline Calibration</td>
-                            <td class="mono">1,200 RPM Constant (20.0 Hz)</td>
-                            <td class="mono">Nominal Floor Scale</td>
-                            <td><span class="badge-win">0 False Trips</span></td>
-                            <td><span class="badge-win">Health = 100.0%</span></td>
+                            <td class="strong">Profile A (<span class="mono">H-A-3</span>, 156w held-out)</td>
+                            <td><span class="badge-win">0 Crit</span> (<span class="mono">W=12</span>, <span class="mono">MinH=80%</span>)</td>
+                            <td><span class="badge-win">3 / 3 Flagged</span></td>
+                            <td><span class="badge-win">3 / 3 Flagged</span></td>
                         </tr>
                         <tr>
-                            <td class="strong">Linear Throttle Acceleration</td>
-                            <td class="mono">600 &rarr; 2,100 RPM (3.2 Seconds)</td>
-                            <td class="mono">Dynamic 0.8x &rarr; 1.2x Scale</td>
-                            <td><span class="badge-win">0 False Trips</span></td>
-                            <td><span class="badge-win">100% Throttle Immunity</span></td>
+                            <td class="strong">Profile B (<span class="mono">H-B-3</span>)</td>
+                            <td><span class="badge-win">0 Crit</span> (<span class="mono">W=29</span>, <span class="mono">MinH=70%</span>)</td>
+                            <td><span class="badge-win">3 / 3 Flagged</span></td>
+                            <td><span class="badge-win">3 / 3 Flagged</span></td>
                         </tr>
                         <tr>
-                            <td class="strong">Linear Throttle Deceleration</td>
-                            <td class="mono">2,100 &rarr; 600 RPM (3.2 Seconds)</td>
-                            <td class="mono">Dynamic 1.2x &rarr; 0.8x Scale</td>
-                            <td><span class="badge-win">0 False Trips</span></td>
-                            <td><span class="badge-win">100% Throttle Immunity</span></td>
+                            <td class="strong">Profile C (<span class="mono">H-C-3</span>)</td>
+                            <td><span class="badge-win">0 Crit</span> (<span class="mono">W=1</span>, <span class="mono">MinH=88%</span>)</td>
+                            <td><span class="badge-win">3 / 3 Flagged</span></td>
+                            <td><span class="badge-amber">2 / 3 Flagged</span></td>
                         </tr>
                         <tr>
-                            <td class="strong">In-Flight Defect Inception</td>
-                            <td class="mono">Active Sweep (900 &rarr; 1,800 RPM)</td>
-                            <td class="mono">BPFO = 3.572x Instantaneous f<sub>r</sub></td>
-                            <td><span class="badge-win">256 ms</span> (Window #4)</td>
-                            <td><span class="badge-loss">Trip Latched In-Flight</span></td>
+                            <td class="strong">Profile D (<span class="mono">H-D-3</span>, steep accel/decel)</td>
+                            <td><span class="badge-amber">W=24, C=115</span> (<span class="mono">MinH=14%</span>)</td>
+                            <td><span class="badge-win">3 / 3 Flagged</span></td>
+                            <td><span class="badge-amber">2 / 3 Flagged</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-            <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:24px; margin-top:28px; box-shadow:var(--shadow-sm);">
-                <h4 style="font-size:16px; font-weight:800; color:var(--text-title); margin-bottom:8px;">
-                    Variable Frequency Drive (VFD) Throttle Immunity
-                </h4>
-                <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin:0;">
-                    In automated manufacturing lines and robotic vehicles, motors frequently ramp up and down during throttle changes, shifting baseline spectral energy. Conventional fixed-frequency Goertzel or bandpass filters produce false alarms when shaft harmonics sweep across bins. AC Engine's 64-sample rolling magnitude normalization decouples dynamic speed shifts from structural defect energy, achieving a <strong>0.00% False Alarm Rate</strong> under rapid 3.5x speed variations while catching raceway defects in 256 ms.
-                </p>
-            </div>
         </div>
     </section>
 
-    <!-- Deep-Dive: Slurry Pump & Multi-Stage Gearbox -->
-    <section id="rig-pump-gearbox">
+    <!-- Deep-Dive 6: CWRU 2 HP Motor -->
+    <section id="rig-cwru">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">BENCHMARK 10 &bull; 4TU / TWENTE &amp; PHM09</div>
-                <h2 class="section-title">Centrifugal Slurry Pump &amp; Multi-Stage Gearbox</h2>
+                <div class="section-tag">BENCHMARK 06 &bull; CASE WESTERN RESERVE UNIVERSITY</div>
+                <h2 class="section-title">CWRU 2 HP Motor (0.007" Faults Across 0–3 HP, 16 Real Streams)</h2>
                 <p class="section-desc">
-                    Heavy-duty industrial centrifugal slurry pump (University of Twente / 4TU) operating under violent hydraulic cavitation turbulence surges, paired with a multi-stage industrial drivetrain (PHM09) featuring 24T/48T pinion gear meshes (f<sub>gm</sub>=720 Hz) and localized chipped tooth defects.
+                    Drive-end SKF 6205 bearings (12 kHz decimated to 500 Hz) across 0 HP, 1 HP, 2 HP, and 3 HP motor loads using independent post-calibration engine contexts per stream.
                 </p>
             </div>
 
@@ -919,41 +545,36 @@
                 <table class="spec-table">
                     <thead>
                         <tr>
-                            <th style="width: 25%;">Machinery Asset &amp; Component</th>
-                            <th style="width: 22%;">Operating Speed &amp; Kinematics</th>
-                            <th style="width: 20%;">Stressor / Defect Mode</th>
-                            <th style="width: 17%;">Autonomous Latency</th>
-                            <th style="width: 16%;">Diagnostic Outcome</th>
+                            <th style="width: 18%;">Motor Load</th>
+                            <th style="width: 30%;">Held-Out Normal Baseline</th>
+                            <th style="width: 26%;">Fault Detection (<span class="mono">IR / Ball / OR</span>)</th>
+                            <th style="width: 26%;">Notes &amp; Physics Boundary</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="strong">Slurry Pump Impeller Baseline</td>
-                            <td class="mono">1,800 RPM &bull; f<sub>vpf</sub> = 120 Hz</td>
-                            <td class="mono">Steady-State Slurry Flow</td>
-                            <td><span class="badge-win">Calibrated in 2.3s</span></td>
-                            <td><span class="badge-win">Health = 100.0%</span></td>
+                            <td class="strong">0 HP (No Load)</td>
+                            <td><span class="badge-amber">CritFAR = 93.59%</span> (281w: W=9, C=263)</td>
+                            <td><span class="badge-win">141 / 142 / 144 crit</span> (<span class="mono">1stC=#16/#17/#14</span>)</td>
+                            <td>Unloaded RMS (4085) shifts vs fault (1329–1883)</td>
                         </tr>
                         <tr>
-                            <td class="strong">Severe Hydraulic Cavitation</td>
-                            <td class="mono">Broadband Micro-Bubble Collapse</td>
-                            <td class="mono">High Crest Factor Shock Wave</td>
-                            <td><span class="badge-win">0 False Trips</span></td>
-                            <td><span class="badge-win">Cavitation Filtered</span></td>
+                            <td class="strong">1 HP Load</td>
+                            <td><span class="badge-win">0.00% CritFAR</span> (594w: W=115, C=0)</td>
+                            <td><span class="badge-win">125 / 134 / 130 crit</span> (<span class="mono">1stC=#33/#24/#29</span>)</td>
+                            <td>Zero nuisance critical trips across held-out tail</td>
                         </tr>
                         <tr>
-                            <td class="strong">Chipped Pinion Gear Tooth</td>
-                            <td class="mono">1,800 RPM &bull; f<sub>gm</sub> = 720 Hz</td>
-                            <td class="mono">1X Rotational Tooth Shock Burst</td>
-                            <td><span class="badge-win">64 ms Incipient</span></td>
-                            <td><span class="badge-amber">Warning Latched</span></td>
+                            <td class="strong">2 HP Load</td>
+                            <td><span class="badge-win">0.00% CritFAR</span> (594w: W=115, C=0)</td>
+                            <td><span class="badge-win">41 / 136 / 116 crit</span> (3/3 detected)</td>
+                            <td>Zero nuisance critical trips across held-out tail</td>
                         </tr>
                         <tr>
-                            <td class="strong">Critical Tooth Spall Relay</td>
-                            <td class="mono">24T Spur Pinion Mesh</td>
-                            <td class="mono">Persistent Gear Tooth Degradation</td>
-                            <td><span class="badge-win">384 ms Critical</span></td>
-                            <td><span class="badge-loss">Trip Latched (Health 64%)</span></td>
+                            <td class="strong">3 HP Load</td>
+                            <td><span class="badge-win">0.00% CritFAR</span> (596w: W=54, C=0)</td>
+                            <td><span class="badge-win">148 / 149 / 147 crit</span> (<span class="mono">1stC=#12/#9/#12</span>)</td>
+                            <td>500 Hz ODR attenuates 2–5 kHz carrier resonance</td>
                         </tr>
                     </tbody>
                 </table>
@@ -961,32 +582,159 @@
         </div>
     </section>
 
-    <!-- Academic Citations & Dataset Attributions Section -->
-    <section style="background:var(--bg-subtle); border-top:1px solid var(--border);">
+    <!-- Deep-Dive 7: MFPT Stepped Loads -->
+    <section id="rig-mfpt" style="background:var(--bg-subtle);">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">SCIENTIFIC REFERENCES &bull; DATASET ATTRIBUTIONS</div>
-                <h2 class="section-title">Peer-Reviewed Benchmark Attributions &amp; Legal Disclaimers</h2>
+                <div class="section-tag">BENCHMARK 07 &bull; MFPT SOCIETY (CC BY-NC-SA 4.0)</div>
+                <h2 class="section-title">MFPT Variable Stepped Loads (20 Real .acbin Streams)</h2>
                 <p class="section-desc">
-                    AC Engine 5.0 is independently authored proprietary embedded software. The benchmark results documented on this page represent empirical evaluations conducted against public reference datasets.
+                    NICE roller bearing dataset decimated to 500 Hz (3 Healthy Baselines calibrated on <span class="mono">baseline_1</span> @ 37w, 7 Variable-Load Inner Race, 10 Outer Race). Excluded from Commercial SDK archive due to non-commercial license.
                 </p>
+            </div>
+
+            <div class="spec-table-container">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 28%;">MFPT Cohort</th>
+                            <th style="width: 24%;">Streams Evaluable</th>
+                            <th style="width: 24%;">Observed Output</th>
+                            <th style="width: 24%;">Frequency / Load Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="strong">Baselines (270 lbs)</td>
+                            <td class="mono">3 / 3 Streams</td>
+                            <td><span class="badge-win">0 Critical Trips</span> (<span class="mono">W=33, 79, 32</span>)</td>
+                            <td>Calibrated on <span class="mono">baseline_1</span> (37w)</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Inner Race Variable Load</td>
+                            <td class="mono">7 Streams (<span class="mono">vload_1..7</span>)</td>
+                            <td><span class="badge-win">5 / 7 Critical</span> (<span class="mono">vload_3..7</span>: 29,19,25,30,36 crit, <span class="mono">EndH 8–21%</span>)</td>
+                            <td><span class="mono">vload_1..2</span> stay 0 crit</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Outer Race Spalls (OR)</td>
+                            <td class="mono">10 Streams</td>
+                            <td><span class="badge-amber">1 / 10 Critical</span> (<span class="mono">OR_vload_3</span> 16 crit)</td>
+                            <td>HF outer-race energy lies above 250 Hz Nyquist ceiling</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep-Dive 8: NASA Ames IMS & SEU Gearbox -->
+    <section id="rig-nasa">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">BENCHMARK 08 &bull; NASA AMES IMS (8 CH) &amp; SEU GEARBOX/BEARING (45 CH)</div>
+                <h2 class="section-title">NASA IMS Run-to-Failure &amp; SEU Parallel/Planetary Gearbox</h2>
+                <p class="section-desc">
+                    Full 500 Hz real-stream runs showing both catastrophic run-to-failure capture (<span class="mono">1st_B3</span>, <span class="mono">1st_B4</span>, <span class="mono">SEU 20_0 parallel</span>) and honest constant-speed 500 Hz ODR / pre-existing fault limitations.
+                </p>
+            </div>
+
+            <div class="spec-table-container">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Stream / Channel</th>
+                            <th style="width: 25%;">Measured Trajectory</th>
+                            <th style="width: 25%;">End Health / Crit Windows</th>
+                            <th style="width: 25%;">Technical Finding</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="strong">NASA IMS <span class="mono">1st_B3</span> (Inner Fail)</td>
+                            <td class="mono"><span class="mono">1stW=#4</span>, <span class="mono">1stC=#330</span>; D0..9 MinH 62..31..8</td>
+                            <td><span class="badge-loss">EndH = 8%</span></td>
+                            <td>Captures terminal inner-race collapse</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">NASA IMS <span class="mono">1st_B4</span> (Roller Fail)</td>
+                            <td class="mono"><span class="mono">1stC=#5</span>; D0..9 MinH 53..24..8</td>
+                            <td><span class="badge-loss">EndH = 15%</span></td>
+                            <td>Sustained Zone D hold through D7–D9</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">NASA IMS <span class="mono">2nd_B1</span> &amp; Healthy Companions</td>
+                            <td class="mono"><span class="mono">2nd_B1</span> <span class="mono">1stC=#11</span> (85% end); <span class="mono">1st_B1/2</span> (42%/87%); <span class="mono">2nd_B2..4</span> 14,550+ crit</td>
+                            <td><span class="badge-amber">500 Hz Limit</span></td>
+                            <td>2,000 RPM @ 500 Hz misses >= 1 kHz bearing carrier; drift/crosstalk trips companions</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">SEU <span class="mono">20_0</span> Parallel Gearset</td>
+                            <td class="mono">Healthy Tail (<span class="mono">W=785</span>, <span class="mono">C=0</span>) &bull; Chipped=3,187 &bull; Surface=3,183</td>
+                            <td><span class="badge-win">H EndH = 92%</span> (0 crit)</td>
+                            <td><span class="mono">Miss=0, Root=0</span>; <span class="mono">20_0</span> motor/planetary healthy tails trip (2,501/2,769); <span class="mono">30_2</span> &amp; bearingset flag <span class="mono">pre=1</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explicit Exclusions & Citations Section -->
+    <section id="exclusions" style="background:var(--bg-subtle); border-top:1px solid var(--border);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">TRANSPARENCY &bull; DATASET EXCLUSIONS &amp; ATTRIBUTION</div>
+                <h2 class="section-title">Explicit Exclusions &amp; Peer-Reviewed Citations</h2>
+                <p class="section-desc">
+                    Zero synthetic substitution: datasets excluded for storage/mirror/license reasons are disclosed below rather than simulated.
+                </p>
+            </div>
+
+            <div class="spec-table-container" style="margin-bottom:28px;">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 28%;">Excluded Dataset</th>
+                            <th style="width: 24%;">Archive / License</th>
+                            <th style="width: 48%;">Exact Reason for Exclusion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="strong">Paderborn University (KAt)</td>
+                            <td class="mono">~16 GiB &bull; CC BY-NC 4.0</td>
+                            <td>Excluded due to uncompressed ~16 GiB footprint and non-commercial restriction; zero synthetic substitution used.</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">4TU NLN-EMP Pump/Bearing</td>
+                            <td class="mono">20.80 GB (19.37 GiB .7z)</td>
+                            <td>Excluded due to multi-gigabyte archive size exceeding local workstation staging budget.</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">PHM09 Gearbox Challenge</td>
+                            <td class="mono">Offline / STFT JPEGs</td>
+                            <td>Official CDN offline; mirrored copies contain pre-rendered STFT JPEG plots rather than waveform samples (replaced by 45-stream SEU).</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:24px; font-size:12px; color:var(--text-muted); line-height:1.75;">
                 <p style="margin-top:0; margin-bottom:12px; font-weight:700; color:var(--text-title); font-size:13px;">
-                    Dataset Citations:
+                    Ingested Public Dataset Citations (7 Public Benchmarks + OpenBLDC):
                 </p>
                 <ol style="padding-left:18px; margin-bottom:16px;">
-                    <li style="margin-bottom:6px;"><strong>NASA Ames IMS Bearing Dataset:</strong> J. Lee, H. Qiu, G. Yu, J. Lin, and Rexnord Corp. (2007). <em>Bearing Data Set</em>. NASA Ames Prognostics Data Repository, NASA Ames Research Center, Moffett Field, CA. (Public Domain).</li>
-                    <li style="margin-bottom:6px;"><strong>Case Western Reserve University (CWRU) Bearing Data Center:</strong> K. A. Loparo et al. (2003). <em>Bearing Vibration Data Sets</em>. Case Western Reserve University, Department of Mechanical and Aerospace Engineering.</li>
-                    <li style="margin-bottom:6px;"><strong>Paderborn University Bearing Dataset:</strong> C. Lessmeier, J. K. Kimotho, D. Zimmer, D. Detert (2016). <em>Condition Monitoring of Bearing Damage in Electromechanical Drive Systems by Using Motor Current Signals of Electric Motors: A Benchmark Data Set for Data-Driven Classification</em>. Proceedings of the PHM Society European Conference, 3(1). Licensed under CC BY 4.0.</li>
-                    <li style="margin-bottom:6px;"><strong>FEMTO-ST / PRONOSTIA Bearing Dataset:</strong> P. Nectoux, R. Gouriveau, K. Medjaher, E. Ramasso, B. Chebel-Morello, N. Zerhouni, C. Varnier (2012). <em>PRONOSTIA: An Experimental Platform for Bearings Accelerated Life Test</em>. IEEE International Conference on Prognostics and Health Management (PHM 2012).</li>
-                    <li style="margin-bottom:6px;"><strong>MFPT Society Benchmark:</strong> Society for Machinery Failure Prevention Technology (Vibration Institute). <em>Condition Based Maintenance Fault Insertion Bearing and Gear Datasets</em>. Co-hosted on NASA Dashlink.</li>
-                    <li style="margin-bottom:6px;"><strong>University of Ottawa Non-Stationary Speed Benchmark (UORED):</strong> N. Huang, T. Rademaker, M. Liang (2019). <em>A Vibration Dataset for Fault Diagnosis of Rolling Element Bearings Under Time-Varying Rotational Speed Conditions</em>. Mendeley Data, DOI: 10.17632/v43hmbwxpm.</li>
-                    <li style="margin-bottom:6px;"><strong>PHM09 Gearbox &amp; 4TU Slurry Pump Datasets:</strong> Prognostics and Health Management Society (PHM09 Data Challenge) and University of Twente (4TU.ResearchData).</li>
+                    <li style="margin-bottom:6px;"><strong>NASA Ames IMS Bearing Dataset:</strong> J. Lee, H. Qiu, G. Yu, J. Lin, and Rexnord Corp. (2007). <em>Bearing Data Set</em>. NASA Ames Prognostics Data Repository (Public Domain).</li>
+                    <li style="margin-bottom:6px;"><strong>Case Western Reserve University (CWRU):</strong> K. A. Loparo et al. (2003). <em>Bearing Vibration Data Sets</em>. CWRU Bearing Data Center.</li>
+                    <li style="margin-bottom:6px;"><strong>FEMTO-ST / PRONOSTIA:</strong> P. Nectoux et al. (2012). <em>PRONOSTIA: An Experimental Platform for Bearings Accelerated Life Test</em>. IEEE PHM 2012.</li>
+                    <li style="margin-bottom:6px;"><strong>MFPT Society Benchmark:</strong> E. Bechhoefer / Society for Machinery Failure Prevention Technology (NICE bearing rig; CC BY-NC-SA 4.0; evaluated locally only, excluded from commercial SDK zip).</li>
+                    <li style="margin-bottom:6px;"><strong>UORED-VAFCLS:</strong> M. Sehri and P. Dumond (2023). <em>University of Ottawa Rolling Element Bearing Dataset under Constant Load and Speed</em> (60 bearings, CC BY 4.0, DOI 10.17632/y2px5tg92h.2).</li>
+                    <li style="margin-bottom:6px;"><strong>University of Ottawa TVS:</strong> H. Huang and N. Baddour (2018). <em>Bearing Vibration Data Collected under Time-Varying Rotational Speed Conditions</em>, Data in Brief / Mendeley Data (CC BY 4.0, 10.17632/v43hmbwxpm.1).</li>
+                    <li style="margin-bottom:6px;"><strong>SEU Gearbox &amp; Bearing Dataset + OpenBLDC:</strong> Southeast University (45 <span class="mono">.acbin</span> streams) &amp; R. &#362;selis (2026), <em>Open BLDC Motor Test-Bench Dataset for Vibration and Current Analysis</em> (CC BY 4.0; M10, M20, M30).</li>
                 </ol>
                 <p style="margin-bottom:0; font-size:11px; color:var(--text-muted); border-top:1px solid var(--border); padding-top:12px;">
-                    <strong>Non-Endorsement Disclaimer:</strong> All trademarks, product names, logos, and brands cited are property of their respective owners. Reference to university, agency, or institutional benchmark datasets denotes purely technical evaluation against publicly available research data and does not constitute or imply endorsement, sponsorship, or certification of AC Engine by those institutions.
+                    <strong>Non-Endorsement Disclaimer:</strong> All trademarks and dataset names belong to their respective authors/institutions. Evaluation against public datasets does not imply institutional endorsement.
                 </p>
             </div>
         </div>

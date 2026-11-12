@@ -17,7 +17,7 @@
     <div class="top-stripe">
         <div class="top-stripe-left">
             <span>EMBEDDED C DSP CORE</span> &bull; 
-            <span>MISRA-C:2012 ALIGNED</span> &bull; 
+            <span>FREESTANDING ANSI C99</span> &bull; 
             <span>DETERMINISTIC 312B SRAM</span>
         </div>
         <div class="top-stripe-right">
@@ -55,7 +55,7 @@
             <div class="section-tag">OFFICIAL TECHNICAL SPECIFICATION</div>
             <h1>Deterministic Silicon Datasheet</h1>
             <p class="lead">
-                Verified hardware resource consumption, execution latencies, and MISRA-C:2012 aligned firmware architecture for mission-critical industrial drives and smart machinery.
+                Source-level resource declarations and local benchmark context for a freestanding C vibration-metric library. This page is not a hardware qualification record.
             </p>
 
             <!-- Technical Dossier Request Card -->
@@ -66,7 +66,7 @@
                         <span class="pdf-tag">2-PAGE SPEC</span>
                     </div>
                     <div class="pdf-dossier-desc">
-                        Full pre-compiled binary footprints, silicon benchmarks across ARM Cortex-M/ESP32, and commercial OEM evaluation terms under Mutual NDA.
+                    API details, included archive targets, and notes on the measurements reported in this repository.
                     </div>
                 </div>
                 <a href="evaluation.html" class="btn-primary" style="font-size:13px; padding:10px 20px;">
@@ -83,7 +83,7 @@
                 <div class="section-tag">RESOURCE CONSUMPTION PROFILE</div>
                 <h2 class="section-title">Zero Heap, Sub-Millisecond Execution</h2>
                 <p class="section-desc">
-                    Engineered for mission-critical industrial applications where memory corruption, watchdog timer timeouts, and unhandled floating-point exceptions are unacceptable.
+                    Resource figures describe the current implementation and listed build artifacts. Validate timing, memory, sensor scaling, and host integration on the target system.
                 </p>
             </div>
 
@@ -108,7 +108,7 @@
                             <td class="num">312</td>
                             <td class="num">312</td>
                             <td class="mono">Bytes</td>
-                            <td>Context API: 0 Bytes Static BSS (ac_engine.o). Per-instance struct: exactly 312 Bytes caller-allocated. Zero heap growth.</td>
+                            <td>Public context type is 312 bytes by compile-time assertion. Caller allocates it; the context API does not use dynamic allocation.</td>
                         </tr>
                         <tr>
                             <td class="strong">Dynamic Memory Allocation</td>
@@ -117,43 +117,43 @@
                             <td class="num">0</td>
                             <td class="num">0</td>
                             <td class="mono">Bytes</td>
-                            <td>MISRA-C:2012 Rule 21.3 compliant (<span class="mono">malloc = 0</span>). Eliminates runtime heap fragmentation and leak hazards.</td>
+                            <td>The core source does not call a dynamic allocator. This alone does not characterize the host application or all linked libraries.</td>
                         </tr>
                         <tr>
                             <td class="strong">Flash / ROM Consumption</td>
                             <td class="mono">ROM_code</td>
-                            <td class="num">7.5</td>
-                            <td class="num">19.8</td>
-                            <td class="num">22.6</td>
+                            <td class="num">8.4</td>
+                            <td class="num">16.2</td>
+                            <td class="num">16.6</td>
                             <td class="mono">KB</td>
-                            <td>Stripped static library (.a) across architectures (Host: 7.5–11.5 KB; Cortex-M4/M33: 19.8 KB; Cortex-M0+: 22.6 KB; ~5.6 KB with -Os size optimization).</td>
+                            <td>Static library (.a) .text (-O3): Host 8.4–10.2 KB; M4/M33 16.2 KB; M0+/M7 16.6 KB (6.5–6.8 KB -Os).</td>
                         </tr>
                         <tr>
                             <td class="strong">Host SITL Execution Latency</td>
                             <td class="mono">t_host</td>
-                            <td class="num">1.80</td>
-                            <td class="num">2.04</td>
-                            <td class="num">2.45</td>
+                            <td class="num">4.17</td>
+                            <td class="num">4.17</td>
+                            <td class="num">4.38</td>
                             <td class="mono">µs</td>
-                            <td>Measured per 32-sample evaluation burst on x86_64 / Apple Silicon host test harness.</td>
+                            <td>Repository-reported host benchmark for a particular Apple Silicon build and harness; not a target-MCU measurement. Re-run on the target toolchain and device.</td>
                         </tr>
                         <tr>
                             <td class="strong">Core Cycle Latency (Thumb-2)</td>
                             <td class="mono">N_cycles</td>
                             <td class="num">21,500</td>
-                            <td class="num">24,000</td>
-                            <td class="num">28,500</td>
+                            <td class="num">~24,000</td>
+                            <td class="num">~28,500</td>
                             <td class="mono">Cycles</td>
-                            <td>Measured on ARM Cortex-M4 via DWT->CYCCNT. Execution: ~100 µs @ 240 MHz / ~142.8 µs @ 168 MHz (&lt;0.3% CPU load @ 64 ms).</td>
+                            <td>Repository estimate only; no cycle counter result is supplied here. Measure with the chosen MCU, compiler, optimization, and clock settings.</td>
                         </tr>
                         <tr>
-                            <td class="strong">Worst-Case Execution Time (WCET)</td>
-                            <td class="mono">t_WCET</td>
+                            <td class="strong">Estimated @ 120 MHz Cortex-M</td>
+                            <td class="mono">t_est_120</td>
                             <td class="num">—</td>
-                            <td class="num">198.0</td>
-                            <td class="num">&lt; 220.0</td>
+                            <td class="num">~200.0</td>
+                            <td class="num">&lt; 240.0</td>
                             <td class="mono">µs</td>
-                            <td>Hard deterministic upper bound verified on 120 MHz ARM Cortex-M3. Zero dynamic while-loops.</td>
+                            <td>Architectural cycle-count estimate on 120 MHz ARM Cortex-M3/M4 (unverified via hardware DWT). Bounded loops, 0 malloc.</td>
                         </tr>
                         <tr>
                             <td class="strong">Arithmetic Architecture</td>
@@ -162,16 +162,16 @@
                             <td class="num">32 / 64</td>
                             <td class="num">—</td>
                             <td class="mono">Bits</td>
-                            <td>100% Fixed-Point Integer. Zero FPU hardware required. Fast integer binary square root &amp; Parseval-Goertzel resonators.</td>
+                            <td>100% Fixed-Point Integer. Zero FPU hardware required. Fast integer binary square root &amp; Parseval-Goertzel DFT bins (k = 2, 3, 4).</td>
                         </tr>
                         <tr>
                             <td class="strong">Defect Confirmation Latency</td>
                             <td class="mono">t_trip</td>
-                            <td class="num">448</td>
-                            <td class="num">832</td>
-                            <td class="num">1,280</td>
+                            <td class="num">384</td>
+                            <td class="num">544</td>
+                            <td class="num">1,088</td>
                             <td class="mono">ms</td>
-                            <td>API 670-style 2-window confirmation latch (~448 ms Incipient Warning, ~832 ms Critical Trip confirmation; ~576 ms stepped spalls).</td>
+                            <td>Six consecutive qualifying calls trigger the software latch (384 ms for 6 windows at 500 Hz; 544 ms reported across 17 windows at 1,000 Hz in <code>oem_dyno_eval</code>, vs. 1,088 ms across 17 windows at 500 Hz from step onset). Host ODR determines wall-clock latency; no standard compliance is claimed.</td>
                         </tr>
                         <tr>
                             <td class="strong">Transducer Ingestion Interface</td>
@@ -180,25 +180,25 @@
                             <td class="num">SPI / I2C</td>
                             <td class="num">—</td>
                             <td class="mono">—</td>
-                            <td>Ingests standard 16/20/24-bit tri-axial integer counts directly from FIFO (Analog Devices, STMicro, Bosch, TDK).</td>
+                            <td>The API accepts three arrays of 32 signed 32-bit sample values. Host code reads the sensor and converts/scales its output.</td>
                         </tr>
                         <tr>
-                            <td class="strong">Rotor Speed Tracking Range</td>
+                            <td class="strong">Shaft-Speed Input</td>
                             <td class="mono">N_rpm</td>
-                            <td class="num">300</td>
-                            <td class="num">1,800</td>
-                            <td class="num">12,000</td>
-                            <td class="mono">RPM</td>
-                            <td>Dynamic baseline tracking supports inverter-driven variable speed motors with 0 RPM and startup transient lockouts.</td>
+                            <td class="num">—</td>
+                            <td class="num">—</td>
+                            <td class="num">—</td>
+                            <td class="mono">—</td>
+                            <td>The library receives no shaft-speed or sample-rate metadata and does not track RPM.</td>
                         </tr>
                         <tr>
                             <td class="strong">Empirical False Alarm Rate (FAR)</td>
                             <td class="mono">FAR</td>
                             <td class="num">0.00</td>
-                            <td class="num">0.00</td>
-                            <td class="num">0.00</td>
+                            <td class="num">—</td>
+                            <td class="num">—</td>
                             <td class="mono">%</td>
-                            <td>Observed across 10,000 continuous qualification windows (320,000 samples @ 500 Hz) under dropped tools, fluid hammer, and VFD EMI.</td>
+                            <td>See the repository replay reports for dataset-specific outcomes. These are local harness results, not a general false-alarm rate or field-performance guarantee.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -206,23 +206,23 @@
 
             <!-- Target MCU Architectures -->
             <div style="margin-top: 40px;">
-                <div class="section-tag">PHYSICAL HARDWARE TESTBEDS (LAB QUALIFIED)</div>
+                <div class="section-tag">LOCAL EXECUTION TARGETS AND DEMOS</div>
                 <div class="hw-chips">
-                    <span class="chip-badge qualified">✓ Espressif ESP32-S3 (Xtensa LX7 @ 240 MHz Physical Bench)</span>
-                    <span class="chip-badge qualified">✓ x86_64 / Apple Silicon Host (SITL Automated Test Suite)</span>
+                    <span class="chip-badge">ESP32-S3 replay firmware demo (bundled samples)</span>
+                    <span class="chip-badge">Apple Silicon / x86_64 host test builds</span>
                 </div>
             </div>
 
             <div style="margin-top: 24px;">
                 <div class="section-tag">PRE-COMPILED INTEGRATION TARGETS (READY FOR CUSTOMER DYNO QUALIFICATION)</div>
                 <div class="hw-chips">
-                    <span class="chip-badge">ARM Cortex-M0+ (STM32G0/C0, RP2040, Microchip SAMD21)</span>
-                    <span class="chip-badge">ARM Cortex-M4 (STM32F4/G4, TI MSPM0, NXP LPC5500)</span>
+                    <span class="chip-badge">ARM Cortex-M0+ (STM32G0/C0, TI MSPM0, RP2040, Microchip SAMD21)</span>
+                    <span class="chip-badge">ARM Cortex-M4 (STM32F4/G4, NXP Kinetis, TI TM4C)</span>
                     <span class="chip-badge">ARM Cortex-M7 (STM32H7, NXP i.MX RT1060)</span>
-                    <span class="chip-badge">ARM Cortex-M33 (STM32U5, Nordic nRF5340, Silicon Labs)</span>
+                    <span class="chip-badge">ARM Cortex-M33 (STM32U5, NXP LPC5500, Nordic nRF5340, Silicon Labs)</span>
                 </div>
                 <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
-                    Pre-compiled freestanding static libraries (<code>libac_engine.a</code>) verified via <code>llvm-size</code> (312B SRAM, 0 heap) and <code>llvm-objdump</code> (clean Thumb-2 machine code), delivered for customer test-bench dyno integration under Mutual NDA.
+                    Pre-compiled archive targets are included in <code>AC_Engine_SDK/lib</code>. Review the archive metadata and rebuild from source before relying on a binary; no target-machine validation is implied by the listed target names.
                 </p>
             </div>
 
@@ -238,51 +238,45 @@
         </div>
     </section>
 
-    <!-- Section: 3-Stage Autonomous Safety Architecture -->
+    <!-- Section: Implemented Metric Processing -->
     <section style="background:var(--bg-subtle);">
         <div class="container">
             <div class="section-header">
                 <div class="section-tag">CORE ARCHITECTURE</div>
-                <h2 class="section-title">3-Stage Industrial Health &amp; Protection Architecture</h2>
+                <h2 class="section-title">Metric Processing and Software Alert State</h2>
                 <p class="section-desc">
-                    Engineered to reject transient false alarms caused by plant floor noise, dropped tools, and motor startup speed ramping without compromising sub-second defect detection.
+                    The engine processes host-supplied batches and applies startup and high-energy heuristics. It does not receive machine speed or identify the physical source of a vibration change.
                 </p>
             </div>
 
             <div class="arch-grid">
                 <div class="arch-card">
                     <div class="arch-num">SAFEGUARD 01</div>
-                    <h3>Speed-Ramp Transient Gate</h3>
-                    <p>
-                        Monitors rotor acceleration during startup (0 to rated RPM). Discards startup inrush current shocks and torque transient spikes during the initial 1.28s window before establishing steady-state baseline tracking.
-                    </p>
+                    <h3>Startup Stabilization</h3>
+                    <p>Baseline accumulation starts after 20 accepted evaluation windows and completes after 36 accepted windows. The engine does not monitor acceleration, speed, inrush current, or torque.</p>
                 </div>
                 <div class="arch-card">
                     <div class="arch-num">SAFEGUARD 02</div>
-                    <h3>Transient Outlier Shock Shield</h3>
-                    <p>
-                        Distinguishes between continuous structural bearing degradation and isolated mechanical shocks (e.g. dropped wrenches, pipe fluid hammer, or forklift base bumps). Single-sample outliers are filtered prior to health decay.
-                    </p>
+                    <h3>High-Energy Window Heuristic</h3>
+                    <p>A short high-energy limiter changes metric contributions for a limited number of windows. It does not distinguish shocks from defects or guarantee a false-alert rate.</p>
                 </div>
                 <div class="arch-card">
                     <div class="arch-num">SAFEGUARD 03</div>
-                    <h3>Epistemic Anti-Poisoning Lock</h3>
-                    <p>
-                        Prevents baseline corruption. When mechanical defect energy rises above nominal baseline thresholds, adaptation gates instantly clamp to prevent the engine from learning anomalous vibration as "new normal."
-                    </p>
+                    <h3>Fixed Startup Baseline</h3>
+                    <p>The implementation collects a baseline during startup and does not update it after calibration. A new baseline requires an explicit reset by the host.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section: Drop-In ANSI C Integration -->
+    <!-- Section: C API Integration -->
     <section>
         <div class="container">
             <div class="section-header">
                 <div class="section-tag">OEM FIRMWARE INTEGRATION</div>
-                <h2 class="section-title">Drop-In C-Linkage Interface</h2>
+                <h2 class="section-title">C API Integration</h2>
                 <p class="section-desc">
-                    Integrates into existing FreeRTOS, Zephyr, or bare-metal motor control firmware in fewer than 10 lines of code. No hardware timers or peripherals are hijacked.
+                    The API accepts a context and three 32-sample arrays. Host firmware is responsible for sensor acquisition, scheduling, scaling, and any response to reported states.
                 </p>
             </div>
 
@@ -297,15 +291,15 @@
 <span class="c-kw">#include</span> <span class="c-typ">"ac_engine.h"</span>
 
 <span class="c-typ">void</span> <span class="c-fn">sensor_task_process_vibration</span>(<span class="c-kw">const</span> <span class="c-typ">int32_t</span> *x_fifo, <span class="c-kw">const</span> <span class="c-typ">int32_t</span> *y_fifo, <span class="c-kw">const</span> <span class="c-typ">int32_t</span> *z_fifo) {
-    <span class="c-com">/* 2. Feed 32 accelerometer counts into engine (execution: 101.6 µs @ 240 MHz): */</span>
+    <span class="c-com">/* 2. Feed 32 accelerometer counts into engine (~4.17 us host avg / ~24k Cortex-M cycles): */</span>
     <span class="c-typ">ac_result_t</span> result = <span class="c-fn">ac_engine_feed_and_evaluate</span>(x_fifo, y_fifo, z_fifo, <span class="c-num">32</span>);
 
     <span class="c-com">/* 3. Output to local HMI keypad screen or visual status LED: */</span>
-    <span class="c-fn">lcd_set_health_display</span>(result.health_index); <span class="c-com">/* Continuous health: 100% -> 0% */</span>
+    <span class="c-fn">lcd_set_health_display</span>(result.health_index); <span class="c-com">/* Relative index from 0 to 100 */</span>
 
-    <span class="c-com">/* 4. Map directly to Modbus Holding Registers or safety trip relay: */</span>
+    <span class="c-com">/* 4. Apply host-defined policy; the library does not control a relay: */</span>
     <span class="c-kw">if</span> (result.condition == <span class="c-typ">AC_STATE_CRITICAL_FAULT</span>) {
-        <span class="c-fn">plc_trigger_bearing_alarm_relay</span>(); <span class="c-com">/* Autonomous API 670 machine protection */</span>
+        <span class="c-fn">notify_operator</span>(); <span class="c-com">/* Example host action, not a safety function */</span>
     }
 }</code></pre>
             </div>
@@ -347,11 +341,11 @@
                                 <td>Stripped static library (.a) &bull; Production Ready</td>
                             </tr>
                             <tr>
-                                <td class="mono strong">ACE-LIB-ESP32S3-PROD</td>
+                                <td class="mono strong">ACE-FW-ESP32S3-REF</td>
                                 <td>Espressif ESP32-S3</td>
                                 <td class="mono">Xtensa LX7 Dual-Core</td>
                                 <td class="mono">312 Bytes</td>
-                                <td>Stripped static library (.a) &bull; Physical Bench Verified</td>
+                                <td>C99 Source Firmware Reference (<span class="mono">.ino</span>/<span class="mono">.c</span>; no precompiled <span class="mono">.a</span> binary shipped)</td>
                             </tr>
                             <tr>
                                 <td class="mono strong">ACE-SITL-HOST-DEV</td>

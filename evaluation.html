@@ -17,7 +17,7 @@
     <div class="top-stripe">
         <div class="top-stripe-left">
             <span>EMBEDDED C DSP CORE</span> &bull; 
-            <span>MISRA-C:2012 ALIGNED</span> &bull; 
+            <span>FREESTANDING ANSI C99</span> &bull; 
             <span>DETERMINISTIC 312B SRAM</span>
         </div>
         <div class="top-stripe-right">
@@ -79,13 +79,13 @@
                 </div>
                 <div class="protocol-card">
                     <div class="protocol-step">STEP 02</div>
-                    <h4>Kinematic Tuning &amp; Delivery</h4>
-                    <p>We deliver <code>AC_Engine_Commercial_SDK.zip</code> containing stripped <code>.a</code> static binaries configured for your rated motor RPM and target MCU.</p>
+                    <h4>SDK Package Delivery</h4>
+                    <p>We deliver <code>AC_Engine_v5.0_Commercial_SDK.zip</code> containing stripped <code>.a</code> static binaries built for your target MCU architecture.</p>
                 </div>
                 <div class="protocol-card">
                     <div class="protocol-step">STEP 03</div>
                     <h4>Dyno Bench Validation (60 Days)</h4>
-                    <p>Your firmware team links the static binary into your test bench in under 10 minutes. Includes up to 10 hours of remote integration support under Mutual NDA.</p>
+                    <p>Your firmware team links the static binary into your test bench and runs the bundled 8-stage verification harness. Includes up to 10 hours of remote integration support under Mutual NDA.</p>
                 </div>
                 <div class="protocol-card">
                     <div class="protocol-step">STEP 04</div>
@@ -103,7 +103,7 @@
                 <div class="section-tag">COMMERCIAL EVALUATION SDK INTAKE</div>
                 <h2 style="font-size:24px; font-weight:800; color:var(--text-title); margin:8px 0 12px;">Request Pre-Compiled Evaluation Package</h2>
                 <p style="font-size:14px; color:var(--text-muted); line-height:1.6; max-width:780px;">
-                    Evaluation packages are provided exclusively to rotating equipment manufacturers (OEMs). To receive pre-compiled binaries configured for your target machine kinematics, complete the technical intake below:
+                    Evaluation packages are provided exclusively to rotating equipment manufacturers (OEMs). To receive pre-compiled static library archives for your target MCU architecture, complete the technical intake below:
                 </p>
 
                 <!-- Direct Intake Info Banner -->
@@ -127,7 +127,7 @@
                             <span class="pdf-tag" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;">DIRECT WITH CTO</span>
                         </div>
                         <div class="pdf-dossier-desc">
-                            Witness AC Engine executing in real-time inside an ARM microcontroller with live ADXL355 sensor streaming, 10x transient casing shock clamping, simulated raceway spall inception, and instantaneous API 670 trip relay latching in 180 seconds.
+                            Witness AC Engine executing in embedded C99 firmware with bundled OpenBLDC motor sample streaming, an 8x transient casing shock injection window, fault sample replay, and 6-window confirmed software alert latching in a 3-minute session.
                         </div>
                     </div>
                     <div style="flex-shrink:0;">
@@ -246,7 +246,7 @@
                         <div style="background:var(--bg-page); padding:18px; border-radius:6px; border:1px solid var(--border);">
                             <strong style="color:var(--text-title); display:block; font-size:13px; margin-bottom:6px;">2. Zero Source Code Leak Hazards</strong>
                             <p style="font-size:12px; color:var(--text-muted); line-height:1.6; margin:0;">
-                                Delivered as clean, stripped Thumb-2 / Xtensa static libraries (<code>libac_engine.a</code>) linking against your linker script in under 10 minutes. 100% offline and air-gapped.
+                                Delivered as clean, stripped ARM Cortex-M Thumb-2 / host static libraries (<code>libac_engine.a</code>, plus ESP32-S3 source integration) linking against your linker script in under 10 minutes. 100% offline and air-gapped.
                             </p>
                         </div>
                         <div style="background:var(--bg-page); padding:18px; border-radius:6px; border:1px solid var(--border);">

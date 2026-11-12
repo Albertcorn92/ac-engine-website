@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AC Engine | Embedded Vibration Intelligence for Industrial Rotating Equipment</title>
-    <meta name="description" content="Freestanding, zero-cloud C condition monitoring engine for ARM Cortex-M and ESP32 microcontrollers. 312-byte RAM footprint with sub-second defect tripping.">
+    <meta name="description" content="Freestanding C library that computes vibration metrics, compares them with a startup baseline, and reports threshold states.">
     <link rel="icon" type="image/png" href="assets/logo_icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
     <div class="top-stripe">
         <div class="top-stripe-left">
             <span>EMBEDDED C DSP CORE</span> &bull; 
-            <span>MISRA-C:2012 ALIGNED</span> &bull; 
+            <span>FREESTANDING ANSI C99</span> &bull; 
             <span>DETERMINISTIC 312B SRAM</span>
         </div>
         <div class="top-stripe-right">
@@ -55,13 +55,13 @@
 
             <div class="hero-badge">
                 <span class="status-dot"></span>
-                MISRA-C:2012 ALIGNED &bull; API 670 TRIP LOGIC &bull; ISO 10816 / 20816 ZONES &bull; EMPIRICALLY QUALIFIED
+                FREESTANDING ANSI C99 &bull; SOFTWARE ALERT LATCH &bull; REPLAY RESULTS AVAILABLE
             </div>
             <h1>
-                Predictive Bearing Intelligence for <span class="highlight">Industrial Motors &amp; Pumps</span>
+                Embedded Vibration Monitoring for <span class="highlight">Industrial Motors &amp; Pumps</span>
             </h1>
             <p class="lead">
-                Detect subsurface bearing degradation, raceway micro-spalling, and rotational faults directly inside your existing motor controller using your on-board MEMS accelerometer (SPI/I2C). In <strong>312 bytes of RAM</strong>. Zero cloud dependencies. Zero recurring SaaS fees.
+                Compute vibration-derived features and compare them with a startup baseline in embedded C. The library uses a <strong>312-byte context</strong>, caller-provided sensor batches, and no network service.
             </p>
 
             <div class="hero-actions">
@@ -73,13 +73,13 @@
             <div class="value-pillars-grid">
                 <div class="pillar-card">
                     <div class="pillar-num">01 / ARCHITECTURE</div>
-                    <h3>Zero Added Hardware</h3>
-                    <p>Runs as a static C firmware library inside your existing motor driver MCU (STM32, TI, NXP, ESP32). Eliminates $150+ external vibration pods.</p>
+                    <h3>Embedded Software Library</h3>
+                    <p>Runs in host firmware that supplies tri-axial sample batches. Sensor drivers, acquisition timing, and any external hardware are outside the library.</p>
                 </div>
                 <div class="pillar-card">
                     <div class="pillar-num">02 / LOCAL REACTION</div>
-                    <h3>1.28s Autonomous Protection</h3>
-                    <p>Trips safety relays and writes to Modbus holding registers at the edge weeks before catastrophic mechanical seizure occurs.</p>
+                    <h3>Software Alert Latch</h3>
+                    <p>Sets a software alert after six consecutive threshold-exceeding evaluations. At 500 Hz with one 32-sample batch every 64 ms, six calls span 384 ms from the first qualifying call to the sixth. The host decides any response.</p>
                 </div>
                 <div class="pillar-card">
                     <div class="pillar-num">03 / ISOLATION</div>
@@ -94,10 +94,10 @@
                     <div class="signal-chain-header">
                         <div class="signal-chain-title">
                             <span>SYSTEM SIGNAL CHAIN ARCHITECTURE</span>
-                            <span class="signal-chain-tag">HARDWARE-TO-RELAY PIPELINE</span>
+                            <span class="signal-chain-tag">SENSOR INPUT TO HOST RESPONSE</span>
                         </div>
                         <div class="signal-chain-meta">
-                            ANALOG DEVICES / TI HARDWARE COMPATIBLE &bull; 0 DYNAMIC HEAP BUFFERS
+                            HOST-PROVIDED INTEGER SAMPLES &bull; 0 DYNAMIC HEAP BUFFERS
                         </div>
                     </div>
                     <div class="signal-chain-grid">
@@ -108,7 +108,7 @@
                                     <span class="badge-mono">INGESTION</span>
                                 </div>
                                 <div class="signal-stage-title">Transducer &amp; SPI FIFO</div>
-                                <div class="signal-stage-desc">32-sample tri-axial burst from ADI ADXL355, ST IIS3DWB, or Bosch MEMS. Zero dynamic buffers; 500 Hz to 12 kHz burst rate.</div>
+                                <div class="signal-stage-desc">The caller supplies exactly 32 signed samples for each axis. Sensor drivers, range conversion, and sample timing are implemented by the host.</div>
                             </div>
                             <div class="signal-stage-chips">
                                 <span class="signal-stage-chip">SPI / I2C FIFO</span>
@@ -121,12 +121,12 @@
                                     <span>STAGE 02</span>
                                     <span class="badge-mono">GATING</span>
                                 </div>
-                                <div class="signal-stage-title">Transient Outlier Shield</div>
-                                <div class="signal-stage-desc">Speed-ramp startup transient gate (1.28s lockout) &amp; casing shock limiter clamp dropped tool spikes to prevent false trips.</div>
+                                <div class="signal-stage-title">Startup Baseline Heuristics</div>
+                                <div class="signal-stage-desc">Baseline collection includes a 20-window stabilization period and a high-energy limiter. The library receives no RPM signal and does not identify transient sources.</div>
                             </div>
                             <div class="signal-stage-chips">
-                                <span class="signal-stage-chip">0 RPM Lockout</span>
-                                <span class="signal-stage-chip">Anti-Poisoning Lock</span>
+                                <span class="signal-stage-chip">Fixed Input Floor</span>
+                                <span class="signal-stage-chip">Baseline Heuristics</span>
                             </div>
                         </div>
                         <div class="signal-stage-card">
@@ -136,11 +136,11 @@
                                     <span class="badge-mono">DSP CORE</span>
                                 </div>
                                 <div class="signal-stage-title">Fixed-Point Harmonics</div>
-                                <div class="signal-stage-desc">Recursive RMS, Kurtosis, Crest Factor, and Parseval-Goertzel resonators lock to 1X, BPFO, BPFI, and BSF harmonics in 312B SRAM.</div>
+                                <div class="signal-stage-desc">Computes demeaned 3-axis RMS, crest factor, and rolling Goertzel metrics, then compares them with the startup baseline.</div>
                             </div>
                             <div class="signal-stage-chips">
                                 <span class="signal-stage-chip">312B SRAM</span>
-                                <span class="signal-stage-chip">WCET &lt; 220 µs</span>
+                                <span class="signal-stage-chip">~24k Cyc / ~4 µs Host</span>
                             </div>
                         </div>
                         <div class="signal-stage-card">
@@ -149,11 +149,11 @@
                                     <span>STAGE 04</span>
                                     <span class="badge-mono">PROTECTION</span>
                                 </div>
-                                <div class="signal-stage-title">API 670 Trip &amp; Modbus</div>
-                                <div class="signal-stage-desc">2-window confirmation latch fires autonomous hardware trip relay &amp; writes health rating (0-100%) to Modbus holding registers.</div>
+                                <div class="signal-stage-title">Software Alert &amp; Host Integration</div>
+                                <div class="signal-stage-desc">A software alert latches after six consecutive threshold-exceeding windows. Host firmware chooses any Modbus, alarm, or shutdown response. The 0–100 condition index is not a percentage of wear or remaining life.</div>
                             </div>
                             <div class="signal-stage-chips">
-                                <span class="signal-stage-chip">API 670 Latch</span>
+                                <span class="signal-stage-chip">Software Alert Latch</span>
                                 <span class="signal-stage-chip">Modbus RTU/TCP</span>
                             </div>
                         </div>
@@ -170,18 +170,18 @@
                 </div>
                 <div class="metric-card">
                     <div class="metric-label">Execution Latency</div>
-                    <div class="metric-value">2.04<span class="unit">µs</span></div>
-                    <div class="metric-sub">2.04 µs host / ~100 µs Cortex-M (~24k cycles)</div>
+                    <div class="metric-value">4.17<span class="unit">µs</span></div>
+                    <div class="metric-sub">4.17 µs host avg / ~100 µs est. @ 240 MHz Cortex-M (~24k cycles)</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-label">Flash Code Size</div>
-                    <div class="metric-value">5.9<span class="unit">KB+</span></div>
-                    <div class="metric-sub">5.9 KB host / 15.3 KB Cortex-M4 stripped .a</div>
+                    <div class="metric-value">8.4<span class="unit">KB+</span></div>
+                    <div class="metric-sub">8.4 KB host / 16.2 KB Cortex-M4 (-O3; 6.5 KB -Os)</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-label">Dynamic Memory</div>
                     <div class="metric-value">0<span class="unit">malloc</span></div>
-                    <div class="metric-sub">Zero heap / MISRA-C:2012 Rule 21.3</div>
+                    <div class="metric-sub">Zero heap / freestanding ANSI C99</div>
                 </div>
             </div>
         </div>
@@ -194,7 +194,7 @@
                 <div class="section-tag">PARAMETRIC SPECIFICATIONS</div>
                 <h2 class="section-title">Electrical, Memory &amp; Real-Time Execution Profile</h2>
                 <p class="section-desc">
-                    Verified hardware resource parameters across standard industrial microcontrollers. Measured under worst-case clock frequencies and ambient plant operating conditions.
+                    Resource and execution parameters across target toolchains: Flash &amp; static stack measured with LLVM/Clang; execution timing measured on arm64 host (~4.17 µs avg) and estimated for bare-metal ARM Cortex-M (~24k–26k cycles).
                 </p>
             </div>
 
@@ -228,52 +228,52 @@
                             <td class="num">0</td>
                             <td class="num">0</td>
                             <td class="mono">Bytes</td>
-                            <td>MISRA-C:2012 Rule 21.3 compliant (<span class="mono">malloc = 0</span>).</td>
+                            <td>Zero dynamic heap (<span class="mono">malloc = 0</span>; <span class="mono">llvm-nm -u</span> = 0 undefined symbols).</td>
                         </tr>
                         <tr>
                             <td class="strong">Flash ROM Footprint (Thumb-2)</td>
                             <td class="mono">ROM_flash</td>
-                            <td class="num">5.9</td>
-                            <td class="num">15.3</td>
-                            <td class="num">16.8</td>
+                            <td class="num">8.4</td>
+                            <td class="num">16.2</td>
+                            <td class="num">16.6</td>
                             <td class="mono">KB</td>
-                            <td>Stripped static library (.a). 15.3 KB Cortex-M4; 16.8 KB M0+ soft-math.</td>
+                            <td>Static archive .text (-O3): 16.2 KB M4/M33; 16.6 KB M0+/M7 (6.5 / 6.8 KB -Os).</td>
                         </tr>
                         <tr>
-                            <td class="strong">Worst-Case Execution Time (WCET)</td>
-                            <td class="mono">t_WCET</td>
+                            <td class="strong">Estimated Cycle Latency (Cortex-M)</td>
+                            <td class="mono">t_est_M</td>
                             <td class="num">—</td>
-                            <td class="num">198.0</td>
-                            <td class="num">&lt; 220.0</td>
+                            <td class="num">~100.0</td>
+                            <td class="num">&lt; 240.0</td>
                             <td class="mono">µs</td>
-                            <td>Hard bound measured on 120 MHz Cortex-M3 (32-sample burst).</td>
+                            <td>Cycle-budget estimate (~24k cycles: ~100 µs @ 240 MHz; ~200 µs @ 120 MHz).</td>
                         </tr>
                         <tr>
                             <td class="strong">Core CPU Load (@ 64 ms cadence)</td>
                             <td class="mono">LOAD_cpu</td>
-                            <td class="num">0.05</td>
-                            <td class="num">0.15</td>
+                            <td class="num">0.006</td>
+                            <td class="num">—</td>
                             <td class="num">&lt; 0.35</td>
                             <td class="mono">%</td>
-                            <td>~24k cycles on 168 MHz Cortex-M4 across continuous evaluation.</td>
+                            <td>0.0062% measured on arm64 host; &lt; 0.35% estimated on 168 MHz Cortex-M4.</td>
                         </tr>
                         <tr>
                             <td class="strong">Defect Confirmation Trip Latency</td>
                             <td class="mono">t_trip</td>
-                            <td class="num">448</td>
-                            <td class="num">832</td>
-                            <td class="num">1,280</td>
+                            <td class="num">384</td>
+                            <td class="num">544</td>
+                            <td class="num">1,088</td>
                             <td class="mono">ms</td>
-                            <td>API 670-style 2-window confirmation latch prevents nuisance trips.</td>
+                            <td>Six consecutive threshold-exceeding windows are required before this software alert latch is set.</td>
                         </tr>
                         <tr>
-                            <td class="strong">Empirical False Alarm Rate (FAR)</td>
+                            <td class="strong">Real-Data Benchmark Coverage</td>
                             <td class="mono">FAR</td>
                             <td class="num">0.00</td>
-                            <td class="num">0.00</td>
-                            <td class="num">0.00</td>
+                            <td class="num">—</td>
+                            <td class="num">—</td>
                             <td class="mono">%</td>
-                            <td>Verified across 320,000,000 continuous stress samples (10M windows).</td>
+                            <td>0.00% CritFAR on OpenBLDC M10/M30 &amp; UORED healthy; 193 .acbin + dyno streams.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -287,7 +287,7 @@
                         <span class="pdf-tag">2-PAGE SPEC</span>
                     </div>
                     <div class="pdf-dossier-desc">
-                        Complete memory breakdown tables across GCC, Clang, IAR, and Keil compilers, register maps, and commercial OEM evaluation options.
+                        Memory &amp; static stack breakdown tables across GCC/Clang targets, C99 header integration specs, and commercial OEM evaluation options.
                     </div>
                 </div>
                 <a href="evaluation.html" class="btn-primary" style="font-size:13px; padding:10px 20px;">
@@ -302,8 +302,9 @@
         <div class="container">
             <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-bottom:28px;">
                 <div>
-                    <div class="section-tag">MULTI-PLATFORM EMPIRICAL QUALIFICATION</div>
-                    <h2 class="section-title">Empirically Evaluated Across Global Machinery Reference Benchmarks</h2>
+                    <div class="section-tag">LOCAL DATASET REPLAY SUMMARIES</div>
+                    <h2 class="section-title">Results Reported by the Included Replay Harnesses</h2>
+                    <p class="section-desc">The figures below are repository-reported outputs from local dataset replays and are not field accuracy, safety qualification, or guaranteed product performance.</p>
                 </div>
                 <div>
                     <a href="benchmark.html" class="btn-secondary" style="font-size:13px; padding:8px 18px;">View Full Laboratory Benchmark Data &rarr;</a>
@@ -312,51 +313,51 @@
 
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
                 <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px; box-shadow:var(--shadow-sm); border-top:3px solid var(--primary);">
-                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">NASA AMES PROGNOSTICS</div>
-                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">6,000 lb Bearing Rig</div>
-                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">7 continuous days (163 hrs) under 6,000 lb radial load on Rexnord ZA-2115 bearings.</p>
-                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">46.5 Hr Early Warning</div>
-                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">0.00% False Alarm Rate across 107h baseline</div>
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">OPENBLDC ADXL355 FLEET (REAL 1 kHz / 500 Hz)</div>
+                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">3 Motors &times; Front/Rear Tri-Axial</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">Real MEMS FIFO telemetry on Motor 10, Motor 20, and Motor 30 nominal + notched bearing runs.</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">0.00% CritFAR (M10F / M30F+R)</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">512–704 ms 1st crit @ 1 kHz; M20 drift &amp; M10R noted</div>
                 </div>
 
                 <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px; box-shadow:var(--shadow-sm); border-top:3px solid var(--primary);">
-                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">CASE WESTERN RESERVE (CWRU)</div>
-                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">Reliance Electric 2 HP Motor</div>
-                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">Drive-end SKF 6205 bearing with EDM micro-spalling (0.007" depth) at 1,797 RPM.</p>
-                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">512 ms - 1,024 ms Trip</div>
-                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Inner &amp; Outer Race Spalls Observed</div>
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">FEMTO-ST PRONOSTIA (8 REAL RUNS)</div>
+                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">4,000–5,000 N Overload Campaign</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">25.6 kHz decimated to 500 Hz .acbin streams across Bearings 1_1–3_2 run-to-failure.</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">8/8 Progression Tracked</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">B1_1 holds 0 crit D0–D6 &amp; trips D7 to 8% health</div>
                 </div>
 
                 <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px; box-shadow:var(--shadow-sm); border-top:3px solid var(--primary);">
-                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">PADERBORN UNIVERSITY (PU)</div>
-                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">FAG 6203 PMSM Drivetrain</div>
-                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">14 authentic fatigue run-to-failure bearings evaluated across 4 speed/load regimes (900–1,500 RPM).</p>
-                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">320 ms - 576 ms Critical Trip</div>
-                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">0.00% False Trips across undamaged fleet K001–K006</div>
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">UORED-VAFCLS (60 BEARINGS, CC BY 4.0)</div>
+                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">Healthy / Developing / Fault Triplets</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">42 kHz decimated to 500 Hz across 20 bearing groups (Inner, Outer, Cage, Ball).</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">20/20 Healthy 0-Crit Held-Out</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">16/20 Dev &amp; 14/20 Fault flagged; 2/20 cal pre-defect</div>
                 </div>
 
                 <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px; box-shadow:var(--shadow-sm); border-top:3px solid var(--primary);">
-                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">UNIVERSITY OF OTTAWA (UORED)</div>
-                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">Non-Stationary VFD Sweeps</div>
-                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">Rexnord ER16K under rapid linear throttle sweeps (600 to 2,100 RPM acceleration &amp; deceleration).</p>
-                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">0.00% Throttle False Trips</div>
-                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">256 ms defect detection during active speed sweep</div>
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">UNIVERSITY OF OTTAWA TVS (36 RUNS)</div>
+                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">Variable-Speed VFD Sweeps</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">200 kHz decimated to 500 Hz under Profiles A–D acceleration and deceleration.</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">0 Crit Profiles A–C Healthy</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Inner 3/3 (A–D), Outer 8/9; Profile D sweep stress</div>
                 </div>
 
                 <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px; box-shadow:var(--shadow-sm); border-top:3px solid var(--primary);">
-                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">MFPT SOCIETY BENCHMARK</div>
-                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">Stepped Radial Loads &amp; Plant Cases</div>
-                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">Nice Bearing tested from 25 to 300 lbs load steps; planetary gearbox, pump unbalance &amp; oil whirl.</p>
-                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">100% Load Variation Immunity</div>
-                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">192 ms - 448 ms trip across defect modes</div>
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">CWRU &amp; MFPT (36 .ACBIN @ 500 Hz)</div>
+                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">2 HP Motor &amp; Stepped Radial Loads</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">CWRU 0.007" faults (0–3 HP) + MFPT (3 baselines, 7 variable-load IR, 10 OR).</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">12/12 CWRU Faults; 5/7 MFPT IR</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">1–3 HP 0% CritFAR; 0 HP drift &amp; 500 Hz OR limit</div>
                 </div>
 
                 <div style="background:#ffffff; border:1px solid var(--border); border-radius:6px; padding:20px; box-shadow:var(--shadow-sm); border-top:3px solid var(--primary);">
-                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">SLURRY PUMP &amp; GEARBOX (4TU / PHM09)</div>
-                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">Impeller Cavitation &amp; Pinion Mesh</div>
-                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">Centrifugal pump hydraulic cavitation turbulence surges and 24T pinion chipped gear teeth.</p>
-                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">0 Cavitation False Trips</div>
-                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">64 ms incipient / 384 ms critical trip on chipped tooth</div>
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--primary); font-weight:700; margin-bottom:6px;">NASA IMS (8 CH) &amp; SEU GEARBOX (45 CH)</div>
+                    <div style="font-size:15px; font-weight:800; color:var(--text-title); margin-bottom:6px;">Run-to-Failure &amp; Parallel/Planetary</div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:12px;">500 Hz decimated streams; Paderborn, 4TU &amp; PHM09 explicitly excluded (size/license).</p>
+                    <div style="font-family:var(--font-mono); font-size:12px; color:var(--emerald-dark); font-weight:700;">IMS 1st B3/B4 &amp; SEU Chipped/Surf</div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">EndH 8–15%; SEU 20_0 parallel H 92% EndH</div>
                 </div>
             </div>
         </div>
@@ -366,10 +367,10 @@
     <section id="economics">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">COMMERCIAL &amp; SYSTEM ECONOMICS</div>
-                <h2 class="section-title">On-Chip Firmware Core vs. External Bolt-On Pucks</h2>
+                    <div class="section-tag">INTEGRATION CONSIDERATIONS</div>
+                    <h2 class="section-title">Embedded Library and External Monitoring Systems</h2>
                 <p class="section-desc">
-                    Why rotating equipment OEMs are replacing $200 external sensor pods with native embedded condition monitoring running directly on their existing motor control board.
+                    These architectures make different tradeoffs. Hardware, installation, connectivity, operating cost, and performance depend on the selected system and deployment; this repository does not establish a vendor comparison.
                 </p>
             </div>
 
@@ -385,38 +386,38 @@
                     <tbody>
                         <tr>
                             <td class="strong">Unit OEM BOM Cost</td>
-                            <td><span class="badge-win">Advantage</span> <span class="mono">$2 - $5</span> (Existing MCU + $2 SPI MEMS)</td>
-                            <td><span class="badge-loss">High BOM</span> <span class="mono">$150 - $300+</span> per monitored machine point</td>
+                            <td>Depends on host MCU, sensor, and integration costs; not estimated here.</td>
+                            <td>Varies by product, installation, and service plan.</td>
                         </tr>
                         <tr>
                             <td class="strong">Physical Integration</td>
-                            <td><span class="badge-win">Seamless</span> Surface-mounted on internal motor control PCB</td>
-                            <td><span class="badge-loss">Vulnerable</span> External pod, magnetic base, or drilled casing stud</td>
+                            <td>Requires host software integration and a configured vibration sensor.</td>
+                            <td>Depends on the selected monitoring system.</td>
                         </tr>
                         <tr>
                             <td class="strong">Power Source &amp; Lifespan</td>
-                            <td><span class="badge-win">Mains Powered</span> Powered directly by drive board (0 batteries)</td>
-                            <td><span class="badge-loss">Battery Risk</span> Lithium cells; requires field replacement every 1-2 yrs</td>
+                            <td>Depends on the host equipment and sensor interface.</td>
+                            <td>Depends on the selected monitoring system.</td>
                         </tr>
                         <tr>
                             <td class="strong">Defect Trip &amp; Protection Latency</td>
-                            <td><span class="badge-win">384 – 832 ms Typ</span> Direct hardware relay / Modbus fault trip (&lt; 1.28 s Max)</td>
-                            <td><span class="badge-loss">Delayed</span> 15-min to 24-hr batch cloud polling latency</td>
+                            <td>Six consecutive threshold-exceeding evaluation calls; host controls any response.</td>
+                            <td>Depends on product configuration and connectivity.</td>
                         </tr>
                         <tr>
                             <td class="strong">Cloud &amp; Gateway Dependency</td>
-                            <td><span class="badge-win">100% Air-Gapped</span> Zero cloud, zero IT/firewall clearance</td>
-                            <td><span class="badge-loss">IT Barrier</span> Requires cellular gateways, SIM cards, plant Wi-Fi</td>
+                            <td>The library itself has no networking code. Host firmware may add network services.</td>
+                            <td>Depends on the selected monitoring system.</td>
                         </tr>
                         <tr>
                             <td class="strong">Recurring Cloud &amp; SaaS Costs</td>
-                            <td><span class="badge-win">Zero Cloud Fees</span> Fixed OEM volume licensing or enterprise site agreement</td>
-                            <td><span class="badge-loss">SaaS Tax</span> Ongoing per-machine monthly cloud subscription fees</td>
+                            <td>Commercial terms are separate from this software repository.</td>
+                            <td>Depends on the vendor and service plan.</td>
                         </tr>
                         <tr>
                             <td class="strong">OEM Value Capture</td>
-                            <td><span class="badge-win">Your Brand</span> Sold as your native "Smart Machine" feature</td>
-                            <td><span class="badge-loss">Disintermediated</span> 3rd-party vendor owns customer portal &amp; data</td>
+                            <td>Depends on the host product and license.</td>
+                            <td>Depends on the selected monitoring system.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -444,12 +445,12 @@
                 <div class="protocol-card">
                     <div class="protocol-step">STEP 02</div>
                     <h4>Pre-Compiled SDK Delivery</h4>
-                    <p>We deliver <code>AC_Engine_Commercial_SDK.zip</code> containing stripped <code>.a</code> binaries for your exact MCU architecture.</p>
+                    <p>We deliver <code>AC_Engine_v5.0_Commercial_SDK.zip</code> containing stripped <code>.a</code> binaries for your exact MCU architecture.</p>
                 </div>
                 <div class="protocol-card">
                     <div class="protocol-step">STEP 03</div>
                     <h4>Dyno Bench Validation (60 Days)</h4>
-                    <p>Your firmware team links the static binary into your test bench in under 10 minutes. Includes up to 10 hours of remote integration support under Mutual NDA.</p>
+                    <p>Integrate the archive with a supported host toolchain, feed configured sensor batches, and compare results with your own test data. Integration time depends on the host system.</p>
                 </div>
                 <div class="protocol-card">
                     <div class="protocol-step">STEP 04</div>
@@ -490,7 +491,7 @@
                         Embry-Riddle Aeronautical University | Embedded Systems &amp; Flight Software Reliability
                     </div>
                     <p style="font-size:13px; color:var(--text-body); line-height:1.65; margin-bottom:16px;">
-                        Specializing in deterministic edge DSP and autonomous vibration diagnostics for industrial rotating machinery. Developed AC Engine 5.0 to solve the false-alarm and memory bottleneck in OEM motor drives by bridging practical mechanical shop floor experience (heavy construction machinery and diesel wheel ends) with rigorous flight software discipline (NASA F Prime, MISRA C99, freestanding ANSI C).
+                        Specializing in deterministic edge DSP and autonomous vibration diagnostics for industrial rotating machinery. Developed AC Engine 5.0 to solve the false-alarm and memory bottleneck in OEM motor drives by bridging practical mechanical shop floor experience (heavy construction machinery and diesel wheel ends) with rigorous flight software discipline (NASA F Prime, freestanding ANSI C99).
                     </p>
                     <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
                         <a href="https://www.linkedin.com/in/albert-cornelius-0816a11b5/" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:12px; padding:8px 16px;">
